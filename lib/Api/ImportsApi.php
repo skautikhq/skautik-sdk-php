@@ -168,7 +168,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createImport($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
     {
@@ -192,7 +192,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createImportWithHttpInfo($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
     {
@@ -224,7 +224,7 @@ class ImportsApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportResponse',
                         $request,
                         $response,
                     );
@@ -288,7 +288,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ImportResponse',
                 $request,
                 $response,
             );
@@ -297,7 +297,7 @@ class ImportsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -411,7 +411,7 @@ class ImportsApi
      */
     public function createImportAsyncWithHttpInfo($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ImportResponse';
         $request = $this->createImportRequest($format, $idempotency_key, $dry_run, $file, $mode, $source_id, $url, $contentType);
 
         return $this->client
@@ -579,7 +579,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createImportSource($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
     {
@@ -597,7 +597,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createImportSourceWithHttpInfo($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
     {
@@ -629,7 +629,7 @@ class ImportsApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
                         $request,
                         $response,
                     );
@@ -681,7 +681,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ImportSourceResponse',
                 $request,
                 $response,
             );
@@ -690,7 +690,7 @@ class ImportsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -776,7 +776,7 @@ class ImportsApi
      */
     public function createImportSourceAsyncWithHttpInfo($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ImportSourceResponse';
         $request = $this->createImportSourceRequest($create_import_source_request, $contentType);
 
         return $this->client
@@ -1182,7 +1182,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function getImport($import_id, string $contentType = self::contentTypes['getImport'][0])
     {
@@ -1200,7 +1200,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportWithHttpInfo($import_id, string $contentType = self::contentTypes['getImport'][0])
     {
@@ -1232,7 +1232,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportResponse',
                         $request,
                         $response,
                     );
@@ -1284,7 +1284,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ImportResponse',
                 $request,
                 $response,
             );
@@ -1293,7 +1293,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1379,7 +1379,7 @@ class ImportsApi
      */
     public function getImportAsyncWithHttpInfo($import_id, string $contentType = self::contentTypes['getImport'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ImportResponse';
         $request = $this->getImportRequest($import_id, $contentType);
 
         return $this->client
@@ -1524,11 +1524,12 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function getImportSource($source_id, string $contentType = self::contentTypes['getImportSource'][0])
     {
-        $this->getImportSourceWithHttpInfo($source_id, $contentType);
+        list($response) = $this->getImportSourceWithHttpInfo($source_id, $contentType);
+        return $response;
     }
 
     /**
@@ -1541,7 +1542,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportSourceWithHttpInfo($source_id, string $contentType = self::contentTypes['getImportSource'][0])
     {
@@ -1570,9 +1571,75 @@ class ImportsApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\ImportSourceResponse',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1654,14 +1721,27 @@ class ImportsApi
      */
     public function getImportSourceAsyncWithHttpInfo($source_id, string $contentType = self::contentTypes['getImportSource'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\ImportSourceResponse';
         $request = $this->getImportSourceRequest($source_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1720,7 +1800,7 @@ class ImportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
@@ -2109,7 +2189,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportRecordPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImportRecords($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
@@ -2128,7 +2208,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportRecordPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportRecordsWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
@@ -2160,7 +2240,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportRecordPage',
                         $request,
                         $response,
                     );
@@ -2212,7 +2292,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ImportRecordPage',
                 $request,
                 $response,
             );
@@ -2221,7 +2301,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportRecordPage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2309,7 +2389,7 @@ class ImportsApi
      */
     public function listImportRecordsAsyncWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ImportRecordPage';
         $request = $this->listImportRecordsRequest($import_id, $outcome, $contentType);
 
         return $this->client
@@ -2464,7 +2544,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportSourcePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImportSources(string $contentType = self::contentTypes['listImportSources'][0])
     {
@@ -2481,7 +2561,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportSourcePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportSourcesWithHttpInfo(string $contentType = self::contentTypes['listImportSources'][0])
     {
@@ -2513,7 +2593,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportSourcePage',
                         $request,
                         $response,
                     );
@@ -2565,7 +2645,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ImportSourcePage',
                 $request,
                 $response,
             );
@@ -2574,7 +2654,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ImportSourcePage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2658,7 +2738,7 @@ class ImportsApi
      */
     public function listImportSourcesAsyncWithHttpInfo(string $contentType = self::contentTypes['listImportSources'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ImportSourcePage';
         $request = $this->listImportSourcesRequest($contentType);
 
         return $this->client
@@ -2788,11 +2868,12 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\ImportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImports($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
-        $this->listImportsWithHttpInfo($source_id, $status, $contentType);
+        list($response) = $this->listImportsWithHttpInfo($source_id, $status, $contentType);
+        return $response;
     }
 
     /**
@@ -2806,7 +2887,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportsWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
@@ -2835,9 +2916,75 @@ class ImportsApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\ImportPage',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\ImportPage',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\ImportPage',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -2921,14 +3068,27 @@ class ImportsApi
      */
     public function listImportsAsyncWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\ImportPage';
         $request = $this->listImportsRequest($source_id, $status, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -2993,7 +3153,7 @@ class ImportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
@@ -3059,11 +3219,12 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function updateImportSource($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
     {
-        $this->updateImportSourceWithHttpInfo($source_id, $contentType);
+        list($response) = $this->updateImportSourceWithHttpInfo($source_id, $contentType);
+        return $response;
     }
 
     /**
@@ -3076,7 +3237,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateImportSourceWithHttpInfo($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
     {
@@ -3105,9 +3266,75 @@ class ImportsApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\ImportSourceResponse',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\ImportSourceResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -3189,14 +3416,27 @@ class ImportsApi
      */
     public function updateImportSourceAsyncWithHttpInfo($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\ImportSourceResponse';
         $request = $this->updateImportSourceRequest($source_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -3255,7 +3495,7 @@ class ImportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );

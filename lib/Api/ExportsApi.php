@@ -141,7 +141,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createExport($create_export_request, string $contentType = self::contentTypes['createExport'][0])
     {
@@ -159,7 +159,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createExportWithHttpInfo($create_export_request, string $contentType = self::contentTypes['createExport'][0])
     {
@@ -191,7 +191,7 @@ class ExportsApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ExportResponse',
                         $request,
                         $response,
                     );
@@ -243,7 +243,7 @@ class ExportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ExportResponse',
                 $request,
                 $response,
             );
@@ -252,7 +252,7 @@ class ExportsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -338,7 +338,7 @@ class ExportsApi
      */
     public function createExportAsyncWithHttpInfo($create_export_request, string $contentType = self::contentTypes['createExport'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ExportResponse';
         $request = $this->createExportRequest($create_export_request, $contentType);
 
         return $this->client
@@ -482,7 +482,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function getExport($export_id, string $contentType = self::contentTypes['getExport'][0])
     {
@@ -500,7 +500,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function getExportWithHttpInfo($export_id, string $contentType = self::contentTypes['getExport'][0])
     {
@@ -532,7 +532,7 @@ class ExportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ExportResponse',
                         $request,
                         $response,
                     );
@@ -584,7 +584,7 @@ class ExportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\ExportResponse',
                 $request,
                 $response,
             );
@@ -593,7 +593,7 @@ class ExportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\ExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -679,7 +679,7 @@ class ExportsApi
      */
     public function getExportAsyncWithHttpInfo($export_id, string $contentType = self::contentTypes['getExport'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\ExportResponse';
         $request = $this->getExportRequest($export_id, $contentType);
 
         return $this->client
@@ -823,11 +823,12 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\ExportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listExports(string $contentType = self::contentTypes['listExports'][0])
     {
-        $this->listExportsWithHttpInfo($contentType);
+        list($response) = $this->listExportsWithHttpInfo($contentType);
+        return $response;
     }
 
     /**
@@ -839,7 +840,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ExportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listExportsWithHttpInfo(string $contentType = self::contentTypes['listExports'][0])
     {
@@ -868,9 +869,75 @@ class ExportsApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\ExportPage',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\ExportPage',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\ExportPage',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -950,14 +1017,27 @@ class ExportsApi
      */
     public function listExportsAsyncWithHttpInfo(string $contentType = self::contentTypes['listExports'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\ExportPage';
         $request = $this->listExportsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1000,7 +1080,7 @@ class ExportsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );

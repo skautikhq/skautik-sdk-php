@@ -144,11 +144,12 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function getInquiry($inquiry_id, string $contentType = self::contentTypes['getInquiry'][0])
     {
-        $this->getInquiryWithHttpInfo($inquiry_id, $contentType);
+        list($response) = $this->getInquiryWithHttpInfo($inquiry_id, $contentType);
+        return $response;
     }
 
     /**
@@ -161,7 +162,7 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function getInquiryWithHttpInfo($inquiry_id, string $contentType = self::contentTypes['getInquiry'][0])
     {
@@ -190,9 +191,75 @@ class InquiriesApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\InquiryResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\InquiryResponse',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\InquiryResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -274,14 +341,27 @@ class InquiriesApi
      */
     public function getInquiryAsyncWithHttpInfo($inquiry_id, string $contentType = self::contentTypes['getInquiry'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\InquiryResponse';
         $request = $this->getInquiryRequest($inquiry_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -340,7 +420,7 @@ class InquiriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
@@ -409,7 +489,7 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\InquiryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listInquiries($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
@@ -430,7 +510,7 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\InquiryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listInquiriesWithHttpInfo($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
@@ -462,7 +542,7 @@ class InquiriesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\InquiryPage',
                         $request,
                         $response,
                     );
@@ -514,7 +594,7 @@ class InquiriesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Envelope',
+                '\Skautik\Sdk\Model\InquiryPage',
                 $request,
                 $response,
             );
@@ -523,7 +603,7 @@ class InquiriesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Envelope',
+                        '\Skautik\Sdk\Model\InquiryPage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -615,7 +695,7 @@ class InquiriesApi
      */
     public function listInquiriesAsyncWithHttpInfo($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Envelope';
+        $returnType = '\Skautik\Sdk\Model\InquiryPage';
         $request = $this->listInquiriesRequest($property_id, $status, $limit, $cursor, $contentType);
 
         return $this->client
@@ -1051,11 +1131,12 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function updateInquiry($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
     {
-        $this->updateInquiryWithHttpInfo($inquiry_id, $update_inquiry_request, $contentType);
+        list($response) = $this->updateInquiryWithHttpInfo($inquiry_id, $update_inquiry_request, $contentType);
+        return $response;
     }
 
     /**
@@ -1069,7 +1150,7 @@ class InquiriesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateInquiryWithHttpInfo($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
     {
@@ -1098,9 +1179,75 @@ class InquiriesApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\InquiryResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 422:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+                case 429:
+                    return $this->handleResponseWithDataType(
+                        '\Skautik\Sdk\Model\Problem',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Skautik\Sdk\Model\InquiryResponse',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Skautik\Sdk\Model\InquiryResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1184,14 +1331,27 @@ class InquiriesApi
      */
     public function updateInquiryAsyncWithHttpInfo($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
     {
-        $returnType = '';
+        $returnType = '\Skautik\Sdk\Model\InquiryResponse';
         $request = $this->updateInquiryRequest($inquiry_id, $update_inquiry_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1258,7 +1418,7 @@ class InquiriesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
