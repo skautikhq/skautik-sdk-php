@@ -159,7 +159,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createWebhook($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
     {
@@ -177,7 +177,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createWebhookWithHttpInfo($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
     {
@@ -209,7 +209,7 @@ class WebhooksApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\Envelope',
                         $request,
                         $response,
                     );
@@ -261,7 +261,7 @@ class WebhooksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Problem',
+                '\Skautik\Sdk\Model\Envelope',
                 $request,
                 $response,
             );
@@ -270,7 +270,7 @@ class WebhooksApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\Envelope',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -356,7 +356,7 @@ class WebhooksApi
      */
     public function createWebhookAsyncWithHttpInfo($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Problem';
+        $returnType = '\Skautik\Sdk\Model\Envelope';
         $request = $this->createWebhookRequest($create_webhook_request, $contentType);
 
         return $this->client
@@ -427,7 +427,7 @@ class WebhooksApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
@@ -1106,7 +1106,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\DeliveryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\DeliveryList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listDeliveries($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
     {
@@ -1126,7 +1126,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\DeliveryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\DeliveryList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listDeliveriesWithHttpInfo($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
     {
@@ -1158,7 +1158,7 @@ class WebhooksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\DeliveryPage',
+                        '\Skautik\Sdk\Model\DeliveryList',
                         $request,
                         $response,
                     );
@@ -1210,7 +1210,7 @@ class WebhooksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\DeliveryPage',
+                '\Skautik\Sdk\Model\DeliveryList',
                 $request,
                 $response,
             );
@@ -1219,7 +1219,7 @@ class WebhooksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\DeliveryPage',
+                        '\Skautik\Sdk\Model\DeliveryList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1309,7 +1309,7 @@ class WebhooksApi
      */
     public function listDeliveriesAsyncWithHttpInfo($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\DeliveryPage';
+        $returnType = '\Skautik\Sdk\Model\DeliveryList';
         $request = $this->listDeliveriesRequest($webhook_id, $status, $limit, $contentType);
 
         return $this->client
@@ -1797,7 +1797,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\WebhookPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\WebhookList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listWebhooks(string $contentType = self::contentTypes['listWebhooks'][0])
     {
@@ -1814,7 +1814,7 @@ class WebhooksApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\WebhookPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\WebhookList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listWebhooksWithHttpInfo(string $contentType = self::contentTypes['listWebhooks'][0])
     {
@@ -1846,7 +1846,7 @@ class WebhooksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\WebhookPage',
+                        '\Skautik\Sdk\Model\WebhookList',
                         $request,
                         $response,
                     );
@@ -1898,7 +1898,7 @@ class WebhooksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\WebhookPage',
+                '\Skautik\Sdk\Model\WebhookList',
                 $request,
                 $response,
             );
@@ -1907,7 +1907,7 @@ class WebhooksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\WebhookPage',
+                        '\Skautik\Sdk\Model\WebhookList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1991,7 +1991,7 @@ class WebhooksApi
      */
     public function listWebhooksAsyncWithHttpInfo(string $contentType = self::contentTypes['listWebhooks'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\WebhookPage';
+        $returnType = '\Skautik\Sdk\Model\WebhookList';
         $request = $this->listWebhooksRequest($contentType);
 
         return $this->client

@@ -823,7 +823,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ExportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ExportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listExports(string $contentType = self::contentTypes['listExports'][0])
     {
@@ -840,7 +840,7 @@ class ExportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ExportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ExportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listExportsWithHttpInfo(string $contentType = self::contentTypes['listExports'][0])
     {
@@ -872,7 +872,7 @@ class ExportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\ExportPage',
+                        '\Skautik\Sdk\Model\ExportList',
                         $request,
                         $response,
                     );
@@ -924,7 +924,7 @@ class ExportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\ExportPage',
+                '\Skautik\Sdk\Model\ExportList',
                 $request,
                 $response,
             );
@@ -933,7 +933,7 @@ class ExportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\ExportPage',
+                        '\Skautik\Sdk\Model\ExportList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1017,7 +1017,7 @@ class ExportsApi
      */
     public function listExportsAsyncWithHttpInfo(string $contentType = self::contentTypes['listExports'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\ExportPage';
+        $returnType = '\Skautik\Sdk\Model\ExportList';
         $request = $this->listExportsRequest($contentType);
 
         return $this->client

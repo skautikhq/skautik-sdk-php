@@ -440,7 +440,7 @@ class AccountAndStatusApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function getMe(string $contentType = self::contentTypes['getMe'][0])
     {
@@ -457,7 +457,7 @@ class AccountAndStatusApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMeWithHttpInfo(string $contentType = self::contentTypes['getMe'][0])
     {
@@ -489,7 +489,7 @@ class AccountAndStatusApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\Envelope',
                         $request,
                         $response,
                     );
@@ -541,7 +541,7 @@ class AccountAndStatusApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Problem',
+                '\Skautik\Sdk\Model\Envelope',
                 $request,
                 $response,
             );
@@ -550,7 +550,7 @@ class AccountAndStatusApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\Envelope',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -634,7 +634,7 @@ class AccountAndStatusApi
      */
     public function getMeAsyncWithHttpInfo(string $contentType = self::contentTypes['getMe'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Problem';
+        $returnType = '\Skautik\Sdk\Model\Envelope';
         $request = $this->getMeRequest($contentType);
 
         return $this->client
@@ -697,7 +697,7 @@ class AccountAndStatusApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );

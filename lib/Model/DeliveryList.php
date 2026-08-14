@@ -1,6 +1,6 @@
 <?php
 /**
- * ImportSourcePage
+ * DeliveryList
  *
  * PHP version 8.1
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * ImportSourcePage Class Doc Comment
+ * DeliveryList Class Doc Comment
  *
  * @category Class
- * @description A page of ImportSource records, with the cursor for the next one.
+ * @description Every Delivery record.
  * @package  Skautik\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
+class DeliveryList implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ImportSourcePage';
+    protected static $openAPIModelName = 'DeliveryList';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'data' => '\Skautik\Sdk\Model\ImportSource[]',
-        'meta' => '\Skautik\Sdk\Model\PageMeta'
+        'data' => '\Skautik\Sdk\Model\Delivery[]'
     ];
 
     /**
@@ -70,8 +69,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'data' => null,
-        'meta' => null
+        'data' => null
     ];
 
     /**
@@ -80,8 +78,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'data' => false,
-        'meta' => false
+        'data' => false
     ];
 
     /**
@@ -170,8 +167,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'data' => 'data',
-        'meta' => 'meta'
+        'data' => 'data'
     ];
 
     /**
@@ -180,8 +176,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'data' => 'setData',
-        'meta' => 'setMeta'
+        'data' => 'setData'
     ];
 
     /**
@@ -190,8 +185,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'data' => 'getData',
-        'meta' => 'getMeta'
+        'data' => 'getData'
     ];
 
     /**
@@ -252,7 +246,6 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('data', $data ?? [], null);
-        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -303,7 +296,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data
      *
-     * @return \Skautik\Sdk\Model\ImportSource[]
+     * @return \Skautik\Sdk\Model\Delivery[]
      */
     public function getData()
     {
@@ -313,7 +306,7 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Skautik\Sdk\Model\ImportSource[] $data data
+     * @param \Skautik\Sdk\Model\Delivery[] $data data
      *
      * @return self
      */
@@ -323,33 +316,6 @@ class ImportSourcePage implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
         $this->container['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Gets meta
-     *
-     * @return \Skautik\Sdk\Model\PageMeta|null
-     */
-    public function getMeta()
-    {
-        return $this->container['meta'];
-    }
-
-    /**
-     * Sets meta
-     *
-     * @param \Skautik\Sdk\Model\PageMeta|null $meta meta
-     *
-     * @return self
-     */
-    public function setMeta($meta)
-    {
-        if (is_null($meta)) {
-            throw new \InvalidArgumentException('non-nullable meta cannot be null');
-        }
-        $this->container['meta'] = $meta;
 
         return $this;
     }

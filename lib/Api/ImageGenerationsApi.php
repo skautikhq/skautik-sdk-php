@@ -1148,7 +1148,7 @@ class ImageGenerationsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\GenerationPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\GenerationList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listGenerations(string $contentType = self::contentTypes['listGenerations'][0])
     {
@@ -1165,7 +1165,7 @@ class ImageGenerationsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\GenerationPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\GenerationList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listGenerationsWithHttpInfo(string $contentType = self::contentTypes['listGenerations'][0])
     {
@@ -1197,7 +1197,7 @@ class ImageGenerationsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\GenerationPage',
+                        '\Skautik\Sdk\Model\GenerationList',
                         $request,
                         $response,
                     );
@@ -1249,7 +1249,7 @@ class ImageGenerationsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\GenerationPage',
+                '\Skautik\Sdk\Model\GenerationList',
                 $request,
                 $response,
             );
@@ -1258,7 +1258,7 @@ class ImageGenerationsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\GenerationPage',
+                        '\Skautik\Sdk\Model\GenerationList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1342,7 +1342,7 @@ class ImageGenerationsApi
      */
     public function listGenerationsAsyncWithHttpInfo(string $contentType = self::contentTypes['listGenerations'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\GenerationPage';
+        $returnType = '\Skautik\Sdk\Model\GenerationList';
         $request = $this->listGenerationsRequest($contentType);
 
         return $this->client

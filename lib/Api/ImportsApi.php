@@ -168,7 +168,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createImport($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
     {
@@ -192,7 +192,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createImportWithHttpInfo($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
     {
@@ -225,12 +225,6 @@ class ImportsApi
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\Skautik\Sdk\Model\ImportResponse',
-                        $request,
-                        $response,
-                    );
-                case 202:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
                         $request,
                         $response,
                     );
@@ -298,14 +292,6 @@ class ImportsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Skautik\Sdk\Model\ImportResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 202:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Problem',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2189,7 +2175,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ImportRecordPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportRecordList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImportRecords($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
@@ -2208,7 +2194,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ImportRecordPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportRecordList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportRecordsWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
@@ -2240,7 +2226,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\ImportRecordPage',
+                        '\Skautik\Sdk\Model\ImportRecordList',
                         $request,
                         $response,
                     );
@@ -2292,7 +2278,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\ImportRecordPage',
+                '\Skautik\Sdk\Model\ImportRecordList',
                 $request,
                 $response,
             );
@@ -2301,7 +2287,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\ImportRecordPage',
+                        '\Skautik\Sdk\Model\ImportRecordList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2389,7 +2375,7 @@ class ImportsApi
      */
     public function listImportRecordsAsyncWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\ImportRecordPage';
+        $returnType = '\Skautik\Sdk\Model\ImportRecordList';
         $request = $this->listImportRecordsRequest($import_id, $outcome, $contentType);
 
         return $this->client
@@ -2544,7 +2530,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ImportSourcePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportSourceList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImportSources(string $contentType = self::contentTypes['listImportSources'][0])
     {
@@ -2561,7 +2547,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ImportSourcePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportSourceList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportSourcesWithHttpInfo(string $contentType = self::contentTypes['listImportSources'][0])
     {
@@ -2593,7 +2579,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\ImportSourcePage',
+                        '\Skautik\Sdk\Model\ImportSourceList',
                         $request,
                         $response,
                     );
@@ -2645,7 +2631,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\ImportSourcePage',
+                '\Skautik\Sdk\Model\ImportSourceList',
                 $request,
                 $response,
             );
@@ -2654,7 +2640,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\ImportSourcePage',
+                        '\Skautik\Sdk\Model\ImportSourceList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2738,7 +2724,7 @@ class ImportsApi
      */
     public function listImportSourcesAsyncWithHttpInfo(string $contentType = self::contentTypes['listImportSources'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\ImportSourcePage';
+        $returnType = '\Skautik\Sdk\Model\ImportSourceList';
         $request = $this->listImportSourcesRequest($contentType);
 
         return $this->client
@@ -2868,7 +2854,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ImportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listImports($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
@@ -2887,7 +2873,7 @@ class ImportsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ImportPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listImportsWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
@@ -2919,7 +2905,7 @@ class ImportsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\ImportPage',
+                        '\Skautik\Sdk\Model\ImportList',
                         $request,
                         $response,
                     );
@@ -2971,7 +2957,7 @@ class ImportsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\ImportPage',
+                '\Skautik\Sdk\Model\ImportList',
                 $request,
                 $response,
             );
@@ -2980,7 +2966,7 @@ class ImportsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\ImportPage',
+                        '\Skautik\Sdk\Model\ImportList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3068,7 +3054,7 @@ class ImportsApi
      */
     public function listImportsAsyncWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\ImportPage';
+        $returnType = '\Skautik\Sdk\Model\ImportList';
         $request = $this->listImportsRequest($source_id, $status, $contentType);
 
         return $this->client

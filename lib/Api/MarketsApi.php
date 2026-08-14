@@ -771,7 +771,7 @@ class MarketsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\DistrictPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\DistrictList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listDistricts($market_id, string $contentType = self::contentTypes['listDistricts'][0])
     {
@@ -789,7 +789,7 @@ class MarketsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\DistrictPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\DistrictList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listDistrictsWithHttpInfo($market_id, string $contentType = self::contentTypes['listDistricts'][0])
     {
@@ -821,7 +821,7 @@ class MarketsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\DistrictPage',
+                        '\Skautik\Sdk\Model\DistrictList',
                         $request,
                         $response,
                     );
@@ -873,7 +873,7 @@ class MarketsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\DistrictPage',
+                '\Skautik\Sdk\Model\DistrictList',
                 $request,
                 $response,
             );
@@ -882,7 +882,7 @@ class MarketsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\DistrictPage',
+                        '\Skautik\Sdk\Model\DistrictList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -968,7 +968,7 @@ class MarketsApi
      */
     public function listDistrictsAsyncWithHttpInfo($market_id, string $contentType = self::contentTypes['listDistricts'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\DistrictPage';
+        $returnType = '\Skautik\Sdk\Model\DistrictList';
         $request = $this->listDistrictsRequest($market_id, $contentType);
 
         return $this->client
@@ -1115,7 +1115,7 @@ class MarketsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\CityPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\CityList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listMarkets($country = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listMarkets'][0])
     {
@@ -1135,7 +1135,7 @@ class MarketsApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\CityPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\CityList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMarketsWithHttpInfo($country = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listMarkets'][0])
     {
@@ -1167,7 +1167,7 @@ class MarketsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\CityPage',
+                        '\Skautik\Sdk\Model\CityList',
                         $request,
                         $response,
                     );
@@ -1219,7 +1219,7 @@ class MarketsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\CityPage',
+                '\Skautik\Sdk\Model\CityList',
                 $request,
                 $response,
             );
@@ -1228,7 +1228,7 @@ class MarketsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\CityPage',
+                        '\Skautik\Sdk\Model\CityList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1318,7 +1318,7 @@ class MarketsApi
      */
     public function listMarketsAsyncWithHttpInfo($country = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listMarkets'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\CityPage';
+        $returnType = '\Skautik\Sdk\Model\CityList';
         $request = $this->listMarketsRequest($country, $limit, $cursor, $contentType);
 
         return $this->client

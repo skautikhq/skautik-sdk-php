@@ -166,7 +166,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function createProperty($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
@@ -185,7 +185,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPropertyWithHttpInfo($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
@@ -217,7 +217,7 @@ class PropertiesApi
             switch($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\PropertyResponse',
                         $request,
                         $response,
                     );
@@ -275,7 +275,7 @@ class PropertiesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Problem',
+                '\Skautik\Sdk\Model\PropertyResponse',
                 $request,
                 $response,
             );
@@ -284,7 +284,7 @@ class PropertiesApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Problem',
+                        '\Skautik\Sdk\Model\PropertyResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -380,7 +380,7 @@ class PropertiesApi
      */
     public function createPropertyAsyncWithHttpInfo($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Problem';
+        $returnType = '\Skautik\Sdk\Model\PropertyResponse';
         $request = $this->createPropertyRequest($create_property_request, $idempotency_key, $contentType);
 
         return $this->client
@@ -457,7 +457,7 @@ class PropertiesApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', ],
+            ['application/json', 'application/problem+json', ],
             $contentType,
             $multipart
         );
@@ -530,12 +530,11 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return void
      */
     public function deleteProperty($property_id, string $contentType = self::contentTypes['deleteProperty'][0])
     {
-        list($response) = $this->deletePropertyWithHttpInfo($property_id, $contentType);
-        return $response;
+        $this->deletePropertyWithHttpInfo($property_id, $contentType);
     }
 
     /**
@@ -548,7 +547,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function deletePropertyWithHttpInfo($property_id, string $contentType = self::contentTypes['deleteProperty'][0])
     {
@@ -577,81 +576,9 @@ class PropertiesApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
-                case 204:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 401:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 409:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 422:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-                case 429:
-                    return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\Problem',
-                        $request,
-                        $response,
-                    );
-            }
-
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\Problem',
-                $request,
-                $response,
-            );
+            return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 204:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\Problem',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -741,27 +668,14 @@ class PropertiesApi
      */
     public function deletePropertyAsyncWithHttpInfo($property_id, string $contentType = self::contentTypes['deleteProperty'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\Problem';
+        $returnType = '';
         $request = $this->deletePropertyRequest($property_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -2072,7 +1986,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\ImagePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\ImageList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function listPropertyImages($property_id, string $contentType = self::contentTypes['listPropertyImages'][0])
     {
@@ -2090,7 +2004,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\ImagePage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\ImageList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function listPropertyImagesWithHttpInfo($property_id, string $contentType = self::contentTypes['listPropertyImages'][0])
     {
@@ -2122,7 +2036,7 @@ class PropertiesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\ImagePage',
+                        '\Skautik\Sdk\Model\ImageList',
                         $request,
                         $response,
                     );
@@ -2174,7 +2088,7 @@ class PropertiesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\ImagePage',
+                '\Skautik\Sdk\Model\ImageList',
                 $request,
                 $response,
             );
@@ -2183,7 +2097,7 @@ class PropertiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\ImagePage',
+                        '\Skautik\Sdk\Model\ImageList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2269,7 +2183,7 @@ class PropertiesApi
      */
     public function listPropertyImagesAsyncWithHttpInfo($property_id, string $contentType = self::contentTypes['listPropertyImages'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\ImagePage';
+        $returnType = '\Skautik\Sdk\Model\ImageList';
         $request = $this->listPropertyImagesRequest($property_id, $contentType);
 
         return $this->client
@@ -2414,7 +2328,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\PriceObservationPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\PriceObservationList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function propertyPriceHistory($property_id, string $contentType = self::contentTypes['propertyPriceHistory'][0])
     {
@@ -2432,7 +2346,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\PriceObservationPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\PriceObservationList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function propertyPriceHistoryWithHttpInfo($property_id, string $contentType = self::contentTypes['propertyPriceHistory'][0])
     {
@@ -2464,7 +2378,7 @@ class PropertiesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\PriceObservationPage',
+                        '\Skautik\Sdk\Model\PriceObservationList',
                         $request,
                         $response,
                     );
@@ -2516,7 +2430,7 @@ class PropertiesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\PriceObservationPage',
+                '\Skautik\Sdk\Model\PriceObservationList',
                 $request,
                 $response,
             );
@@ -2525,7 +2439,7 @@ class PropertiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\PriceObservationPage',
+                        '\Skautik\Sdk\Model\PriceObservationList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2611,7 +2525,7 @@ class PropertiesApi
      */
     public function propertyPriceHistoryAsyncWithHttpInfo($property_id, string $contentType = self::contentTypes['propertyPriceHistory'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\PriceObservationPage';
+        $returnType = '\Skautik\Sdk\Model\PriceObservationList';
         $request = $this->propertyPriceHistoryRequest($property_id, $contentType);
 
         return $this->client
@@ -3092,7 +3006,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
+     * @return \Skautik\Sdk\Model\PropertyList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
     public function similarProperties($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
     {
@@ -3111,7 +3025,7 @@ class PropertiesApi
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Skautik\Sdk\Model\PropertyList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
     public function similarPropertiesWithHttpInfo($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
     {
@@ -3143,7 +3057,7 @@ class PropertiesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\Skautik\Sdk\Model\PropertyPage',
+                        '\Skautik\Sdk\Model\PropertyList',
                         $request,
                         $response,
                     );
@@ -3195,7 +3109,7 @@ class PropertiesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\Skautik\Sdk\Model\PropertyPage',
+                '\Skautik\Sdk\Model\PropertyList',
                 $request,
                 $response,
             );
@@ -3204,7 +3118,7 @@ class PropertiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Skautik\Sdk\Model\PropertyPage',
+                        '\Skautik\Sdk\Model\PropertyList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3292,7 +3206,7 @@ class PropertiesApi
      */
     public function similarPropertiesAsyncWithHttpInfo($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
     {
-        $returnType = '\Skautik\Sdk\Model\PropertyPage';
+        $returnType = '\Skautik\Sdk\Model\PropertyList';
         $request = $this->similarPropertiesRequest($property_id, $limit, $contentType);
 
         return $this->client
