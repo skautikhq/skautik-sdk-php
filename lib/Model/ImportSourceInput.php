@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateGenerationRequest
+ * ImportSourceInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * CreateGenerationRequest Class Doc Comment
+ * ImportSourceInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @var string
      */
-    protected static $openAPIModelName = 'createGeneration_request';
+    protected static $openAPIModelName = 'ImportSourceInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $openAPITypes = [
-        'kind' => 'string',
-        'prompt' => 'string',
-        'room_type' => 'string',
-        'source_image_id' => 'string',
-        'style' => 'string'
+        'deletion_policy' => 'string',
+        'delivery' => '\Skautik\Sdk\Model\DeliveryInput',
+        'format' => 'string',
+        'mapping' => 'array<string,string>',
+        'name' => 'string',
+        'schedule' => 'string'
     ];
 
     /**
@@ -72,11 +73,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'kind' => null,
-        'prompt' => null,
-        'room_type' => null,
-        'source_image_id' => null,
-        'style' => null
+        'deletion_policy' => null,
+        'delivery' => null,
+        'format' => null,
+        'mapping' => null,
+        'name' => null,
+        'schedule' => null
     ];
 
     /**
@@ -85,11 +87,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'kind' => false,
-        'prompt' => false,
-        'room_type' => false,
-        'source_image_id' => false,
-        'style' => false
+        'deletion_policy' => false,
+        'delivery' => false,
+        'format' => false,
+        'mapping' => false,
+        'name' => false,
+        'schedule' => false
     ];
 
     /**
@@ -178,11 +181,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'kind' => 'kind',
-        'prompt' => 'prompt',
-        'room_type' => 'room_type',
-        'source_image_id' => 'source_image_id',
-        'style' => 'style'
+        'deletion_policy' => 'deletion_policy',
+        'delivery' => 'delivery',
+        'format' => 'format',
+        'mapping' => 'mapping',
+        'name' => 'name',
+        'schedule' => 'schedule'
     ];
 
     /**
@@ -191,11 +195,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'kind' => 'setKind',
-        'prompt' => 'setPrompt',
-        'room_type' => 'setRoomType',
-        'source_image_id' => 'setSourceImageId',
-        'style' => 'setStyle'
+        'deletion_policy' => 'setDeletionPolicy',
+        'delivery' => 'setDelivery',
+        'format' => 'setFormat',
+        'mapping' => 'setMapping',
+        'name' => 'setName',
+        'schedule' => 'setSchedule'
     ];
 
     /**
@@ -204,11 +209,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'kind' => 'getKind',
-        'prompt' => 'getPrompt',
-        'room_type' => 'getRoomType',
-        'source_image_id' => 'getSourceImageId',
-        'style' => 'getStyle'
+        'deletion_policy' => 'getDeletionPolicy',
+        'delivery' => 'getDelivery',
+        'format' => 'getFormat',
+        'mapping' => 'getMapping',
+        'name' => 'getName',
+        'schedule' => 'getSchedule'
     ];
 
     /**
@@ -252,23 +258,6 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    public const KIND_VIRTUAL_STAGING = 'virtual_staging';
-    public const KIND_DECLUTTERING = 'decluttering';
-    public const KIND_ENHANCEMENT = 'enhancement';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getKindAllowableValues()
-    {
-        return [
-            self::KIND_VIRTUAL_STAGING,
-            self::KIND_DECLUTTERING,
-            self::KIND_ENHANCEMENT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -285,11 +274,12 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('kind', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('room_type', $data ?? [], null);
-        $this->setIfExists('source_image_id', $data ?? [], null);
-        $this->setIfExists('style', $data ?? [], null);
+        $this->setIfExists('deletion_policy', $data ?? [], null);
+        $this->setIfExists('delivery', $data ?? [], null);
+        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('mapping', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('schedule', $data ?? [], null);
     }
 
     /**
@@ -319,20 +309,23 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['kind'] === null) {
-            $invalidProperties[] = "'kind' can't be null";
+        if ($this->container['deletion_policy'] === null) {
+            $invalidProperties[] = "'deletion_policy' can't be null";
         }
-        $allowedValues = $this->getKindAllowableValues();
-        if (!is_null($this->container['kind']) && !in_array($this->container['kind'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'kind', must be one of '%s'",
-                $this->container['kind'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['delivery'] === null) {
+            $invalidProperties[] = "'delivery' can't be null";
         }
-
-        if ($this->container['source_image_id'] === null) {
-            $invalidProperties[] = "'source_image_id' can't be null";
+        if ($this->container['format'] === null) {
+            $invalidProperties[] = "'format' can't be null";
+        }
+        if ($this->container['mapping'] === null) {
+            $invalidProperties[] = "'mapping' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['schedule'] === null) {
+            $invalidProperties[] = "'schedule' can't be null";
         }
         return $invalidProperties;
     }
@@ -350,146 +343,163 @@ class CreateGenerationRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets kind
+     * Gets deletion_policy
      *
      * @return string
      */
-    public function getKind()
+    public function getDeletionPolicy()
     {
-        return $this->container['kind'];
+        return $this->container['deletion_policy'];
     }
 
     /**
-     * Sets kind
+     * Sets deletion_policy
      *
-     * @param string $kind The transformation to apply. floorplan_render is named in the schema and is not implemented; asking for it is refused rather than answered with a fabricated plan.
+     * @param string $deletion_policy deletion_policy
      *
      * @return self
      */
-    public function setKind($kind)
+    public function setDeletionPolicy($deletion_policy)
     {
-        if (is_null($kind)) {
-            throw new \InvalidArgumentException('non-nullable kind cannot be null');
+        if (is_null($deletion_policy)) {
+            throw new \InvalidArgumentException('non-nullable deletion_policy cannot be null');
         }
-        $allowedValues = $this->getKindAllowableValues();
-        if (!in_array($kind, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'kind', must be one of '%s'",
-                    $kind,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['kind'] = $kind;
+        $this->container['deletion_policy'] = $deletion_policy;
 
         return $this;
     }
 
     /**
-     * Gets prompt
+     * Gets delivery
      *
-     * @return string|null
+     * @return \Skautik\Sdk\Model\DeliveryInput
      */
-    public function getPrompt()
+    public function getDelivery()
     {
-        return $this->container['prompt'];
+        return $this->container['delivery'];
     }
 
     /**
-     * Sets prompt
+     * Sets delivery
      *
-     * @param string|null $prompt Up to 500 characters of additional direction. It is added to the instruction for the chosen kind and never replaces it, so it cannot be used to make the model do something unrelated.
+     * @param \Skautik\Sdk\Model\DeliveryInput $delivery delivery
      *
      * @return self
      */
-    public function setPrompt($prompt)
+    public function setDelivery($delivery)
     {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        if (is_null($delivery)) {
+            throw new \InvalidArgumentException('non-nullable delivery cannot be null');
         }
-        $this->container['prompt'] = $prompt;
+        $this->container['delivery'] = $delivery;
 
         return $this;
     }
 
     /**
-     * Gets room_type
-     *
-     * @return string|null
-     */
-    public function getRoomType()
-    {
-        return $this->container['room_type'];
-    }
-
-    /**
-     * Sets room_type
-     *
-     * @param string|null $room_type For virtual_staging: what the room is. Improves the result markedly. Defaults to a generic room.
-     *
-     * @return self
-     */
-    public function setRoomType($room_type)
-    {
-        if (is_null($room_type)) {
-            throw new \InvalidArgumentException('non-nullable room_type cannot be null');
-        }
-        $this->container['room_type'] = $room_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets source_image_id
+     * Gets format
      *
      * @return string
      */
-    public function getSourceImageId()
+    public function getFormat()
     {
-        return $this->container['source_image_id'];
+        return $this->container['format'];
     }
 
     /**
-     * Sets source_image_id
+     * Sets format
      *
-     * @param string $source_image_id The image to transform. Must belong to one of your own properties; anything else answers 404, the same as an image that does not exist.
+     * @param string $format format
      *
      * @return self
      */
-    public function setSourceImageId($source_image_id)
+    public function setFormat($format)
     {
-        if (is_null($source_image_id)) {
-            throw new \InvalidArgumentException('non-nullable source_image_id cannot be null');
+        if (is_null($format)) {
+            throw new \InvalidArgumentException('non-nullable format cannot be null');
         }
-        $this->container['source_image_id'] = $source_image_id;
+        $this->container['format'] = $format;
 
         return $this;
     }
 
     /**
-     * Gets style
+     * Gets mapping
      *
-     * @return string|null
+     * @return array<string,string>
      */
-    public function getStyle()
+    public function getMapping()
     {
-        return $this->container['style'];
+        return $this->container['mapping'];
     }
 
     /**
-     * Sets style
+     * Sets mapping
      *
-     * @param string|null $style For virtual_staging: the furnishing style. Defaults to contemporary.
+     * @param array<string,string> $mapping mapping
      *
      * @return self
      */
-    public function setStyle($style)
+    public function setMapping($mapping)
     {
-        if (is_null($style)) {
-            throw new \InvalidArgumentException('non-nullable style cannot be null');
+        if (is_null($mapping)) {
+            throw new \InvalidArgumentException('non-nullable mapping cannot be null');
         }
-        $this->container['style'] = $style;
+        $this->container['mapping'] = $mapping;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets schedule
+     *
+     * @return string
+     */
+    public function getSchedule()
+    {
+        return $this->container['schedule'];
+    }
+
+    /**
+     * Sets schedule
+     *
+     * @param string $schedule schedule
+     *
+     * @return self
+     */
+    public function setSchedule($schedule)
+    {
+        if (is_null($schedule)) {
+            throw new \InvalidArgumentException('non-nullable schedule cannot be null');
+        }
+        $this->container['schedule'] = $schedule;
 
         return $this;
     }

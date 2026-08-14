@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateExportRequest
+ * InquiryStatusInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * CreateExportRequest Class Doc Comment
+ * InquiryStatusInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class InquiryStatusInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @var string
      */
-    protected static $openAPIModelName = 'createExport_request';
+    protected static $openAPIModelName = 'InquiryStatusInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $openAPITypes = [
-        'fields' => 'string[]',
-        'filters' => 'array<string,mixed>',
-        'format' => 'string'
+        'status' => 'string'
     ];
 
     /**
@@ -70,9 +68,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'fields' => null,
-        'filters' => null,
-        'format' => null
+        'status' => null
     ];
 
     /**
@@ -81,9 +77,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'fields' => false,
-        'filters' => false,
-        'format' => false
+        'status' => false
     ];
 
     /**
@@ -172,9 +166,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'fields' => 'fields',
-        'filters' => 'filters',
-        'format' => 'format'
+        'status' => 'status'
     ];
 
     /**
@@ -183,9 +175,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'fields' => 'setFields',
-        'filters' => 'setFilters',
-        'format' => 'setFormat'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -194,9 +184,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'fields' => 'getFields',
-        'filters' => 'getFilters',
-        'format' => 'getFormat'
+        'status' => 'getStatus'
     ];
 
     /**
@@ -240,21 +228,6 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const FORMAT_NDJSON = 'ndjson';
-    public const FORMAT_CSV = 'csv';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFormatAllowableValues()
-    {
-        return [
-            self::FORMAT_NDJSON,
-            self::FORMAT_CSV,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -271,9 +244,7 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -303,18 +274,9 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
-        $allowedValues = $this->getFormatAllowableValues();
-        if (!is_null($this->container['format']) && !in_array($this->container['format'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'format', must be one of '%s'",
-                $this->container['format'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -331,92 +293,28 @@ class CreateExportRequest implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets fields
-     *
-     * @return string[]|null
-     */
-    public function getFields()
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[]|null $fields Restrict columns. Omit for the full record.
-     *
-     * @return self
-     */
-    public function setFields($fields)
-    {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
-        }
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets filters
-     *
-     * @return array<string,mixed>|null
-     */
-    public function getFilters()
-    {
-        return $this->container['filters'];
-    }
-
-    /**
-     * Sets filters
-     *
-     * @param array<string,mixed>|null $filters Same keys the list endpoint accepts.
-     *
-     * @return self
-     */
-    public function setFilters($filters)
-    {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
-        }
-        $this->container['filters'] = $filters;
-
-        return $this;
-    }
-
-    /**
-     * Gets format
+     * Gets status
      *
      * @return string
      */
-    public function getFormat()
+    public function getStatus()
     {
-        return $this->container['format'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets format
+     * Sets status
      *
-     * @param string $format Output format. Parquet is named in the schema and is not implemented; asking for it is refused rather than answered with a corrupt file.
+     * @param string $status status
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setStatus($status)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $allowedValues = $this->getFormatAllowableValues();
-        if (!in_array($format, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'format', must be one of '%s'",
-                    $format,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['format'] = $format;
+        $this->container['status'] = $status;
 
         return $this;
     }

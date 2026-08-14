@@ -481,19 +481,20 @@ class InquiriesApi
      *
      * List inquiries
      *
-     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  string|null $status Only enquiries in this state. (optional)
+     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  int|null $limit Page size. Clamped to 200. (optional, default to 50)
      * @param  string|null $cursor Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listInquiries'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\InquiryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listInquiries($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
+    public function listInquiries($status = null, $property_id = null, $limit = 50, $cursor = null, $sort = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
-        list($response) = $this->listInquiriesWithHttpInfo($property_id, $status, $limit, $cursor, $contentType);
+        list($response) = $this->listInquiriesWithHttpInfo($status, $property_id, $limit, $cursor, $sort, $contentType);
         return $response;
     }
 
@@ -502,19 +503,20 @@ class InquiriesApi
      *
      * List inquiries
      *
-     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  string|null $status Only enquiries in this state. (optional)
+     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  int|null $limit Page size. Clamped to 200. (optional, default to 50)
      * @param  string|null $cursor Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listInquiries'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\InquiryPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listInquiriesWithHttpInfo($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
+    public function listInquiriesWithHttpInfo($status = null, $property_id = null, $limit = 50, $cursor = null, $sort = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
-        $request = $this->listInquiriesRequest($property_id, $status, $limit, $cursor, $contentType);
+        $request = $this->listInquiriesRequest($status, $property_id, $limit, $cursor, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -660,18 +662,19 @@ class InquiriesApi
      *
      * List inquiries
      *
-     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  string|null $status Only enquiries in this state. (optional)
+     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  int|null $limit Page size. Clamped to 200. (optional, default to 50)
      * @param  string|null $cursor Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listInquiries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInquiriesAsync($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
+    public function listInquiriesAsync($status = null, $property_id = null, $limit = 50, $cursor = null, $sort = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
-        return $this->listInquiriesAsyncWithHttpInfo($property_id, $status, $limit, $cursor, $contentType)
+        return $this->listInquiriesAsyncWithHttpInfo($status, $property_id, $limit, $cursor, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -684,19 +687,20 @@ class InquiriesApi
      *
      * List inquiries
      *
-     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  string|null $status Only enquiries in this state. (optional)
+     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  int|null $limit Page size. Clamped to 200. (optional, default to 50)
      * @param  string|null $cursor Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listInquiries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listInquiriesAsyncWithHttpInfo($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
+    public function listInquiriesAsyncWithHttpInfo($status = null, $property_id = null, $limit = 50, $cursor = null, $sort = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
         $returnType = '\Skautik\Sdk\Model\InquiryPage';
-        $request = $this->listInquiriesRequest($property_id, $status, $limit, $cursor, $contentType);
+        $request = $this->listInquiriesRequest($status, $property_id, $limit, $cursor, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -737,17 +741,19 @@ class InquiriesApi
     /**
      * Create request for operation 'listInquiries'
      *
-     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  string|null $status Only enquiries in this state. (optional)
+     * @param  string|null $property_id Only enquiries about this property. (optional)
      * @param  int|null $limit Page size. Clamped to 200. (optional, default to 50)
      * @param  string|null $cursor Opaque cursor from the previous page&#39;s meta.next_cursor. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listInquiries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listInquiriesRequest($property_id = null, $status = null, $limit = 50, $cursor = null, string $contentType = self::contentTypes['listInquiries'][0])
+    public function listInquiriesRequest($status = null, $property_id = null, $limit = 50, $cursor = null, $sort = null, string $contentType = self::contentTypes['listInquiries'][0])
     {
+
 
 
 
@@ -763,8 +769,8 @@ class InquiriesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $property_id,
-            'property_id', // param base name
+            $status,
+            'status', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -772,8 +778,8 @@ class InquiriesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status,
-            'status', // param base name
+            $property_id,
+            'property_id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -792,6 +798,15 @@ class InquiriesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $cursor,
             'cursor', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -1126,16 +1141,16 @@ class InquiriesApi
      * Set the status
      *
      * @param  string $inquiry_id Inquiry identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateInquiryRequest $update_inquiry_request update_inquiry_request (required)
+     * @param  \Skautik\Sdk\Model\InquiryStatusInput $inquiry_status_input inquiry_status_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInquiry'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function updateInquiry($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
+    public function updateInquiry($inquiry_id, $inquiry_status_input, string $contentType = self::contentTypes['updateInquiry'][0])
     {
-        list($response) = $this->updateInquiryWithHttpInfo($inquiry_id, $update_inquiry_request, $contentType);
+        list($response) = $this->updateInquiryWithHttpInfo($inquiry_id, $inquiry_status_input, $contentType);
         return $response;
     }
 
@@ -1145,16 +1160,16 @@ class InquiriesApi
      * Set the status
      *
      * @param  string $inquiry_id Inquiry identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateInquiryRequest $update_inquiry_request (required)
+     * @param  \Skautik\Sdk\Model\InquiryStatusInput $inquiry_status_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInquiry'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\InquiryResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateInquiryWithHttpInfo($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
+    public function updateInquiryWithHttpInfo($inquiry_id, $inquiry_status_input, string $contentType = self::contentTypes['updateInquiry'][0])
     {
-        $request = $this->updateInquiryRequest($inquiry_id, $update_inquiry_request, $contentType);
+        $request = $this->updateInquiryRequest($inquiry_id, $inquiry_status_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1301,15 +1316,15 @@ class InquiriesApi
      * Set the status
      *
      * @param  string $inquiry_id Inquiry identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateInquiryRequest $update_inquiry_request (required)
+     * @param  \Skautik\Sdk\Model\InquiryStatusInput $inquiry_status_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInquiry'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInquiryAsync($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
+    public function updateInquiryAsync($inquiry_id, $inquiry_status_input, string $contentType = self::contentTypes['updateInquiry'][0])
     {
-        return $this->updateInquiryAsyncWithHttpInfo($inquiry_id, $update_inquiry_request, $contentType)
+        return $this->updateInquiryAsyncWithHttpInfo($inquiry_id, $inquiry_status_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1323,16 +1338,16 @@ class InquiriesApi
      * Set the status
      *
      * @param  string $inquiry_id Inquiry identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateInquiryRequest $update_inquiry_request (required)
+     * @param  \Skautik\Sdk\Model\InquiryStatusInput $inquiry_status_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInquiry'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateInquiryAsyncWithHttpInfo($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
+    public function updateInquiryAsyncWithHttpInfo($inquiry_id, $inquiry_status_input, string $contentType = self::contentTypes['updateInquiry'][0])
     {
         $returnType = '\Skautik\Sdk\Model\InquiryResponse';
-        $request = $this->updateInquiryRequest($inquiry_id, $update_inquiry_request, $contentType);
+        $request = $this->updateInquiryRequest($inquiry_id, $inquiry_status_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1374,13 +1389,13 @@ class InquiriesApi
      * Create request for operation 'updateInquiry'
      *
      * @param  string $inquiry_id Inquiry identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateInquiryRequest $update_inquiry_request (required)
+     * @param  \Skautik\Sdk\Model\InquiryStatusInput $inquiry_status_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateInquiry'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateInquiryRequest($inquiry_id, $update_inquiry_request, string $contentType = self::contentTypes['updateInquiry'][0])
+    public function updateInquiryRequest($inquiry_id, $inquiry_status_input, string $contentType = self::contentTypes['updateInquiry'][0])
     {
 
         // verify the required parameter 'inquiry_id' is set
@@ -1390,10 +1405,10 @@ class InquiriesApi
             );
         }
 
-        // verify the required parameter 'update_inquiry_request' is set
-        if ($update_inquiry_request === null || (is_array($update_inquiry_request) && count($update_inquiry_request) === 0)) {
+        // verify the required parameter 'inquiry_status_input' is set
+        if ($inquiry_status_input === null || (is_array($inquiry_status_input) && count($inquiry_status_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $update_inquiry_request when calling updateInquiry'
+                'Missing the required parameter $inquiry_status_input when calling updateInquiry'
             );
         }
 
@@ -1424,12 +1439,12 @@ class InquiriesApi
         );
 
         // for model (json/xml)
-        if (isset($update_inquiry_request)) {
+        if (isset($inquiry_status_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_inquiry_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($inquiry_status_input));
             } else {
-                $httpBody = $update_inquiry_request;
+                $httpBody = $inquiry_status_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

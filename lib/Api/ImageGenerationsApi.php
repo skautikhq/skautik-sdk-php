@@ -139,16 +139,16 @@ class ImageGenerationsApi
      *
      * Request a generation
      *
-     * @param  \Skautik\Sdk\Model\CreateGenerationRequest $create_generation_request create_generation_request (required)
+     * @param  \Skautik\Sdk\Model\GenerationInput $generation_input generation_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGeneration'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\GenerationResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createGeneration($create_generation_request, string $contentType = self::contentTypes['createGeneration'][0])
+    public function createGeneration($generation_input, string $contentType = self::contentTypes['createGeneration'][0])
     {
-        list($response) = $this->createGenerationWithHttpInfo($create_generation_request, $contentType);
+        list($response) = $this->createGenerationWithHttpInfo($generation_input, $contentType);
         return $response;
     }
 
@@ -157,16 +157,16 @@ class ImageGenerationsApi
      *
      * Request a generation
      *
-     * @param  \Skautik\Sdk\Model\CreateGenerationRequest $create_generation_request (required)
+     * @param  \Skautik\Sdk\Model\GenerationInput $generation_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGeneration'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\GenerationResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createGenerationWithHttpInfo($create_generation_request, string $contentType = self::contentTypes['createGeneration'][0])
+    public function createGenerationWithHttpInfo($generation_input, string $contentType = self::contentTypes['createGeneration'][0])
     {
-        $request = $this->createGenerationRequest($create_generation_request, $contentType);
+        $request = $this->createGenerationRequest($generation_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -312,15 +312,15 @@ class ImageGenerationsApi
      *
      * Request a generation
      *
-     * @param  \Skautik\Sdk\Model\CreateGenerationRequest $create_generation_request (required)
+     * @param  \Skautik\Sdk\Model\GenerationInput $generation_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGeneration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGenerationAsync($create_generation_request, string $contentType = self::contentTypes['createGeneration'][0])
+    public function createGenerationAsync($generation_input, string $contentType = self::contentTypes['createGeneration'][0])
     {
-        return $this->createGenerationAsyncWithHttpInfo($create_generation_request, $contentType)
+        return $this->createGenerationAsyncWithHttpInfo($generation_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -333,16 +333,16 @@ class ImageGenerationsApi
      *
      * Request a generation
      *
-     * @param  \Skautik\Sdk\Model\CreateGenerationRequest $create_generation_request (required)
+     * @param  \Skautik\Sdk\Model\GenerationInput $generation_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGeneration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGenerationAsyncWithHttpInfo($create_generation_request, string $contentType = self::contentTypes['createGeneration'][0])
+    public function createGenerationAsyncWithHttpInfo($generation_input, string $contentType = self::contentTypes['createGeneration'][0])
     {
         $returnType = '\Skautik\Sdk\Model\GenerationResponse';
-        $request = $this->createGenerationRequest($create_generation_request, $contentType);
+        $request = $this->createGenerationRequest($generation_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -383,19 +383,19 @@ class ImageGenerationsApi
     /**
      * Create request for operation 'createGeneration'
      *
-     * @param  \Skautik\Sdk\Model\CreateGenerationRequest $create_generation_request (required)
+     * @param  \Skautik\Sdk\Model\GenerationInput $generation_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGeneration'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createGenerationRequest($create_generation_request, string $contentType = self::contentTypes['createGeneration'][0])
+    public function createGenerationRequest($generation_input, string $contentType = self::contentTypes['createGeneration'][0])
     {
 
-        // verify the required parameter 'create_generation_request' is set
-        if ($create_generation_request === null || (is_array($create_generation_request) && count($create_generation_request) === 0)) {
+        // verify the required parameter 'generation_input' is set
+        if ($generation_input === null || (is_array($generation_input) && count($generation_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_generation_request when calling createGeneration'
+                'Missing the required parameter $generation_input when calling createGeneration'
             );
         }
 
@@ -418,12 +418,12 @@ class ImageGenerationsApi
         );
 
         // for model (json/xml)
-        if (isset($create_generation_request)) {
+        if (isset($generation_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_generation_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($generation_input));
             } else {
-                $httpBody = $create_generation_request;
+                $httpBody = $generation_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

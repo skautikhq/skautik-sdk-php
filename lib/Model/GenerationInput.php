@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePropertyRequest
+ * GenerationInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * CreatePropertyRequest Class Doc Comment
+ * GenerationInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @var string
      */
-    protected static $openAPIModelName = 'createProperty_request';
+    protected static $openAPIModelName = 'GenerationInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $openAPITypes = [
-        'address' => 'array<string,mixed>',
-        'currency' => 'string',
-        'external_id' => 'string',
-        'price' => 'int',
-        'property_type' => 'string',
-        'title' => 'string',
-        'transaction_type' => 'string'
+        'kind' => 'string',
+        'prompt' => 'string',
+        'room_type' => 'string',
+        'source_image_id' => 'string',
+        'style' => 'string'
     ];
 
     /**
@@ -74,13 +72,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'address' => null,
-        'currency' => null,
-        'external_id' => null,
-        'price' => null,
-        'property_type' => null,
-        'title' => null,
-        'transaction_type' => null
+        'kind' => null,
+        'prompt' => null,
+        'room_type' => null,
+        'source_image_id' => null,
+        'style' => null
     ];
 
     /**
@@ -89,13 +85,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'address' => false,
-        'currency' => false,
-        'external_id' => false,
-        'price' => false,
-        'property_type' => false,
-        'title' => false,
-        'transaction_type' => false
+        'kind' => false,
+        'prompt' => false,
+        'room_type' => false,
+        'source_image_id' => false,
+        'style' => false
     ];
 
     /**
@@ -184,13 +178,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'address' => 'address',
-        'currency' => 'currency',
-        'external_id' => 'external_id',
-        'price' => 'price',
-        'property_type' => 'property_type',
-        'title' => 'title',
-        'transaction_type' => 'transaction_type'
+        'kind' => 'kind',
+        'prompt' => 'prompt',
+        'room_type' => 'room_type',
+        'source_image_id' => 'source_image_id',
+        'style' => 'style'
     ];
 
     /**
@@ -199,13 +191,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'address' => 'setAddress',
-        'currency' => 'setCurrency',
-        'external_id' => 'setExternalId',
-        'price' => 'setPrice',
-        'property_type' => 'setPropertyType',
-        'title' => 'setTitle',
-        'transaction_type' => 'setTransactionType'
+        'kind' => 'setKind',
+        'prompt' => 'setPrompt',
+        'room_type' => 'setRoomType',
+        'source_image_id' => 'setSourceImageId',
+        'style' => 'setStyle'
     ];
 
     /**
@@ -214,13 +204,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'address' => 'getAddress',
-        'currency' => 'getCurrency',
-        'external_id' => 'getExternalId',
-        'price' => 'getPrice',
-        'property_type' => 'getPropertyType',
-        'title' => 'getTitle',
-        'transaction_type' => 'getTransactionType'
+        'kind' => 'getKind',
+        'prompt' => 'getPrompt',
+        'room_type' => 'getRoomType',
+        'source_image_id' => 'getSourceImageId',
+        'style' => 'getStyle'
     ];
 
     /**
@@ -280,13 +268,11 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('address', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('property_type', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('transaction_type', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('room_type', $data ?? [], null);
+        $this->setIfExists('source_image_id', $data ?? [], null);
+        $this->setIfExists('style', $data ?? [], null);
     }
 
     /**
@@ -316,23 +302,20 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['address'] === null) {
-            $invalidProperties[] = "'address' can't be null";
+        if ($this->container['kind'] === null) {
+            $invalidProperties[] = "'kind' can't be null";
         }
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
         }
-        if ($this->container['price'] === null) {
-            $invalidProperties[] = "'price' can't be null";
+        if ($this->container['room_type'] === null) {
+            $invalidProperties[] = "'room_type' can't be null";
         }
-        if ($this->container['property_type'] === null) {
-            $invalidProperties[] = "'property_type' can't be null";
+        if ($this->container['source_image_id'] === null) {
+            $invalidProperties[] = "'source_image_id' can't be null";
         }
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ($this->container['transaction_type'] === null) {
-            $invalidProperties[] = "'transaction_type' can't be null";
+        if ($this->container['style'] === null) {
+            $invalidProperties[] = "'style' can't be null";
         }
         return $invalidProperties;
     }
@@ -350,190 +333,136 @@ class CreatePropertyRequest implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets address
-     *
-     * @return array<string,mixed>
-     */
-    public function getAddress()
-    {
-        return $this->container['address'];
-    }
-
-    /**
-     * Sets address
-     *
-     * @param array<string,mixed> $address At minimum a city and country; more improves geocoding precision.
-     *
-     * @return self
-     */
-    public function setAddress($address)
-    {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
-        $this->container['address'] = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
+     * Gets kind
      *
      * @return string
      */
-    public function getCurrency()
+    public function getKind()
     {
-        return $this->container['currency'];
+        return $this->container['kind'];
     }
 
     /**
-     * Sets currency
+     * Sets kind
      *
-     * @param string $currency ISO 4217 code.
+     * @param string $kind kind
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setKind($kind)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($kind)) {
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['kind'] = $kind;
 
         return $this;
     }
 
     /**
-     * Gets external_id
-     *
-     * @return string|null
-     */
-    public function getExternalId()
-    {
-        return $this->container['external_id'];
-    }
-
-    /**
-     * Sets external_id
-     *
-     * @param string|null $external_id Your identifier for this property. Optional, but set it if the record might later arrive through an import: without one the import has nothing to match on and creates a duplicate.
-     *
-     * @return self
-     */
-    public function setExternalId($external_id)
-    {
-        if (is_null($external_id)) {
-            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
-        }
-        $this->container['external_id'] = $external_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets price
-     *
-     * @return int
-     */
-    public function getPrice()
-    {
-        return $this->container['price'];
-    }
-
-    /**
-     * Sets price
-     *
-     * @param int $price Amount in minor units.
-     *
-     * @return self
-     */
-    public function setPrice($price)
-    {
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
-        }
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets property_type
+     * Gets prompt
      *
      * @return string
      */
-    public function getPropertyType()
+    public function getPrompt()
     {
-        return $this->container['property_type'];
+        return $this->container['prompt'];
     }
 
     /**
-     * Sets property_type
+     * Sets prompt
      *
-     * @param string $property_type One of the supported property types.
+     * @param string $prompt prompt
      *
      * @return self
      */
-    public function setPropertyType($property_type)
+    public function setPrompt($prompt)
     {
-        if (is_null($property_type)) {
-            throw new \InvalidArgumentException('non-nullable property_type cannot be null');
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
-        $this->container['property_type'] = $property_type;
+        $this->container['prompt'] = $prompt;
 
         return $this;
     }
 
     /**
-     * Gets title
+     * Gets room_type
      *
      * @return string
      */
-    public function getTitle()
+    public function getRoomType()
     {
-        return $this->container['title'];
+        return $this->container['room_type'];
     }
 
     /**
-     * Sets title
+     * Sets room_type
      *
-     * @param string $title Headline for the listing.
+     * @param string $room_type room_type
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setRoomType($room_type)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        if (is_null($room_type)) {
+            throw new \InvalidArgumentException('non-nullable room_type cannot be null');
         }
-        $this->container['title'] = $title;
+        $this->container['room_type'] = $room_type;
 
         return $this;
     }
 
     /**
-     * Gets transaction_type
+     * Gets source_image_id
      *
      * @return string
      */
-    public function getTransactionType()
+    public function getSourceImageId()
     {
-        return $this->container['transaction_type'];
+        return $this->container['source_image_id'];
     }
 
     /**
-     * Sets transaction_type
+     * Sets source_image_id
      *
-     * @param string $transaction_type sale or rent.
+     * @param string $source_image_id source_image_id
      *
      * @return self
      */
-    public function setTransactionType($transaction_type)
+    public function setSourceImageId($source_image_id)
     {
-        if (is_null($transaction_type)) {
-            throw new \InvalidArgumentException('non-nullable transaction_type cannot be null');
+        if (is_null($source_image_id)) {
+            throw new \InvalidArgumentException('non-nullable source_image_id cannot be null');
         }
-        $this->container['transaction_type'] = $transaction_type;
+        $this->container['source_image_id'] = $source_image_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets style
+     *
+     * @return string
+     */
+    public function getStyle()
+    {
+        return $this->container['style'];
+    }
+
+    /**
+     * Sets style
+     *
+     * @param string $style style
+     *
+     * @return self
+     */
+    public function setStyle($style)
+    {
+        if (is_null($style)) {
+            throw new \InvalidArgumentException('non-nullable style cannot be null');
+        }
+        $this->container['style'] = $style;
 
         return $this;
     }

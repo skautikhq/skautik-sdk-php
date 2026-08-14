@@ -1,6 +1,6 @@
 <?php
 /**
- * SearchPropertiesRequest
+ * WebhookInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * SearchPropertiesRequest Class Doc Comment
+ * WebhookInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class WebhookInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @var string
      */
-    protected static $openAPIModelName = 'searchProperties_request';
+    protected static $openAPIModelName = 'WebhookInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $openAPITypes = [
-        'bounds' => 'array<string,mixed>',
-        'filters' => 'array<string,mixed>',
-        'limit' => 'int',
-        'polygon' => 'string[]',
-        'query' => 'string'
+        'events' => 'string[]',
+        'url' => 'string'
     ];
 
     /**
@@ -72,11 +69,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'bounds' => null,
-        'filters' => null,
-        'limit' => null,
-        'polygon' => null,
-        'query' => null
+        'events' => null,
+        'url' => null
     ];
 
     /**
@@ -85,11 +79,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'bounds' => false,
-        'filters' => false,
-        'limit' => false,
-        'polygon' => false,
-        'query' => false
+        'events' => false,
+        'url' => false
     ];
 
     /**
@@ -178,11 +169,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'bounds' => 'bounds',
-        'filters' => 'filters',
-        'limit' => 'limit',
-        'polygon' => 'polygon',
-        'query' => 'query'
+        'events' => 'events',
+        'url' => 'url'
     ];
 
     /**
@@ -191,11 +179,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'bounds' => 'setBounds',
-        'filters' => 'setFilters',
-        'limit' => 'setLimit',
-        'polygon' => 'setPolygon',
-        'query' => 'setQuery'
+        'events' => 'setEvents',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -204,11 +189,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'bounds' => 'getBounds',
-        'filters' => 'getFilters',
-        'limit' => 'getLimit',
-        'polygon' => 'getPolygon',
-        'query' => 'getQuery'
+        'events' => 'getEvents',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -268,11 +250,8 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('bounds', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('limit', $data ?? [], 50);
-        $this->setIfExists('polygon', $data ?? [], null);
-        $this->setIfExists('query', $data ?? [], null);
+        $this->setIfExists('events', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -302,6 +281,12 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
+        if ($this->container['events'] === null) {
+            $invalidProperties[] = "'events' can't be null";
+        }
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -318,136 +303,55 @@ class SearchPropertiesRequest implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets bounds
+     * Gets events
      *
-     * @return array<string,mixed>|null
+     * @return string[]
      */
-    public function getBounds()
+    public function getEvents()
     {
-        return $this->container['bounds'];
+        return $this->container['events'];
     }
 
     /**
-     * Sets bounds
+     * Sets events
      *
-     * @param array<string,mixed>|null $bounds Rectangle with sw_lat, sw_lng, ne_lat, ne_lng. Mutually exclusive with polygon.
+     * @param string[] $events events
      *
      * @return self
      */
-    public function setBounds($bounds)
+    public function setEvents($events)
     {
-        if (is_null($bounds)) {
-            throw new \InvalidArgumentException('non-nullable bounds cannot be null');
+        if (is_null($events)) {
+            throw new \InvalidArgumentException('non-nullable events cannot be null');
         }
-        $this->container['bounds'] = $bounds;
+        $this->container['events'] = $events;
 
         return $this;
     }
 
     /**
-     * Gets filters
+     * Gets url
      *
-     * @return array<string,mixed>|null
+     * @return string
      */
-    public function getFilters()
+    public function getUrl()
     {
-        return $this->container['filters'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets filters
+     * Sets url
      *
-     * @param array<string,mixed>|null $filters Same keys the list endpoint accepts as query parameters.
+     * @param string $url url
      *
      * @return self
      */
-    public function setFilters($filters)
+    public function setUrl($url)
     {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
-        $this->container['filters'] = $filters;
-
-        return $this;
-    }
-
-    /**
-     * Gets limit
-     *
-     * @return int|null
-     */
-    public function getLimit()
-    {
-        return $this->container['limit'];
-    }
-
-    /**
-     * Sets limit
-     *
-     * @param int|null $limit Results to return, 1 to 200.
-     *
-     * @return self
-     */
-    public function setLimit($limit)
-    {
-        if (is_null($limit)) {
-            throw new \InvalidArgumentException('non-nullable limit cannot be null');
-        }
-        $this->container['limit'] = $limit;
-
-        return $this;
-    }
-
-    /**
-     * Gets polygon
-     *
-     * @return string[]|null
-     */
-    public function getPolygon()
-    {
-        return $this->container['polygon'];
-    }
-
-    /**
-     * Sets polygon
-     *
-     * @param string[]|null $polygon Closed ring of [longitude, latitude] pairs, GeoJSON order.
-     *
-     * @return self
-     */
-    public function setPolygon($polygon)
-    {
-        if (is_null($polygon)) {
-            throw new \InvalidArgumentException('non-nullable polygon cannot be null');
-        }
-        $this->container['polygon'] = $polygon;
-
-        return $this;
-    }
-
-    /**
-     * Gets query
-     *
-     * @return string|null
-     */
-    public function getQuery()
-    {
-        return $this->container['query'];
-    }
-
-    /**
-     * Sets query
-     *
-     * @param string|null $query Plain-language description of what is wanted.
-     *
-     * @return self
-     */
-    public function setQuery($query)
-    {
-        if (is_null($query)) {
-            throw new \InvalidArgumentException('non-nullable query cannot be null');
-        }
-        $this->container['query'] = $query;
+        $this->container['url'] = $url;
 
         return $this;
     }

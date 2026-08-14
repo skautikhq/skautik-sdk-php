@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateWebhookRequest
+ * SearchRequest
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * UpdateWebhookRequest Class Doc Comment
+ * SearchRequest Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SearchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @var string
      */
-    protected static $openAPIModelName = 'updateWebhook_request';
+    protected static $openAPIModelName = 'SearchRequest';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $openAPITypes = [
-        'active' => 'bool',
-        'events' => 'string[]',
-        'url' => 'string'
+        'bounds' => '\Skautik\Sdk\Model\Bounds',
+        'filters' => '\Skautik\Sdk\Model\SearchFilters',
+        'limit' => 'int',
+        'polygon' => 'float[][]',
+        'query' => 'string'
     ];
 
     /**
@@ -70,9 +72,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'active' => null,
-        'events' => null,
-        'url' => null
+        'bounds' => null,
+        'filters' => null,
+        'limit' => null,
+        'polygon' => null,
+        'query' => null
     ];
 
     /**
@@ -81,9 +85,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'active' => false,
-        'events' => false,
-        'url' => false
+        'bounds' => false,
+        'filters' => false,
+        'limit' => false,
+        'polygon' => false,
+        'query' => false
     ];
 
     /**
@@ -172,9 +178,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'active' => 'active',
-        'events' => 'events',
-        'url' => 'url'
+        'bounds' => 'bounds',
+        'filters' => 'filters',
+        'limit' => 'limit',
+        'polygon' => 'polygon',
+        'query' => 'query'
     ];
 
     /**
@@ -183,9 +191,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'active' => 'setActive',
-        'events' => 'setEvents',
-        'url' => 'setUrl'
+        'bounds' => 'setBounds',
+        'filters' => 'setFilters',
+        'limit' => 'setLimit',
+        'polygon' => 'setPolygon',
+        'query' => 'setQuery'
     ];
 
     /**
@@ -194,9 +204,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'active' => 'getActive',
-        'events' => 'getEvents',
-        'url' => 'getUrl'
+        'bounds' => 'getBounds',
+        'filters' => 'getFilters',
+        'limit' => 'getLimit',
+        'polygon' => 'getPolygon',
+        'query' => 'getQuery'
     ];
 
     /**
@@ -256,9 +268,11 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('events', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('bounds', $data ?? [], null);
+        $this->setIfExists('filters', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('polygon', $data ?? [], null);
+        $this->setIfExists('query', $data ?? [], null);
     }
 
     /**
@@ -288,6 +302,18 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
+        if ($this->container['filters'] === null) {
+            $invalidProperties[] = "'filters' can't be null";
+        }
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
+        }
+        if ($this->container['polygon'] === null) {
+            $invalidProperties[] = "'polygon' can't be null";
+        }
+        if ($this->container['query'] === null) {
+            $invalidProperties[] = "'query' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -304,82 +330,136 @@ class UpdateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets active
+     * Gets bounds
      *
-     * @return bool|null
+     * @return \Skautik\Sdk\Model\Bounds|null
      */
-    public function getActive()
+    public function getBounds()
     {
-        return $this->container['active'];
+        return $this->container['bounds'];
     }
 
     /**
-     * Sets active
+     * Sets bounds
      *
-     * @param bool|null $active False pauses deliveries; the registration and its secret survive.
+     * @param \Skautik\Sdk\Model\Bounds|null $bounds bounds
      *
      * @return self
      */
-    public function setActive($active)
+    public function setBounds($bounds)
     {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        if (is_null($bounds)) {
+            throw new \InvalidArgumentException('non-nullable bounds cannot be null');
         }
-        $this->container['active'] = $active;
+        $this->container['bounds'] = $bounds;
 
         return $this;
     }
 
     /**
-     * Gets events
+     * Gets filters
      *
-     * @return string[]|null
+     * @return \Skautik\Sdk\Model\SearchFilters
      */
-    public function getEvents()
+    public function getFilters()
     {
-        return $this->container['events'];
+        return $this->container['filters'];
     }
 
     /**
-     * Sets events
+     * Sets filters
      *
-     * @param string[]|null $events Replaces the whole subscription list rather than adding to it.
+     * @param \Skautik\Sdk\Model\SearchFilters $filters filters
      *
      * @return self
      */
-    public function setEvents($events)
+    public function setFilters($filters)
     {
-        if (is_null($events)) {
-            throw new \InvalidArgumentException('non-nullable events cannot be null');
+        if (is_null($filters)) {
+            throw new \InvalidArgumentException('non-nullable filters cannot be null');
         }
-        $this->container['events'] = $events;
+        $this->container['filters'] = $filters;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets limit
      *
-     * @return string|null
+     * @return int
      */
-    public function getUrl()
+    public function getLimit()
     {
-        return $this->container['url'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets url
+     * Sets limit
      *
-     * @param string|null $url New HTTPS endpoint.
+     * @param int $limit limit
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setLimit($limit)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-        $this->container['url'] = $url;
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets polygon
+     *
+     * @return float[][]
+     */
+    public function getPolygon()
+    {
+        return $this->container['polygon'];
+    }
+
+    /**
+     * Sets polygon
+     *
+     * @param float[][] $polygon polygon
+     *
+     * @return self
+     */
+    public function setPolygon($polygon)
+    {
+        if (is_null($polygon)) {
+            throw new \InvalidArgumentException('non-nullable polygon cannot be null');
+        }
+        $this->container['polygon'] = $polygon;
+
+        return $this;
+    }
+
+    /**
+     * Gets query
+     *
+     * @return string
+     */
+    public function getQuery()
+    {
+        return $this->container['query'];
+    }
+
+    /**
+     * Sets query
+     *
+     * @param string $query query
+     *
+     * @return self
+     */
+    public function setQuery($query)
+    {
+        if (is_null($query)) {
+            throw new \InvalidArgumentException('non-nullable query cannot be null');
+        }
+        $this->container['query'] = $query;
 
         return $this;
     }

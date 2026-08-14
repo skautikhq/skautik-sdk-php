@@ -154,16 +154,16 @@ class WebhooksApi
      *
      * Create a webhook
      *
-     * @param  \Skautik\Sdk\Model\CreateWebhookRequest $create_webhook_request create_webhook_request (required)
+     * @param  \Skautik\Sdk\Model\WebhookInput $webhook_input webhook_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createWebhook($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
+    public function createWebhook($webhook_input, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        list($response) = $this->createWebhookWithHttpInfo($create_webhook_request, $contentType);
+        list($response) = $this->createWebhookWithHttpInfo($webhook_input, $contentType);
         return $response;
     }
 
@@ -172,16 +172,16 @@ class WebhooksApi
      *
      * Create a webhook
      *
-     * @param  \Skautik\Sdk\Model\CreateWebhookRequest $create_webhook_request (required)
+     * @param  \Skautik\Sdk\Model\WebhookInput $webhook_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createWebhookWithHttpInfo($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
+    public function createWebhookWithHttpInfo($webhook_input, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        $request = $this->createWebhookRequest($create_webhook_request, $contentType);
+        $request = $this->createWebhookRequest($webhook_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -327,15 +327,15 @@ class WebhooksApi
      *
      * Create a webhook
      *
-     * @param  \Skautik\Sdk\Model\CreateWebhookRequest $create_webhook_request (required)
+     * @param  \Skautik\Sdk\Model\WebhookInput $webhook_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createWebhookAsync($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
+    public function createWebhookAsync($webhook_input, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        return $this->createWebhookAsyncWithHttpInfo($create_webhook_request, $contentType)
+        return $this->createWebhookAsyncWithHttpInfo($webhook_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -348,16 +348,16 @@ class WebhooksApi
      *
      * Create a webhook
      *
-     * @param  \Skautik\Sdk\Model\CreateWebhookRequest $create_webhook_request (required)
+     * @param  \Skautik\Sdk\Model\WebhookInput $webhook_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createWebhookAsyncWithHttpInfo($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
+    public function createWebhookAsyncWithHttpInfo($webhook_input, string $contentType = self::contentTypes['createWebhook'][0])
     {
         $returnType = '\Skautik\Sdk\Model\Envelope';
-        $request = $this->createWebhookRequest($create_webhook_request, $contentType);
+        $request = $this->createWebhookRequest($webhook_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -398,19 +398,19 @@ class WebhooksApi
     /**
      * Create request for operation 'createWebhook'
      *
-     * @param  \Skautik\Sdk\Model\CreateWebhookRequest $create_webhook_request (required)
+     * @param  \Skautik\Sdk\Model\WebhookInput $webhook_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createWebhookRequest($create_webhook_request, string $contentType = self::contentTypes['createWebhook'][0])
+    public function createWebhookRequest($webhook_input, string $contentType = self::contentTypes['createWebhook'][0])
     {
 
-        // verify the required parameter 'create_webhook_request' is set
-        if ($create_webhook_request === null || (is_array($create_webhook_request) && count($create_webhook_request) === 0)) {
+        // verify the required parameter 'webhook_input' is set
+        if ($webhook_input === null || (is_array($webhook_input) && count($webhook_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_webhook_request when calling createWebhook'
+                'Missing the required parameter $webhook_input when calling createWebhook'
             );
         }
 
@@ -433,12 +433,12 @@ class WebhooksApi
         );
 
         // for model (json/xml)
-        if (isset($create_webhook_request)) {
+        if (isset($webhook_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_webhook_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($webhook_input));
             } else {
-                $httpBody = $create_webhook_request;
+                $httpBody = $webhook_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1101,14 +1101,14 @@ class WebhooksApi
      *
      * @param  string $webhook_id Webhook identifier. (required)
      * @param  string|null $status Filter by outcome. (optional)
-     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional, default to 100)
+     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDeliveries'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\DeliveryList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listDeliveries($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
+    public function listDeliveries($webhook_id, $status = null, $limit = null, string $contentType = self::contentTypes['listDeliveries'][0])
     {
         list($response) = $this->listDeliveriesWithHttpInfo($webhook_id, $status, $limit, $contentType);
         return $response;
@@ -1121,14 +1121,14 @@ class WebhooksApi
      *
      * @param  string $webhook_id Webhook identifier. (required)
      * @param  string|null $status Filter by outcome. (optional)
-     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional, default to 100)
+     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDeliveries'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\DeliveryList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDeliveriesWithHttpInfo($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
+    public function listDeliveriesWithHttpInfo($webhook_id, $status = null, $limit = null, string $contentType = self::contentTypes['listDeliveries'][0])
     {
         $request = $this->listDeliveriesRequest($webhook_id, $status, $limit, $contentType);
 
@@ -1278,13 +1278,13 @@ class WebhooksApi
      *
      * @param  string $webhook_id Webhook identifier. (required)
      * @param  string|null $status Filter by outcome. (optional)
-     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional, default to 100)
+     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDeliveries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDeliveriesAsync($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
+    public function listDeliveriesAsync($webhook_id, $status = null, $limit = null, string $contentType = self::contentTypes['listDeliveries'][0])
     {
         return $this->listDeliveriesAsyncWithHttpInfo($webhook_id, $status, $limit, $contentType)
             ->then(
@@ -1301,13 +1301,13 @@ class WebhooksApi
      *
      * @param  string $webhook_id Webhook identifier. (required)
      * @param  string|null $status Filter by outcome. (optional)
-     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional, default to 100)
+     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDeliveries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDeliveriesAsyncWithHttpInfo($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
+    public function listDeliveriesAsyncWithHttpInfo($webhook_id, $status = null, $limit = null, string $contentType = self::contentTypes['listDeliveries'][0])
     {
         $returnType = '\Skautik\Sdk\Model\DeliveryList';
         $request = $this->listDeliveriesRequest($webhook_id, $status, $limit, $contentType);
@@ -1353,13 +1353,13 @@ class WebhooksApi
      *
      * @param  string $webhook_id Webhook identifier. (required)
      * @param  string|null $status Filter by outcome. (optional)
-     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional, default to 100)
+     * @param  int|null $limit How many attempts to return, newest first. Capped at 100. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDeliveries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDeliveriesRequest($webhook_id, $status = null, $limit = 100, string $contentType = self::contentTypes['listDeliveries'][0])
+    public function listDeliveriesRequest($webhook_id, $status = null, $limit = null, string $contentType = self::contentTypes['listDeliveries'][0])
     {
 
         // verify the required parameter 'webhook_id' is set
@@ -2720,16 +2720,16 @@ class WebhooksApi
      * Update a webhook
      *
      * @param  string $webhook_id Webhook identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateWebhookRequest|null $update_webhook_request update_webhook_request (optional)
+     * @param  \Skautik\Sdk\Model\WebhookUpdate $webhook_update webhook_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\WebhookResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function updateWebhook($webhook_id, $update_webhook_request = null, string $contentType = self::contentTypes['updateWebhook'][0])
+    public function updateWebhook($webhook_id, $webhook_update, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        list($response) = $this->updateWebhookWithHttpInfo($webhook_id, $update_webhook_request, $contentType);
+        list($response) = $this->updateWebhookWithHttpInfo($webhook_id, $webhook_update, $contentType);
         return $response;
     }
 
@@ -2739,16 +2739,16 @@ class WebhooksApi
      * Update a webhook
      *
      * @param  string $webhook_id Webhook identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateWebhookRequest|null $update_webhook_request (optional)
+     * @param  \Skautik\Sdk\Model\WebhookUpdate $webhook_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\WebhookResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateWebhookWithHttpInfo($webhook_id, $update_webhook_request = null, string $contentType = self::contentTypes['updateWebhook'][0])
+    public function updateWebhookWithHttpInfo($webhook_id, $webhook_update, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        $request = $this->updateWebhookRequest($webhook_id, $update_webhook_request, $contentType);
+        $request = $this->updateWebhookRequest($webhook_id, $webhook_update, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2895,15 +2895,15 @@ class WebhooksApi
      * Update a webhook
      *
      * @param  string $webhook_id Webhook identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateWebhookRequest|null $update_webhook_request (optional)
+     * @param  \Skautik\Sdk\Model\WebhookUpdate $webhook_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWebhookAsync($webhook_id, $update_webhook_request = null, string $contentType = self::contentTypes['updateWebhook'][0])
+    public function updateWebhookAsync($webhook_id, $webhook_update, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        return $this->updateWebhookAsyncWithHttpInfo($webhook_id, $update_webhook_request, $contentType)
+        return $this->updateWebhookAsyncWithHttpInfo($webhook_id, $webhook_update, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2917,16 +2917,16 @@ class WebhooksApi
      * Update a webhook
      *
      * @param  string $webhook_id Webhook identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateWebhookRequest|null $update_webhook_request (optional)
+     * @param  \Skautik\Sdk\Model\WebhookUpdate $webhook_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateWebhookAsyncWithHttpInfo($webhook_id, $update_webhook_request = null, string $contentType = self::contentTypes['updateWebhook'][0])
+    public function updateWebhookAsyncWithHttpInfo($webhook_id, $webhook_update, string $contentType = self::contentTypes['updateWebhook'][0])
     {
         $returnType = '\Skautik\Sdk\Model\WebhookResponse';
-        $request = $this->updateWebhookRequest($webhook_id, $update_webhook_request, $contentType);
+        $request = $this->updateWebhookRequest($webhook_id, $webhook_update, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2968,13 +2968,13 @@ class WebhooksApi
      * Create request for operation 'updateWebhook'
      *
      * @param  string $webhook_id Webhook identifier. (required)
-     * @param  \Skautik\Sdk\Model\UpdateWebhookRequest|null $update_webhook_request (optional)
+     * @param  \Skautik\Sdk\Model\WebhookUpdate $webhook_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateWebhookRequest($webhook_id, $update_webhook_request = null, string $contentType = self::contentTypes['updateWebhook'][0])
+    public function updateWebhookRequest($webhook_id, $webhook_update, string $contentType = self::contentTypes['updateWebhook'][0])
     {
 
         // verify the required parameter 'webhook_id' is set
@@ -2984,6 +2984,12 @@ class WebhooksApi
             );
         }
 
+        // verify the required parameter 'webhook_update' is set
+        if ($webhook_update === null || (is_array($webhook_update) && count($webhook_update) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $webhook_update when calling updateWebhook'
+            );
+        }
 
 
         $resourcePath = '/webhooks/{webhook_id}';
@@ -3012,12 +3018,12 @@ class WebhooksApi
         );
 
         // for model (json/xml)
-        if (isset($update_webhook_request)) {
+        if (isset($webhook_update)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_webhook_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($webhook_update));
             } else {
-                $httpBody = $update_webhook_request;
+                $httpBody = $webhook_update;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

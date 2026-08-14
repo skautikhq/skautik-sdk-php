@@ -136,16 +136,16 @@ class ExportsApi
      *
      * Request an export
      *
-     * @param  \Skautik\Sdk\Model\CreateExportRequest $create_export_request create_export_request (required)
+     * @param  \Skautik\Sdk\Model\ExportInput $export_input export_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExport'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createExport($create_export_request, string $contentType = self::contentTypes['createExport'][0])
+    public function createExport($export_input, string $contentType = self::contentTypes['createExport'][0])
     {
-        list($response) = $this->createExportWithHttpInfo($create_export_request, $contentType);
+        list($response) = $this->createExportWithHttpInfo($export_input, $contentType);
         return $response;
     }
 
@@ -154,16 +154,16 @@ class ExportsApi
      *
      * Request an export
      *
-     * @param  \Skautik\Sdk\Model\CreateExportRequest $create_export_request (required)
+     * @param  \Skautik\Sdk\Model\ExportInput $export_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExport'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ExportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createExportWithHttpInfo($create_export_request, string $contentType = self::contentTypes['createExport'][0])
+    public function createExportWithHttpInfo($export_input, string $contentType = self::contentTypes['createExport'][0])
     {
-        $request = $this->createExportRequest($create_export_request, $contentType);
+        $request = $this->createExportRequest($export_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -309,15 +309,15 @@ class ExportsApi
      *
      * Request an export
      *
-     * @param  \Skautik\Sdk\Model\CreateExportRequest $create_export_request (required)
+     * @param  \Skautik\Sdk\Model\ExportInput $export_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportAsync($create_export_request, string $contentType = self::contentTypes['createExport'][0])
+    public function createExportAsync($export_input, string $contentType = self::contentTypes['createExport'][0])
     {
-        return $this->createExportAsyncWithHttpInfo($create_export_request, $contentType)
+        return $this->createExportAsyncWithHttpInfo($export_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -330,16 +330,16 @@ class ExportsApi
      *
      * Request an export
      *
-     * @param  \Skautik\Sdk\Model\CreateExportRequest $create_export_request (required)
+     * @param  \Skautik\Sdk\Model\ExportInput $export_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportAsyncWithHttpInfo($create_export_request, string $contentType = self::contentTypes['createExport'][0])
+    public function createExportAsyncWithHttpInfo($export_input, string $contentType = self::contentTypes['createExport'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ExportResponse';
-        $request = $this->createExportRequest($create_export_request, $contentType);
+        $request = $this->createExportRequest($export_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -380,19 +380,19 @@ class ExportsApi
     /**
      * Create request for operation 'createExport'
      *
-     * @param  \Skautik\Sdk\Model\CreateExportRequest $create_export_request (required)
+     * @param  \Skautik\Sdk\Model\ExportInput $export_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createExport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createExportRequest($create_export_request, string $contentType = self::contentTypes['createExport'][0])
+    public function createExportRequest($export_input, string $contentType = self::contentTypes['createExport'][0])
     {
 
-        // verify the required parameter 'create_export_request' is set
-        if ($create_export_request === null || (is_array($create_export_request) && count($create_export_request) === 0)) {
+        // verify the required parameter 'export_input' is set
+        if ($export_input === null || (is_array($export_input) && count($export_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_export_request when calling createExport'
+                'Missing the required parameter $export_input when calling createExport'
             );
         }
 
@@ -415,12 +415,12 @@ class ExportsApi
         );
 
         // for model (json/xml)
-        if (isset($create_export_request)) {
+        if (isset($export_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_export_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($export_input));
             } else {
-                $httpBody = $create_export_request;
+                $httpBody = $export_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

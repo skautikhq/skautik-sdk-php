@@ -160,7 +160,7 @@ class PropertiesApi
      *
      * Create a property
      *
-     * @param  \Skautik\Sdk\Model\CreatePropertyRequest $create_property_request create_property_request (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input property_input (required)
      * @param  string|null $idempotency_key Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProperty'] to see the possible values for this operation
      *
@@ -168,9 +168,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createProperty($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
+    public function createProperty($property_input, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
-        list($response) = $this->createPropertyWithHttpInfo($create_property_request, $idempotency_key, $contentType);
+        list($response) = $this->createPropertyWithHttpInfo($property_input, $idempotency_key, $contentType);
         return $response;
     }
 
@@ -179,7 +179,7 @@ class PropertiesApi
      *
      * Create a property
      *
-     * @param  \Skautik\Sdk\Model\CreatePropertyRequest $create_property_request (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $idempotency_key Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProperty'] to see the possible values for this operation
      *
@@ -187,9 +187,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPropertyWithHttpInfo($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
+    public function createPropertyWithHttpInfo($property_input, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
-        $request = $this->createPropertyRequest($create_property_request, $idempotency_key, $contentType);
+        $request = $this->createPropertyRequest($property_input, $idempotency_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -349,16 +349,16 @@ class PropertiesApi
      *
      * Create a property
      *
-     * @param  \Skautik\Sdk\Model\CreatePropertyRequest $create_property_request (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $idempotency_key Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPropertyAsync($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
+    public function createPropertyAsync($property_input, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
-        return $this->createPropertyAsyncWithHttpInfo($create_property_request, $idempotency_key, $contentType)
+        return $this->createPropertyAsyncWithHttpInfo($property_input, $idempotency_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -371,17 +371,17 @@ class PropertiesApi
      *
      * Create a property
      *
-     * @param  \Skautik\Sdk\Model\CreatePropertyRequest $create_property_request (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $idempotency_key Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPropertyAsyncWithHttpInfo($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
+    public function createPropertyAsyncWithHttpInfo($property_input, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyResponse';
-        $request = $this->createPropertyRequest($create_property_request, $idempotency_key, $contentType);
+        $request = $this->createPropertyRequest($property_input, $idempotency_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -422,20 +422,20 @@ class PropertiesApi
     /**
      * Create request for operation 'createProperty'
      *
-     * @param  \Skautik\Sdk\Model\CreatePropertyRequest $create_property_request (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $idempotency_key Unique per logical creation. Replaying the same key returns the original result rather than creating a second record. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPropertyRequest($create_property_request, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
+    public function createPropertyRequest($property_input, $idempotency_key = null, string $contentType = self::contentTypes['createProperty'][0])
     {
 
-        // verify the required parameter 'create_property_request' is set
-        if ($create_property_request === null || (is_array($create_property_request) && count($create_property_request) === 0)) {
+        // verify the required parameter 'property_input' is set
+        if ($property_input === null || (is_array($property_input) && count($property_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_property_request when calling createProperty'
+                'Missing the required parameter $property_input when calling createProperty'
             );
         }
 
@@ -463,12 +463,12 @@ class PropertiesApi
         );
 
         // for model (json/xml)
-        if (isset($create_property_request)) {
+        if (isset($property_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_property_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($property_input));
             } else {
-                $httpBody = $create_property_request;
+                $httpBody = $property_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2665,16 +2665,16 @@ class PropertiesApi
      *
      * Search properties
      *
-     * @param  \Skautik\Sdk\Model\SearchPropertiesRequest|null $search_properties_request search_properties_request (optional)
+     * @param  \Skautik\Sdk\Model\SearchRequest $search_request search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function searchProperties($search_properties_request = null, string $contentType = self::contentTypes['searchProperties'][0])
+    public function searchProperties($search_request, string $contentType = self::contentTypes['searchProperties'][0])
     {
-        list($response) = $this->searchPropertiesWithHttpInfo($search_properties_request, $contentType);
+        list($response) = $this->searchPropertiesWithHttpInfo($search_request, $contentType);
         return $response;
     }
 
@@ -2683,16 +2683,16 @@ class PropertiesApi
      *
      * Search properties
      *
-     * @param  \Skautik\Sdk\Model\SearchPropertiesRequest|null $search_properties_request (optional)
+     * @param  \Skautik\Sdk\Model\SearchRequest $search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\Envelope|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchPropertiesWithHttpInfo($search_properties_request = null, string $contentType = self::contentTypes['searchProperties'][0])
+    public function searchPropertiesWithHttpInfo($search_request, string $contentType = self::contentTypes['searchProperties'][0])
     {
-        $request = $this->searchPropertiesRequest($search_properties_request, $contentType);
+        $request = $this->searchPropertiesRequest($search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2838,15 +2838,15 @@ class PropertiesApi
      *
      * Search properties
      *
-     * @param  \Skautik\Sdk\Model\SearchPropertiesRequest|null $search_properties_request (optional)
+     * @param  \Skautik\Sdk\Model\SearchRequest $search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchPropertiesAsync($search_properties_request = null, string $contentType = self::contentTypes['searchProperties'][0])
+    public function searchPropertiesAsync($search_request, string $contentType = self::contentTypes['searchProperties'][0])
     {
-        return $this->searchPropertiesAsyncWithHttpInfo($search_properties_request, $contentType)
+        return $this->searchPropertiesAsyncWithHttpInfo($search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2859,16 +2859,16 @@ class PropertiesApi
      *
      * Search properties
      *
-     * @param  \Skautik\Sdk\Model\SearchPropertiesRequest|null $search_properties_request (optional)
+     * @param  \Skautik\Sdk\Model\SearchRequest $search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchPropertiesAsyncWithHttpInfo($search_properties_request = null, string $contentType = self::contentTypes['searchProperties'][0])
+    public function searchPropertiesAsyncWithHttpInfo($search_request, string $contentType = self::contentTypes['searchProperties'][0])
     {
         $returnType = '\Skautik\Sdk\Model\Envelope';
-        $request = $this->searchPropertiesRequest($search_properties_request, $contentType);
+        $request = $this->searchPropertiesRequest($search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2909,15 +2909,21 @@ class PropertiesApi
     /**
      * Create request for operation 'searchProperties'
      *
-     * @param  \Skautik\Sdk\Model\SearchPropertiesRequest|null $search_properties_request (optional)
+     * @param  \Skautik\Sdk\Model\SearchRequest $search_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchPropertiesRequest($search_properties_request = null, string $contentType = self::contentTypes['searchProperties'][0])
+    public function searchPropertiesRequest($search_request, string $contentType = self::contentTypes['searchProperties'][0])
     {
 
+        // verify the required parameter 'search_request' is set
+        if ($search_request === null || (is_array($search_request) && count($search_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $search_request when calling searchProperties'
+            );
+        }
 
 
         $resourcePath = '/properties/search';
@@ -2938,12 +2944,12 @@ class PropertiesApi
         );
 
         // for model (json/xml)
-        if (isset($search_properties_request)) {
+        if (isset($search_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($search_properties_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($search_request));
             } else {
-                $httpBody = $search_properties_request;
+                $httpBody = $search_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -3001,14 +3007,14 @@ class PropertiesApi
      * Similar properties
      *
      * @param  string $property_id Property to compare against. (required)
-     * @param  int|null $limit Comparables to return, 1 to 50. (optional, default to 10)
+     * @param  int|null $limit Comparables to return, 1 to 50. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['similarProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function similarProperties($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
+    public function similarProperties($property_id, $limit = null, string $contentType = self::contentTypes['similarProperties'][0])
     {
         list($response) = $this->similarPropertiesWithHttpInfo($property_id, $limit, $contentType);
         return $response;
@@ -3020,14 +3026,14 @@ class PropertiesApi
      * Similar properties
      *
      * @param  string $property_id Property to compare against. (required)
-     * @param  int|null $limit Comparables to return, 1 to 50. (optional, default to 10)
+     * @param  int|null $limit Comparables to return, 1 to 50. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['similarProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function similarPropertiesWithHttpInfo($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
+    public function similarPropertiesWithHttpInfo($property_id, $limit = null, string $contentType = self::contentTypes['similarProperties'][0])
     {
         $request = $this->similarPropertiesRequest($property_id, $limit, $contentType);
 
@@ -3176,13 +3182,13 @@ class PropertiesApi
      * Similar properties
      *
      * @param  string $property_id Property to compare against. (required)
-     * @param  int|null $limit Comparables to return, 1 to 50. (optional, default to 10)
+     * @param  int|null $limit Comparables to return, 1 to 50. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['similarProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function similarPropertiesAsync($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
+    public function similarPropertiesAsync($property_id, $limit = null, string $contentType = self::contentTypes['similarProperties'][0])
     {
         return $this->similarPropertiesAsyncWithHttpInfo($property_id, $limit, $contentType)
             ->then(
@@ -3198,13 +3204,13 @@ class PropertiesApi
      * Similar properties
      *
      * @param  string $property_id Property to compare against. (required)
-     * @param  int|null $limit Comparables to return, 1 to 50. (optional, default to 10)
+     * @param  int|null $limit Comparables to return, 1 to 50. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['similarProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function similarPropertiesAsyncWithHttpInfo($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
+    public function similarPropertiesAsyncWithHttpInfo($property_id, $limit = null, string $contentType = self::contentTypes['similarProperties'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyList';
         $request = $this->similarPropertiesRequest($property_id, $limit, $contentType);
@@ -3249,13 +3255,13 @@ class PropertiesApi
      * Create request for operation 'similarProperties'
      *
      * @param  string $property_id Property to compare against. (required)
-     * @param  int|null $limit Comparables to return, 1 to 50. (optional, default to 10)
+     * @param  int|null $limit Comparables to return, 1 to 50. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['similarProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function similarPropertiesRequest($property_id, $limit = 10, string $contentType = self::contentTypes['similarProperties'][0])
+    public function similarPropertiesRequest($property_id, $limit = null, string $contentType = self::contentTypes['similarProperties'][0])
     {
 
         // verify the required parameter 'property_id' is set
@@ -3358,6 +3364,7 @@ class PropertiesApi
      * Update a property
      *
      * @param  string $property_id Property to update. (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input property_input (required)
      * @param  string|null $if_match ETag from your last read. Rejected with 412 if the record moved on. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProperty'] to see the possible values for this operation
      *
@@ -3365,9 +3372,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function updateProperty($property_id, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
+    public function updateProperty($property_id, $property_input, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
     {
-        list($response) = $this->updatePropertyWithHttpInfo($property_id, $if_match, $contentType);
+        list($response) = $this->updatePropertyWithHttpInfo($property_id, $property_input, $if_match, $contentType);
         return $response;
     }
 
@@ -3377,6 +3384,7 @@ class PropertiesApi
      * Update a property
      *
      * @param  string $property_id Property to update. (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $if_match ETag from your last read. Rejected with 412 if the record moved on. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProperty'] to see the possible values for this operation
      *
@@ -3384,9 +3392,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePropertyWithHttpInfo($property_id, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
+    public function updatePropertyWithHttpInfo($property_id, $property_input, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
     {
-        $request = $this->updatePropertyRequest($property_id, $if_match, $contentType);
+        $request = $this->updatePropertyRequest($property_id, $property_input, $if_match, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3561,15 +3569,16 @@ class PropertiesApi
      * Update a property
      *
      * @param  string $property_id Property to update. (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $if_match ETag from your last read. Rejected with 412 if the record moved on. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePropertyAsync($property_id, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
+    public function updatePropertyAsync($property_id, $property_input, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
     {
-        return $this->updatePropertyAsyncWithHttpInfo($property_id, $if_match, $contentType)
+        return $this->updatePropertyAsyncWithHttpInfo($property_id, $property_input, $if_match, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3583,16 +3592,17 @@ class PropertiesApi
      * Update a property
      *
      * @param  string $property_id Property to update. (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $if_match ETag from your last read. Rejected with 412 if the record moved on. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePropertyAsyncWithHttpInfo($property_id, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
+    public function updatePropertyAsyncWithHttpInfo($property_id, $property_input, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyResponse';
-        $request = $this->updatePropertyRequest($property_id, $if_match, $contentType);
+        $request = $this->updatePropertyRequest($property_id, $property_input, $if_match, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3634,19 +3644,27 @@ class PropertiesApi
      * Create request for operation 'updateProperty'
      *
      * @param  string $property_id Property to update. (required)
+     * @param  \Skautik\Sdk\Model\PropertyInput $property_input (required)
      * @param  string|null $if_match ETag from your last read. Rejected with 412 if the record moved on. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePropertyRequest($property_id, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
+    public function updatePropertyRequest($property_id, $property_input, $if_match = null, string $contentType = self::contentTypes['updateProperty'][0])
     {
 
         // verify the required parameter 'property_id' is set
         if ($property_id === null || (is_array($property_id) && count($property_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $property_id when calling updateProperty'
+            );
+        }
+
+        // verify the required parameter 'property_input' is set
+        if ($property_input === null || (is_array($property_input) && count($property_input) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $property_input when calling updateProperty'
             );
         }
 
@@ -3682,7 +3700,14 @@ class PropertiesApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($property_input)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($property_input));
+            } else {
+                $httpBody = $property_input;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -3739,6 +3764,8 @@ class PropertiesApi
      *
      * @param  string $property_id Property to attach to. (required)
      * @param  \SplFileObject $file Image payload. (required)
+     * @param  string|null $room_type What the photograph shows, used to group images and to pick a source for staging. (optional)
+     * @param  bool|null $primary Pass true to make this the primary image, which demotes the current one. (optional)
      * @param  int|null $position Display order. The image at position 0 is the primary one. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadPropertyImage'] to see the possible values for this operation
      *
@@ -3746,9 +3773,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImageResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function uploadPropertyImage($property_id, $file, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
+    public function uploadPropertyImage($property_id, $file, $room_type = null, $primary = null, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
     {
-        list($response) = $this->uploadPropertyImageWithHttpInfo($property_id, $file, $position, $contentType);
+        list($response) = $this->uploadPropertyImageWithHttpInfo($property_id, $file, $room_type, $primary, $position, $contentType);
         return $response;
     }
 
@@ -3759,6 +3786,8 @@ class PropertiesApi
      *
      * @param  string $property_id Property to attach to. (required)
      * @param  \SplFileObject $file Image payload. (required)
+     * @param  string|null $room_type What the photograph shows, used to group images and to pick a source for staging. (optional)
+     * @param  bool|null $primary Pass true to make this the primary image, which demotes the current one. (optional)
      * @param  int|null $position Display order. The image at position 0 is the primary one. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadPropertyImage'] to see the possible values for this operation
      *
@@ -3766,9 +3795,9 @@ class PropertiesApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImageResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadPropertyImageWithHttpInfo($property_id, $file, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
+    public function uploadPropertyImageWithHttpInfo($property_id, $file, $room_type = null, $primary = null, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
     {
-        $request = $this->uploadPropertyImageRequest($property_id, $file, $position, $contentType);
+        $request = $this->uploadPropertyImageRequest($property_id, $file, $room_type, $primary, $position, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3944,15 +3973,17 @@ class PropertiesApi
      *
      * @param  string $property_id Property to attach to. (required)
      * @param  \SplFileObject $file Image payload. (required)
+     * @param  string|null $room_type What the photograph shows, used to group images and to pick a source for staging. (optional)
+     * @param  bool|null $primary Pass true to make this the primary image, which demotes the current one. (optional)
      * @param  int|null $position Display order. The image at position 0 is the primary one. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadPropertyImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadPropertyImageAsync($property_id, $file, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
+    public function uploadPropertyImageAsync($property_id, $file, $room_type = null, $primary = null, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
     {
-        return $this->uploadPropertyImageAsyncWithHttpInfo($property_id, $file, $position, $contentType)
+        return $this->uploadPropertyImageAsyncWithHttpInfo($property_id, $file, $room_type, $primary, $position, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3967,16 +3998,18 @@ class PropertiesApi
      *
      * @param  string $property_id Property to attach to. (required)
      * @param  \SplFileObject $file Image payload. (required)
+     * @param  string|null $room_type What the photograph shows, used to group images and to pick a source for staging. (optional)
+     * @param  bool|null $primary Pass true to make this the primary image, which demotes the current one. (optional)
      * @param  int|null $position Display order. The image at position 0 is the primary one. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadPropertyImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadPropertyImageAsyncWithHttpInfo($property_id, $file, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
+    public function uploadPropertyImageAsyncWithHttpInfo($property_id, $file, $room_type = null, $primary = null, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImageResponse';
-        $request = $this->uploadPropertyImageRequest($property_id, $file, $position, $contentType);
+        $request = $this->uploadPropertyImageRequest($property_id, $file, $room_type, $primary, $position, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4019,13 +4052,15 @@ class PropertiesApi
      *
      * @param  string $property_id Property to attach to. (required)
      * @param  \SplFileObject $file Image payload. (required)
+     * @param  string|null $room_type What the photograph shows, used to group images and to pick a source for staging. (optional)
+     * @param  bool|null $primary Pass true to make this the primary image, which demotes the current one. (optional)
      * @param  int|null $position Display order. The image at position 0 is the primary one. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['uploadPropertyImage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function uploadPropertyImageRequest($property_id, $file, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
+    public function uploadPropertyImageRequest($property_id, $file, $room_type = null, $primary = null, $position = null, string $contentType = self::contentTypes['uploadPropertyImage'][0])
     {
 
         // verify the required parameter 'property_id' is set
@@ -4044,6 +4079,8 @@ class PropertiesApi
 
 
 
+
+
         $resourcePath = '/properties/{property_id}/images';
         $formParams = [];
         $queryParams = [];
@@ -4051,6 +4088,24 @@ class PropertiesApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $room_type,
+            'room_type', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $primary,
+            'primary', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
         // path params

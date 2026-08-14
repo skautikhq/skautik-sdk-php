@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateInquiryRequest
+ * Bounds
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * UpdateInquiryRequest Class Doc Comment
+ * Bounds Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class Bounds implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @var string
      */
-    protected static $openAPIModelName = 'updateInquiry_request';
+    protected static $openAPIModelName = 'Bounds';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $openAPITypes = [
-        'status' => 'string'
+        'ne_lat' => 'float',
+        'ne_lng' => 'float',
+        'sw_lat' => 'float',
+        'sw_lng' => 'float'
     ];
 
     /**
@@ -68,7 +71,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'status' => null
+        'ne_lat' => null,
+        'ne_lng' => null,
+        'sw_lat' => null,
+        'sw_lng' => null
     ];
 
     /**
@@ -77,7 +83,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'status' => false
+        'ne_lat' => false,
+        'ne_lng' => false,
+        'sw_lat' => false,
+        'sw_lng' => false
     ];
 
     /**
@@ -166,7 +175,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status'
+        'ne_lat' => 'ne_lat',
+        'ne_lng' => 'ne_lng',
+        'sw_lat' => 'sw_lat',
+        'sw_lng' => 'sw_lng'
     ];
 
     /**
@@ -175,7 +187,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus'
+        'ne_lat' => 'setNeLat',
+        'ne_lng' => 'setNeLng',
+        'sw_lat' => 'setSwLat',
+        'sw_lng' => 'setSwLng'
     ];
 
     /**
@@ -184,7 +199,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus'
+        'ne_lat' => 'getNeLat',
+        'ne_lng' => 'getNeLng',
+        'sw_lat' => 'getSwLat',
+        'sw_lng' => 'getSwLng'
     ];
 
     /**
@@ -228,27 +246,6 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    public const STATUS__NEW = 'new';
-    public const STATUS_READ = 'read';
-    public const STATUS_REPLIED = 'replied';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_SPAM = 'spam';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS__NEW,
-            self::STATUS_READ,
-            self::STATUS_REPLIED,
-            self::STATUS_CLOSED,
-            self::STATUS_SPAM,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -265,7 +262,10 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('ne_lat', $data ?? [], null);
+        $this->setIfExists('ne_lng', $data ?? [], null);
+        $this->setIfExists('sw_lat', $data ?? [], null);
+        $this->setIfExists('sw_lng', $data ?? [], null);
     }
 
     /**
@@ -295,18 +295,18 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+        if ($this->container['ne_lat'] === null) {
+            $invalidProperties[] = "'ne_lat' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['ne_lng'] === null) {
+            $invalidProperties[] = "'ne_lng' can't be null";
         }
-
+        if ($this->container['sw_lat'] === null) {
+            $invalidProperties[] = "'sw_lat' can't be null";
+        }
+        if ($this->container['sw_lng'] === null) {
+            $invalidProperties[] = "'sw_lng' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -323,38 +323,109 @@ class UpdateInquiryRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets status
+     * Gets ne_lat
      *
-     * @return string
+     * @return float
      */
-    public function getStatus()
+    public function getNeLat()
     {
-        return $this->container['status'];
+        return $this->container['ne_lat'];
     }
 
     /**
-     * Sets status
+     * Sets ne_lat
      *
-     * @param string $status The state to move it to.
+     * @param float $ne_lat ne_lat
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setNeLat($ne_lat)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($ne_lat)) {
+            throw new \InvalidArgumentException('non-nullable ne_lat cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['ne_lat'] = $ne_lat;
+
+        return $this;
+    }
+
+    /**
+     * Gets ne_lng
+     *
+     * @return float
+     */
+    public function getNeLng()
+    {
+        return $this->container['ne_lng'];
+    }
+
+    /**
+     * Sets ne_lng
+     *
+     * @param float $ne_lng ne_lng
+     *
+     * @return self
+     */
+    public function setNeLng($ne_lng)
+    {
+        if (is_null($ne_lng)) {
+            throw new \InvalidArgumentException('non-nullable ne_lng cannot be null');
         }
-        $this->container['status'] = $status;
+        $this->container['ne_lng'] = $ne_lng;
+
+        return $this;
+    }
+
+    /**
+     * Gets sw_lat
+     *
+     * @return float
+     */
+    public function getSwLat()
+    {
+        return $this->container['sw_lat'];
+    }
+
+    /**
+     * Sets sw_lat
+     *
+     * @param float $sw_lat sw_lat
+     *
+     * @return self
+     */
+    public function setSwLat($sw_lat)
+    {
+        if (is_null($sw_lat)) {
+            throw new \InvalidArgumentException('non-nullable sw_lat cannot be null');
+        }
+        $this->container['sw_lat'] = $sw_lat;
+
+        return $this;
+    }
+
+    /**
+     * Gets sw_lng
+     *
+     * @return float
+     */
+    public function getSwLng()
+    {
+        return $this->container['sw_lng'];
+    }
+
+    /**
+     * Sets sw_lng
+     *
+     * @param float $sw_lng sw_lng
+     *
+     * @return self
+     */
+    public function setSwLng($sw_lng)
+    {
+        if (is_null($sw_lng)) {
+            throw new \InvalidArgumentException('non-nullable sw_lng cannot be null');
+        }
+        $this->container['sw_lng'] = $sw_lng;
 
         return $this;
     }

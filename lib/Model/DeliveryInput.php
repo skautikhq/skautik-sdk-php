@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateImportSourceRequest
+ * DeliveryInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * CreateImportSourceRequest Class Doc Comment
+ * DeliveryInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class DeliveryInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @var string
      */
-    protected static $openAPIModelName = 'createImportSource_request';
+    protected static $openAPIModelName = 'DeliveryInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $openAPITypes = [
-        'deletion_policy' => 'string',
-        'delivery' => 'array<string,mixed>',
-        'format' => 'string',
-        'mapping' => 'array<string,mixed>',
-        'name' => 'string',
-        'schedule' => 'string'
+        'type' => 'string',
+        'url' => 'string'
     ];
 
     /**
@@ -73,12 +69,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'deletion_policy' => null,
-        'delivery' => null,
-        'format' => null,
-        'mapping' => null,
-        'name' => null,
-        'schedule' => null
+        'type' => null,
+        'url' => null
     ];
 
     /**
@@ -87,12 +79,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'deletion_policy' => false,
-        'delivery' => false,
-        'format' => false,
-        'mapping' => false,
-        'name' => false,
-        'schedule' => false
+        'type' => false,
+        'url' => false
     ];
 
     /**
@@ -181,12 +169,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'deletion_policy' => 'deletion_policy',
-        'delivery' => 'delivery',
-        'format' => 'format',
-        'mapping' => 'mapping',
-        'name' => 'name',
-        'schedule' => 'schedule'
+        'type' => 'type',
+        'url' => 'url'
     ];
 
     /**
@@ -195,12 +179,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'deletion_policy' => 'setDeletionPolicy',
-        'delivery' => 'setDelivery',
-        'format' => 'setFormat',
-        'mapping' => 'setMapping',
-        'name' => 'setName',
-        'schedule' => 'setSchedule'
+        'type' => 'setType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -209,12 +189,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'deletion_policy' => 'getDeletionPolicy',
-        'delivery' => 'getDelivery',
-        'format' => 'getFormat',
-        'mapping' => 'getMapping',
-        'name' => 'getName',
-        'schedule' => 'getSchedule'
+        'type' => 'getType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -258,36 +234,6 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    public const DELETION_POLICY_EXPLICIT_ONLY = 'explicit_only';
-    public const DELETION_POLICY_ABSENCE_WITHDRAWS = 'absence_withdraws';
-    public const FORMAT_CSV = 'csv';
-    public const FORMAT_JSON = 'json';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getDeletionPolicyAllowableValues()
-    {
-        return [
-            self::DELETION_POLICY_EXPLICIT_ONLY,
-            self::DELETION_POLICY_ABSENCE_WITHDRAWS,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFormatAllowableValues()
-    {
-        return [
-            self::FORMAT_CSV,
-            self::FORMAT_JSON,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -304,12 +250,8 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('deletion_policy', $data ?? [], 'explicit_only');
-        $this->setIfExists('delivery', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
-        $this->setIfExists('mapping', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('schedule', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -339,32 +281,11 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getDeletionPolicyAllowableValues();
-        if (!is_null($this->container['deletion_policy']) && !in_array($this->container['deletion_policy'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'deletion_policy', must be one of '%s'",
-                $this->container['deletion_policy'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-
-        if ($this->container['delivery'] === null) {
-            $invalidProperties[] = "'delivery' can't be null";
-        }
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
-        }
-        $allowedValues = $this->getFormatAllowableValues();
-        if (!is_null($this->container['format']) && !in_array($this->container['format'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'format', must be one of '%s'",
-                $this->container['format'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
         }
         return $invalidProperties;
     }
@@ -382,183 +303,55 @@ class CreateImportSourceRequest implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets deletion_policy
-     *
-     * @return string|null
-     */
-    public function getDeletionPolicy()
-    {
-        return $this->container['deletion_policy'];
-    }
-
-    /**
-     * Sets deletion_policy
-     *
-     * @param string|null $deletion_policy explicit_only honours deletion markers alone. absence_withdraws also withdraws anything missing from a full delivery, and should only be used where the format is a complete statement of stock.
-     *
-     * @return self
-     */
-    public function setDeletionPolicy($deletion_policy)
-    {
-        if (is_null($deletion_policy)) {
-            throw new \InvalidArgumentException('non-nullable deletion_policy cannot be null');
-        }
-        $allowedValues = $this->getDeletionPolicyAllowableValues();
-        if (!in_array($deletion_policy, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'deletion_policy', must be one of '%s'",
-                    $deletion_policy,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['deletion_policy'] = $deletion_policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets delivery
-     *
-     * @return array<string,mixed>
-     */
-    public function getDelivery()
-    {
-        return $this->container['delivery'];
-    }
-
-    /**
-     * Sets delivery
-     *
-     * @param array<string,mixed> $delivery How data arrives. fetch_url pulls from a URL you give us on a schedule; api_push means you send us each delivery. SFTP drops are named in the schema and are not running yet, so asking for one is refused rather than answered with credentials for a host that would never accept them.
-     *
-     * @return self
-     */
-    public function setDelivery($delivery)
-    {
-        if (is_null($delivery)) {
-            throw new \InvalidArgumentException('non-nullable delivery cannot be null');
-        }
-        $this->container['delivery'] = $delivery;
-
-        return $this;
-    }
-
-    /**
-     * Gets format
+     * Gets type
      *
      * @return string
      */
-    public function getFormat()
+    public function getType()
     {
-        return $this->container['format'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets format
+     * Sets type
      *
-     * @param string $format Format this source delivers. Only csv and json parse today; the others are named in the schema and are refused here rather than accepted into a connector that would fail every run.
+     * @param string $type type
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setType($type)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $allowedValues = $this->getFormatAllowableValues();
-        if (!in_array($format, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'format', must be one of '%s'",
-                    $format,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['format'] = $format;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets mapping
-     *
-     * @return array<string,mixed>|null
-     */
-    public function getMapping()
-    {
-        return $this->container['mapping'];
-    }
-
-    /**
-     * Sets mapping
-     *
-     * @param array<string,mixed>|null $mapping Field mapping, for formats that need one. Omit for OpenImmo and RESO, which are already standardised.
-     *
-     * @return self
-     */
-    public function setMapping($mapping)
-    {
-        if (is_null($mapping)) {
-            throw new \InvalidArgumentException('non-nullable mapping cannot be null');
-        }
-        $this->container['mapping'] = $mapping;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
+     * Gets url
      *
      * @return string
      */
-    public function getName()
+    public function getUrl()
     {
-        return $this->container['name'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets name
+     * Sets url
      *
-     * @param string $name Your own label for the connector.
+     * @param string $url url
      *
      * @return self
      */
-    public function setName($name)
+    public function setUrl($url)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets schedule
-     *
-     * @return string|null
-     */
-    public function getSchedule()
-    {
-        return $this->container['schedule'];
-    }
-
-    /**
-     * Sets schedule
-     *
-     * @param string|null $schedule How often to pull, for fetched sources. Cron expression in UTC. Ignored for drops and pushes, which run on arrival.
-     *
-     * @return self
-     */
-    public function setSchedule($schedule)
-    {
-        if (is_null($schedule)) {
-            throw new \InvalidArgumentException('non-nullable schedule cannot be null');
-        }
-        $this->container['schedule'] = $schedule;
+        $this->container['url'] = $url;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * CreateWebhookRequest
+ * WebhookUpdate
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * CreateWebhookRequest Class Doc Comment
+ * WebhookUpdate Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class WebhookUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @var string
      */
-    protected static $openAPIModelName = 'createWebhook_request';
+    protected static $openAPIModelName = 'WebhookUpdate';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,6 +57,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $openAPITypes = [
+        'active' => 'bool',
         'events' => 'string[]',
         'url' => 'string'
     ];
@@ -69,6 +70,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'active' => null,
         'events' => null,
         'url' => null
     ];
@@ -79,6 +81,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'active' => false,
         'events' => false,
         'url' => false
     ];
@@ -169,6 +172,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'active' => 'active',
         'events' => 'events',
         'url' => 'url'
     ];
@@ -179,6 +183,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'active' => 'setActive',
         'events' => 'setEvents',
         'url' => 'setUrl'
     ];
@@ -189,6 +194,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'active' => 'getActive',
         'events' => 'getEvents',
         'url' => 'getUrl'
     ];
@@ -250,6 +256,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
     }
@@ -281,12 +288,6 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['events'] === null) {
-            $invalidProperties[] = "'events' can't be null";
-        }
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -303,9 +304,36 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
+     * Gets active
+     *
+     * @return bool|null
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param bool|null $active active
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+        $this->container['active'] = $active;
+
+        return $this;
+    }
+
+    /**
      * Gets events
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getEvents()
     {
@@ -315,7 +343,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets events
      *
-     * @param string[] $events Event names to subscribe to. Every name must be one of the events listed above; an unrecognised one is refused rather than silently never firing.
+     * @param string[]|null $events events
      *
      * @return self
      */
@@ -332,7 +360,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -342,7 +370,7 @@ class CreateWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets url
      *
-     * @param string $url HTTPS endpoint. Plain HTTP is rejected.
+     * @param string|null $url url
      *
      * @return self
      */

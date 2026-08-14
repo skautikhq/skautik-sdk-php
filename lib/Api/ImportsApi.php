@@ -157,22 +157,22 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format Which format the payload is in. (required)
+     * @param  string $format  (required)
+     * @param  string|null $mode  (optional, default to 'incremental')
+     * @param  string|null $source_id  (optional)
+     * @param  bool|null $dry_run  (optional)
+     * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
-     * @param  bool|null $dry_run Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
-     * @param  string|null $mode incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to 'incremental')
-     * @param  string|null $source_id Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)
-     * @param  string|null $url Where to fetch the payload from. Mutually exclusive with file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createImport($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImport($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        list($response) = $this->createImportWithHttpInfo($format, $idempotency_key, $dry_run, $file, $mode, $source_id, $url, $contentType);
+        list($response) = $this->createImportWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
         return $response;
     }
 
@@ -181,22 +181,22 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format Which format the payload is in. (required)
+     * @param  string $format  (required)
+     * @param  string|null $mode  (optional, default to 'incremental')
+     * @param  string|null $source_id  (optional)
+     * @param  bool|null $dry_run  (optional)
+     * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
-     * @param  bool|null $dry_run Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
-     * @param  string|null $mode incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to 'incremental')
-     * @param  string|null $source_id Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)
-     * @param  string|null $url Where to fetch the payload from. Mutually exclusive with file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createImportWithHttpInfo($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        $request = $this->createImportRequest($format, $idempotency_key, $dry_run, $file, $mode, $source_id, $url, $contentType);
+        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -356,21 +356,21 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format Which format the payload is in. (required)
+     * @param  string $format  (required)
+     * @param  string|null $mode  (optional, default to 'incremental')
+     * @param  string|null $source_id  (optional)
+     * @param  bool|null $dry_run  (optional)
+     * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
-     * @param  bool|null $dry_run Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
-     * @param  string|null $mode incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to 'incremental')
-     * @param  string|null $source_id Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)
-     * @param  string|null $url Where to fetch the payload from. Mutually exclusive with file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportAsync($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportAsync($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        return $this->createImportAsyncWithHttpInfo($format, $idempotency_key, $dry_run, $file, $mode, $source_id, $url, $contentType)
+        return $this->createImportAsyncWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -383,22 +383,22 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format Which format the payload is in. (required)
+     * @param  string $format  (required)
+     * @param  string|null $mode  (optional, default to 'incremental')
+     * @param  string|null $source_id  (optional)
+     * @param  bool|null $dry_run  (optional)
+     * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
-     * @param  bool|null $dry_run Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
-     * @param  string|null $mode incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to 'incremental')
-     * @param  string|null $source_id Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)
-     * @param  string|null $url Where to fetch the payload from. Mutually exclusive with file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportAsyncWithHttpInfo($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportAsyncWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportResponse';
-        $request = $this->createImportRequest($format, $idempotency_key, $dry_run, $file, $mode, $source_id, $url, $contentType);
+        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -439,19 +439,19 @@ class ImportsApi
     /**
      * Create request for operation 'createImport'
      *
-     * @param  string $format Which format the payload is in. (required)
+     * @param  string $format  (required)
+     * @param  string|null $mode  (optional, default to 'incremental')
+     * @param  string|null $source_id  (optional)
+     * @param  bool|null $dry_run  (optional)
+     * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
-     * @param  bool|null $dry_run Validate and report what would change without writing anything. Run this first on any migration. (optional, default to false)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
-     * @param  string|null $mode incremental updates what the payload contains. full_sync additionally withdraws anything absent, and is refused unless the source is configured for it. (optional, default to 'incremental')
-     * @param  string|null $source_id Apply a stored import source&#39;s mapping and settings rather than the defaults. (optional)
-     * @param  string|null $url Where to fetch the payload from. Mutually exclusive with file. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createImportRequest($format, $idempotency_key = null, $dry_run = false, $file = null, $mode = 'incremental', $source_id = null, $url = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportRequest($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
 
         // verify the required parameter 'format' is set
@@ -475,6 +475,51 @@ class ImportsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $format,
+            'format', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $mode,
+            'mode', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $source_id,
+            'source_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dry_run,
+            'dry_run', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $filename,
+            'filename', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
         // header params
         if ($idempotency_key !== null) {
@@ -486,12 +531,7 @@ class ImportsApi
         $formDataProcessor = new FormDataProcessor();
 
         $formData = $formDataProcessor->prepare([
-            'dry_run' => $dry_run,
             'file' => $file,
-            'format' => $format,
-            'mode' => $mode,
-            'source_id' => $source_id,
-            'url' => $url,
         ]);
 
         $formParams = $formDataProcessor->flatten($formData);
@@ -560,16 +600,16 @@ class ImportsApi
      *
      * Create an import source
      *
-     * @param  \Skautik\Sdk\Model\CreateImportSourceRequest $create_import_source_request create_import_source_request (required)
+     * @param  \Skautik\Sdk\Model\ImportSourceInput $import_source_input import_source_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImportSource'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createImportSource($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
+    public function createImportSource($import_source_input, string $contentType = self::contentTypes['createImportSource'][0])
     {
-        list($response) = $this->createImportSourceWithHttpInfo($create_import_source_request, $contentType);
+        list($response) = $this->createImportSourceWithHttpInfo($import_source_input, $contentType);
         return $response;
     }
 
@@ -578,16 +618,16 @@ class ImportsApi
      *
      * Create an import source
      *
-     * @param  \Skautik\Sdk\Model\CreateImportSourceRequest $create_import_source_request (required)
+     * @param  \Skautik\Sdk\Model\ImportSourceInput $import_source_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImportSource'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createImportSourceWithHttpInfo($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
+    public function createImportSourceWithHttpInfo($import_source_input, string $contentType = self::contentTypes['createImportSource'][0])
     {
-        $request = $this->createImportSourceRequest($create_import_source_request, $contentType);
+        $request = $this->createImportSourceRequest($import_source_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -733,15 +773,15 @@ class ImportsApi
      *
      * Create an import source
      *
-     * @param  \Skautik\Sdk\Model\CreateImportSourceRequest $create_import_source_request (required)
+     * @param  \Skautik\Sdk\Model\ImportSourceInput $import_source_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportSourceAsync($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
+    public function createImportSourceAsync($import_source_input, string $contentType = self::contentTypes['createImportSource'][0])
     {
-        return $this->createImportSourceAsyncWithHttpInfo($create_import_source_request, $contentType)
+        return $this->createImportSourceAsyncWithHttpInfo($import_source_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -754,16 +794,16 @@ class ImportsApi
      *
      * Create an import source
      *
-     * @param  \Skautik\Sdk\Model\CreateImportSourceRequest $create_import_source_request (required)
+     * @param  \Skautik\Sdk\Model\ImportSourceInput $import_source_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportSourceAsyncWithHttpInfo($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
+    public function createImportSourceAsyncWithHttpInfo($import_source_input, string $contentType = self::contentTypes['createImportSource'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportSourceResponse';
-        $request = $this->createImportSourceRequest($create_import_source_request, $contentType);
+        $request = $this->createImportSourceRequest($import_source_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -804,19 +844,19 @@ class ImportsApi
     /**
      * Create request for operation 'createImportSource'
      *
-     * @param  \Skautik\Sdk\Model\CreateImportSourceRequest $create_import_source_request (required)
+     * @param  \Skautik\Sdk\Model\ImportSourceInput $import_source_input (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createImportSourceRequest($create_import_source_request, string $contentType = self::contentTypes['createImportSource'][0])
+    public function createImportSourceRequest($import_source_input, string $contentType = self::contentTypes['createImportSource'][0])
     {
 
-        // verify the required parameter 'create_import_source_request' is set
-        if ($create_import_source_request === null || (is_array($create_import_source_request) && count($create_import_source_request) === 0)) {
+        // verify the required parameter 'import_source_input' is set
+        if ($import_source_input === null || (is_array($import_source_input) && count($import_source_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_import_source_request when calling createImportSource'
+                'Missing the required parameter $import_source_input when calling createImportSource'
             );
         }
 
@@ -839,12 +879,12 @@ class ImportsApi
         );
 
         // for model (json/xml)
-        if (isset($create_import_source_request)) {
+        if (isset($import_source_input)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_import_source_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($import_source_input));
             } else {
-                $httpBody = $create_import_source_request;
+                $httpBody = $import_source_input;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2170,16 +2210,15 @@ class ImportsApi
      * List import records
      *
      * @param  string $import_id Import identifier. (required)
-     * @param  string|null $outcome Narrow to one outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImportRecords'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportRecordList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listImportRecords($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
+    public function listImportRecords($import_id, string $contentType = self::contentTypes['listImportRecords'][0])
     {
-        list($response) = $this->listImportRecordsWithHttpInfo($import_id, $outcome, $contentType);
+        list($response) = $this->listImportRecordsWithHttpInfo($import_id, $contentType);
         return $response;
     }
 
@@ -2189,16 +2228,15 @@ class ImportsApi
      * List import records
      *
      * @param  string $import_id Import identifier. (required)
-     * @param  string|null $outcome Narrow to one outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImportRecords'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportRecordList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listImportRecordsWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
+    public function listImportRecordsWithHttpInfo($import_id, string $contentType = self::contentTypes['listImportRecords'][0])
     {
-        $request = $this->listImportRecordsRequest($import_id, $outcome, $contentType);
+        $request = $this->listImportRecordsRequest($import_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2345,15 +2383,14 @@ class ImportsApi
      * List import records
      *
      * @param  string $import_id Import identifier. (required)
-     * @param  string|null $outcome Narrow to one outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImportRecords'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listImportRecordsAsync($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
+    public function listImportRecordsAsync($import_id, string $contentType = self::contentTypes['listImportRecords'][0])
     {
-        return $this->listImportRecordsAsyncWithHttpInfo($import_id, $outcome, $contentType)
+        return $this->listImportRecordsAsyncWithHttpInfo($import_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2367,16 +2404,15 @@ class ImportsApi
      * List import records
      *
      * @param  string $import_id Import identifier. (required)
-     * @param  string|null $outcome Narrow to one outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImportRecords'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listImportRecordsAsyncWithHttpInfo($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
+    public function listImportRecordsAsyncWithHttpInfo($import_id, string $contentType = self::contentTypes['listImportRecords'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportRecordList';
-        $request = $this->listImportRecordsRequest($import_id, $outcome, $contentType);
+        $request = $this->listImportRecordsRequest($import_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2418,13 +2454,12 @@ class ImportsApi
      * Create request for operation 'listImportRecords'
      *
      * @param  string $import_id Import identifier. (required)
-     * @param  string|null $outcome Narrow to one outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImportRecords'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listImportRecordsRequest($import_id, $outcome = null, string $contentType = self::contentTypes['listImportRecords'][0])
+    public function listImportRecordsRequest($import_id, string $contentType = self::contentTypes['listImportRecords'][0])
     {
 
         // verify the required parameter 'import_id' is set
@@ -2435,7 +2470,6 @@ class ImportsApi
         }
 
 
-
         $resourcePath = '/imports/{import_id}/records';
         $formParams = [];
         $queryParams = [];
@@ -2443,15 +2477,6 @@ class ImportsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $outcome,
-            'outcome', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
 
 
         // path params
@@ -2848,17 +2873,15 @@ class ImportsApi
      *
      * List imports
      *
-     * @param  string|null $source_id Only imports produced by one source. (optional)
-     * @param  string|null $status Filter by outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImports'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listImports($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
+    public function listImports(string $contentType = self::contentTypes['listImports'][0])
     {
-        list($response) = $this->listImportsWithHttpInfo($source_id, $status, $contentType);
+        list($response) = $this->listImportsWithHttpInfo($contentType);
         return $response;
     }
 
@@ -2867,17 +2890,15 @@ class ImportsApi
      *
      * List imports
      *
-     * @param  string|null $source_id Only imports produced by one source. (optional)
-     * @param  string|null $status Filter by outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImports'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listImportsWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
+    public function listImportsWithHttpInfo(string $contentType = self::contentTypes['listImports'][0])
     {
-        $request = $this->listImportsRequest($source_id, $status, $contentType);
+        $request = $this->listImportsRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3023,16 +3044,14 @@ class ImportsApi
      *
      * List imports
      *
-     * @param  string|null $source_id Only imports produced by one source. (optional)
-     * @param  string|null $status Filter by outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listImportsAsync($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
+    public function listImportsAsync(string $contentType = self::contentTypes['listImports'][0])
     {
-        return $this->listImportsAsyncWithHttpInfo($source_id, $status, $contentType)
+        return $this->listImportsAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3045,17 +3064,15 @@ class ImportsApi
      *
      * List imports
      *
-     * @param  string|null $source_id Only imports produced by one source. (optional)
-     * @param  string|null $status Filter by outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listImportsAsyncWithHttpInfo($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
+    public function listImportsAsyncWithHttpInfo(string $contentType = self::contentTypes['listImports'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportList';
-        $request = $this->listImportsRequest($source_id, $status, $contentType);
+        $request = $this->listImportsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3096,17 +3113,13 @@ class ImportsApi
     /**
      * Create request for operation 'listImports'
      *
-     * @param  string|null $source_id Only imports produced by one source. (optional)
-     * @param  string|null $status Filter by outcome. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listImports'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listImportsRequest($source_id = null, $status = null, string $contentType = self::contentTypes['listImports'][0])
+    public function listImportsRequest(string $contentType = self::contentTypes['listImports'][0])
     {
-
-
 
 
         $resourcePath = '/imports';
@@ -3116,24 +3129,6 @@ class ImportsApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $source_id,
-            'source_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status,
-            'status', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
 
 
 
@@ -3201,15 +3196,16 @@ class ImportsApi
      * Update an import source
      *
      * @param  string $source_id Source identifier. (required)
+     * @param  \Skautik\Sdk\Model\SourceUpdate $source_update source_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateImportSource'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function updateImportSource($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
+    public function updateImportSource($source_id, $source_update, string $contentType = self::contentTypes['updateImportSource'][0])
     {
-        list($response) = $this->updateImportSourceWithHttpInfo($source_id, $contentType);
+        list($response) = $this->updateImportSourceWithHttpInfo($source_id, $source_update, $contentType);
         return $response;
     }
 
@@ -3219,15 +3215,16 @@ class ImportsApi
      * Update an import source
      *
      * @param  string $source_id Source identifier. (required)
+     * @param  \Skautik\Sdk\Model\SourceUpdate $source_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateImportSource'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportSourceResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateImportSourceWithHttpInfo($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
+    public function updateImportSourceWithHttpInfo($source_id, $source_update, string $contentType = self::contentTypes['updateImportSource'][0])
     {
-        $request = $this->updateImportSourceRequest($source_id, $contentType);
+        $request = $this->updateImportSourceRequest($source_id, $source_update, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3374,14 +3371,15 @@ class ImportsApi
      * Update an import source
      *
      * @param  string $source_id Source identifier. (required)
+     * @param  \Skautik\Sdk\Model\SourceUpdate $source_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateImportSourceAsync($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
+    public function updateImportSourceAsync($source_id, $source_update, string $contentType = self::contentTypes['updateImportSource'][0])
     {
-        return $this->updateImportSourceAsyncWithHttpInfo($source_id, $contentType)
+        return $this->updateImportSourceAsyncWithHttpInfo($source_id, $source_update, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3395,15 +3393,16 @@ class ImportsApi
      * Update an import source
      *
      * @param  string $source_id Source identifier. (required)
+     * @param  \Skautik\Sdk\Model\SourceUpdate $source_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateImportSourceAsyncWithHttpInfo($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
+    public function updateImportSourceAsyncWithHttpInfo($source_id, $source_update, string $contentType = self::contentTypes['updateImportSource'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportSourceResponse';
-        $request = $this->updateImportSourceRequest($source_id, $contentType);
+        $request = $this->updateImportSourceRequest($source_id, $source_update, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3445,18 +3444,26 @@ class ImportsApi
      * Create request for operation 'updateImportSource'
      *
      * @param  string $source_id Source identifier. (required)
+     * @param  \Skautik\Sdk\Model\SourceUpdate $source_update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateImportSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateImportSourceRequest($source_id, string $contentType = self::contentTypes['updateImportSource'][0])
+    public function updateImportSourceRequest($source_id, $source_update, string $contentType = self::contentTypes['updateImportSource'][0])
     {
 
         // verify the required parameter 'source_id' is set
         if ($source_id === null || (is_array($source_id) && count($source_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $source_id when calling updateImportSource'
+            );
+        }
+
+        // verify the required parameter 'source_update' is set
+        if ($source_update === null || (is_array($source_update) && count($source_update) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $source_update when calling updateImportSource'
             );
         }
 
@@ -3487,7 +3494,14 @@ class ImportsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($source_update)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($source_update));
+            } else {
+                $httpBody = $source_update;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
