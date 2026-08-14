@@ -1078,7 +1078,7 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related resources to inline. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1097,7 +1097,7 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related resources to inline. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1253,7 +1253,7 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related resources to inline. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1275,7 +1275,7 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related resources to inline. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1326,7 +1326,7 @@ class PropertiesApi
      * Create request for operation 'getProperty'
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related resources to inline. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1434,30 +1434,30 @@ class PropertiesApi
      *
      * List properties
      *
-     * @param  string|null $market Market identifier from the markets endpoint. (optional)
-     * @param  string[]|null $district District within the market. Repeatable for a union. (optional)
+     * @param  string|null $city City to restrict to, as it appears on a property&#39;s address. (optional)
+     * @param  string|null $district District within the city. (optional)
+     * @param  string|null $postal_code Postal code to restrict to. (optional)
+     * @param  string|null $type Kind of property. (optional)
      * @param  string|null $transaction_type Restrict to sales or rentals. (optional)
-     * @param  string[]|null $property_type Repeatable for a union. (optional)
-     * @param  int|null $price_min Inclusive lower bound, in minor units. (optional)
-     * @param  int|null $price_max Inclusive upper bound, in minor units. (optional)
-     * @param  int|null $bedrooms_min Inclusive lower bound on bedroom count. (optional)
-     * @param  float|null $area_min Inclusive lower bound on living area, in square metres. (optional)
-     * @param  string|null $status Defaults to active. Pass explicitly to include withdrawn records. (optional, default to 'active')
-     * @param  string|null $updated_since RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)
-     * @param  int|null $limit Records per page, 1 to 200. (optional, default to 50)
+     * @param  string|null $status Listing status. Omit for every status rather than only active ones. (optional)
+     * @param  string|null $external_id Your own identifier for a record, to find what an import created. (optional)
+     * @param  float|null $min_price Inclusive lower bound on the asking price. (optional)
+     * @param  float|null $max_price Inclusive upper bound on the asking price. (optional)
+     * @param  float|null $min_living_area Inclusive lower bound on living area, in square metres. (optional)
+     * @param  int|null $min_bedrooms Inclusive lower bound on bedroom count. (optional)
+     * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
-     * @param  string|null $sort Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to '-listed_at')
-     * @param  string[]|null $fields Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)
-     * @param  string[]|null $expand Comma-separated related resources to inline rather than fetch separately. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listProperties($market = null, $district = null, $transaction_type = null, $property_type = null, $price_min = null, $price_max = null, $bedrooms_min = null, $area_min = null, $status = 'active', $updated_since = null, $limit = 50, $cursor = null, $sort = '-listed_at', $fields = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listProperties($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        list($response) = $this->listPropertiesWithHttpInfo($market, $district, $transaction_type, $property_type, $price_min, $price_max, $bedrooms_min, $area_min, $status, $updated_since, $limit, $cursor, $sort, $fields, $expand, $contentType);
+        list($response) = $this->listPropertiesWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
         return $response;
     }
 
@@ -1466,30 +1466,30 @@ class PropertiesApi
      *
      * List properties
      *
-     * @param  string|null $market Market identifier from the markets endpoint. (optional)
-     * @param  string[]|null $district District within the market. Repeatable for a union. (optional)
+     * @param  string|null $city City to restrict to, as it appears on a property&#39;s address. (optional)
+     * @param  string|null $district District within the city. (optional)
+     * @param  string|null $postal_code Postal code to restrict to. (optional)
+     * @param  string|null $type Kind of property. (optional)
      * @param  string|null $transaction_type Restrict to sales or rentals. (optional)
-     * @param  string[]|null $property_type Repeatable for a union. (optional)
-     * @param  int|null $price_min Inclusive lower bound, in minor units. (optional)
-     * @param  int|null $price_max Inclusive upper bound, in minor units. (optional)
-     * @param  int|null $bedrooms_min Inclusive lower bound on bedroom count. (optional)
-     * @param  float|null $area_min Inclusive lower bound on living area, in square metres. (optional)
-     * @param  string|null $status Defaults to active. Pass explicitly to include withdrawn records. (optional, default to 'active')
-     * @param  string|null $updated_since RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)
-     * @param  int|null $limit Records per page, 1 to 200. (optional, default to 50)
+     * @param  string|null $status Listing status. Omit for every status rather than only active ones. (optional)
+     * @param  string|null $external_id Your own identifier for a record, to find what an import created. (optional)
+     * @param  float|null $min_price Inclusive lower bound on the asking price. (optional)
+     * @param  float|null $max_price Inclusive upper bound on the asking price. (optional)
+     * @param  float|null $min_living_area Inclusive lower bound on living area, in square metres. (optional)
+     * @param  int|null $min_bedrooms Inclusive lower bound on bedroom count. (optional)
+     * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
-     * @param  string|null $sort Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to '-listed_at')
-     * @param  string[]|null $fields Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)
-     * @param  string[]|null $expand Comma-separated related resources to inline rather than fetch separately. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPropertiesWithHttpInfo($market = null, $district = null, $transaction_type = null, $property_type = null, $price_min = null, $price_max = null, $bedrooms_min = null, $area_min = null, $status = 'active', $updated_since = null, $limit = 50, $cursor = null, $sort = '-listed_at', $fields = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        $request = $this->listPropertiesRequest($market, $district, $transaction_type, $property_type, $price_min, $price_max, $bedrooms_min, $area_min, $status, $updated_since, $limit, $cursor, $sort, $fields, $expand, $contentType);
+        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1635,29 +1635,29 @@ class PropertiesApi
      *
      * List properties
      *
-     * @param  string|null $market Market identifier from the markets endpoint. (optional)
-     * @param  string[]|null $district District within the market. Repeatable for a union. (optional)
+     * @param  string|null $city City to restrict to, as it appears on a property&#39;s address. (optional)
+     * @param  string|null $district District within the city. (optional)
+     * @param  string|null $postal_code Postal code to restrict to. (optional)
+     * @param  string|null $type Kind of property. (optional)
      * @param  string|null $transaction_type Restrict to sales or rentals. (optional)
-     * @param  string[]|null $property_type Repeatable for a union. (optional)
-     * @param  int|null $price_min Inclusive lower bound, in minor units. (optional)
-     * @param  int|null $price_max Inclusive upper bound, in minor units. (optional)
-     * @param  int|null $bedrooms_min Inclusive lower bound on bedroom count. (optional)
-     * @param  float|null $area_min Inclusive lower bound on living area, in square metres. (optional)
-     * @param  string|null $status Defaults to active. Pass explicitly to include withdrawn records. (optional, default to 'active')
-     * @param  string|null $updated_since RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)
-     * @param  int|null $limit Records per page, 1 to 200. (optional, default to 50)
+     * @param  string|null $status Listing status. Omit for every status rather than only active ones. (optional)
+     * @param  string|null $external_id Your own identifier for a record, to find what an import created. (optional)
+     * @param  float|null $min_price Inclusive lower bound on the asking price. (optional)
+     * @param  float|null $max_price Inclusive upper bound on the asking price. (optional)
+     * @param  float|null $min_living_area Inclusive lower bound on living area, in square metres. (optional)
+     * @param  int|null $min_bedrooms Inclusive lower bound on bedroom count. (optional)
+     * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
-     * @param  string|null $sort Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to '-listed_at')
-     * @param  string[]|null $fields Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)
-     * @param  string[]|null $expand Comma-separated related resources to inline rather than fetch separately. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPropertiesAsync($market = null, $district = null, $transaction_type = null, $property_type = null, $price_min = null, $price_max = null, $bedrooms_min = null, $area_min = null, $status = 'active', $updated_since = null, $limit = 50, $cursor = null, $sort = '-listed_at', $fields = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesAsync($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        return $this->listPropertiesAsyncWithHttpInfo($market, $district, $transaction_type, $property_type, $price_min, $price_max, $bedrooms_min, $area_min, $status, $updated_since, $limit, $cursor, $sort, $fields, $expand, $contentType)
+        return $this->listPropertiesAsyncWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1670,30 +1670,30 @@ class PropertiesApi
      *
      * List properties
      *
-     * @param  string|null $market Market identifier from the markets endpoint. (optional)
-     * @param  string[]|null $district District within the market. Repeatable for a union. (optional)
+     * @param  string|null $city City to restrict to, as it appears on a property&#39;s address. (optional)
+     * @param  string|null $district District within the city. (optional)
+     * @param  string|null $postal_code Postal code to restrict to. (optional)
+     * @param  string|null $type Kind of property. (optional)
      * @param  string|null $transaction_type Restrict to sales or rentals. (optional)
-     * @param  string[]|null $property_type Repeatable for a union. (optional)
-     * @param  int|null $price_min Inclusive lower bound, in minor units. (optional)
-     * @param  int|null $price_max Inclusive upper bound, in minor units. (optional)
-     * @param  int|null $bedrooms_min Inclusive lower bound on bedroom count. (optional)
-     * @param  float|null $area_min Inclusive lower bound on living area, in square metres. (optional)
-     * @param  string|null $status Defaults to active. Pass explicitly to include withdrawn records. (optional, default to 'active')
-     * @param  string|null $updated_since RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)
-     * @param  int|null $limit Records per page, 1 to 200. (optional, default to 50)
+     * @param  string|null $status Listing status. Omit for every status rather than only active ones. (optional)
+     * @param  string|null $external_id Your own identifier for a record, to find what an import created. (optional)
+     * @param  float|null $min_price Inclusive lower bound on the asking price. (optional)
+     * @param  float|null $max_price Inclusive upper bound on the asking price. (optional)
+     * @param  float|null $min_living_area Inclusive lower bound on living area, in square metres. (optional)
+     * @param  int|null $min_bedrooms Inclusive lower bound on bedroom count. (optional)
+     * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
-     * @param  string|null $sort Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to '-listed_at')
-     * @param  string[]|null $fields Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)
-     * @param  string[]|null $expand Comma-separated related resources to inline rather than fetch separately. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPropertiesAsyncWithHttpInfo($market = null, $district = null, $transaction_type = null, $property_type = null, $price_min = null, $price_max = null, $bedrooms_min = null, $area_min = null, $status = 'active', $updated_since = null, $limit = 50, $cursor = null, $sort = '-listed_at', $fields = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesAsyncWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyPage';
-        $request = $this->listPropertiesRequest($market, $district, $transaction_type, $property_type, $price_min, $price_max, $bedrooms_min, $area_min, $status, $updated_since, $limit, $cursor, $sort, $fields, $expand, $contentType);
+        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1734,27 +1734,27 @@ class PropertiesApi
     /**
      * Create request for operation 'listProperties'
      *
-     * @param  string|null $market Market identifier from the markets endpoint. (optional)
-     * @param  string[]|null $district District within the market. Repeatable for a union. (optional)
+     * @param  string|null $city City to restrict to, as it appears on a property&#39;s address. (optional)
+     * @param  string|null $district District within the city. (optional)
+     * @param  string|null $postal_code Postal code to restrict to. (optional)
+     * @param  string|null $type Kind of property. (optional)
      * @param  string|null $transaction_type Restrict to sales or rentals. (optional)
-     * @param  string[]|null $property_type Repeatable for a union. (optional)
-     * @param  int|null $price_min Inclusive lower bound, in minor units. (optional)
-     * @param  int|null $price_max Inclusive upper bound, in minor units. (optional)
-     * @param  int|null $bedrooms_min Inclusive lower bound on bedroom count. (optional)
-     * @param  float|null $area_min Inclusive lower bound on living area, in square metres. (optional)
-     * @param  string|null $status Defaults to active. Pass explicitly to include withdrawn records. (optional, default to 'active')
-     * @param  string|null $updated_since RFC 3339 timestamp. The efficient way to keep a mirror in step without re-reading everything. (optional)
-     * @param  int|null $limit Records per page, 1 to 200. (optional, default to 50)
+     * @param  string|null $status Listing status. Omit for every status rather than only active ones. (optional)
+     * @param  string|null $external_id Your own identifier for a record, to find what an import created. (optional)
+     * @param  float|null $min_price Inclusive lower bound on the asking price. (optional)
+     * @param  float|null $max_price Inclusive upper bound on the asking price. (optional)
+     * @param  float|null $min_living_area Inclusive lower bound on living area, in square metres. (optional)
+     * @param  int|null $min_bedrooms Inclusive lower bound on bedroom count. (optional)
+     * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
-     * @param  string|null $sort Field to order by. Prefix with a minus for descending. Ties break on id, so paging is deterministic. (optional, default to '-listed_at')
-     * @param  string[]|null $fields Comma-separated list of fields to return. Trims payloads substantially when you only need a few. (optional)
-     * @param  string[]|null $expand Comma-separated related resources to inline rather than fetch separately. (optional)
+     * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPropertiesRequest($market = null, $district = null, $transaction_type = null, $property_type = null, $price_min = null, $price_max = null, $bedrooms_min = null, $area_min = null, $status = 'active', $updated_since = null, $limit = 50, $cursor = null, $sort = '-listed_at', $fields = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesRequest($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
     {
 
 
@@ -1782,8 +1782,8 @@ class PropertiesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $market,
-            'market', // param base name
+            $city,
+            'city', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -1793,7 +1793,25 @@ class PropertiesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $district,
             'district', // param base name
-            'array', // openApiType
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $postal_code,
+            'postal_code', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $type,
+            'type', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1809,51 +1827,6 @@ class PropertiesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $property_type,
-            'property_type', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $price_min,
-            'price_min', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $price_max,
-            'price_max', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $bedrooms_min,
-            'bedrooms_min', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $area_min,
-            'area_min', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $status,
             'status', // param base name
             'string', // openApiType
@@ -1863,9 +1836,45 @@ class PropertiesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $updated_since,
-            'updated_since', // param base name
+            $external_id,
+            'external_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_price,
+            'min_price', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $max_price,
+            'max_price', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_living_area,
+            'min_living_area', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_bedrooms,
+            'min_bedrooms', // param base name
+            'integer', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1895,15 +1904,6 @@ class PropertiesApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $fields,
-            'fields', // param base name
-            'array', // openApiType
-            'form', // style
-            false, // explode
             false // required
         ) ?? []);
         // query params
