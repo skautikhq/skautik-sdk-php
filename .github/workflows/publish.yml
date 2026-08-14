@@ -1,0 +1,35 @@
+name: Publish
+
+# Generated. Edit this in skautikhq/skautik-sdk, not here.
+on:
+    push:
+        tags: ["v*"]
+    workflow_dispatch:
+        inputs:
+            dry_run:
+                description: Build everything, publish nothing
+                type: boolean
+                default: true
+
+env:
+    DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        environment: release
+        steps:
+            - uses: actions/checkout@v4
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.3"
+                  tools: composer
+                  coverage: none
+
+            - run: composer validate --strict
+            - run: composer install --no-dev --no-interaction
+
+            - name: Nothing to push
+              run: |
+                  echo "Packagist reads this repository and takes the version"
+                  echo "from the tag, so there is nothing for this job to send."
