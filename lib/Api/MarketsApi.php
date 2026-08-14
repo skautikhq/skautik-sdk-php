@@ -142,8 +142,8 @@ class MarketsApi
      *
      * Retrieve a district
      *
-     * @param  string $market_id Market identifier. (required)
-     * @param  string $district_id District identifier. (required)
+     * @param  string $city Market identifier. (required)
+     * @param  string $district District identifier. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDistrict'] to see the possible values for this operation
@@ -152,9 +152,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function getDistrict($market_id, $district_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
+    public function getDistrict($city, $district, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
     {
-        $this->getDistrictWithHttpInfo($market_id, $district_id, $period, $property_type, $contentType);
+        $this->getDistrictWithHttpInfo($city, $district, $period, $property_type, $contentType);
     }
 
     /**
@@ -162,8 +162,8 @@ class MarketsApi
      *
      * Retrieve a district
      *
-     * @param  string $market_id Market identifier. (required)
-     * @param  string $district_id District identifier. (required)
+     * @param  string $city Market identifier. (required)
+     * @param  string $district District identifier. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDistrict'] to see the possible values for this operation
@@ -172,9 +172,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getDistrictWithHttpInfo($market_id, $district_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
+    public function getDistrictWithHttpInfo($city, $district, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
     {
-        $request = $this->getDistrictRequest($market_id, $district_id, $period, $property_type, $contentType);
+        $request = $this->getDistrictRequest($city, $district, $period, $property_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -254,8 +254,8 @@ class MarketsApi
      *
      * Retrieve a district
      *
-     * @param  string $market_id Market identifier. (required)
-     * @param  string $district_id District identifier. (required)
+     * @param  string $city Market identifier. (required)
+     * @param  string $district District identifier. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDistrict'] to see the possible values for this operation
@@ -263,9 +263,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDistrictAsync($market_id, $district_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
+    public function getDistrictAsync($city, $district, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
     {
-        return $this->getDistrictAsyncWithHttpInfo($market_id, $district_id, $period, $property_type, $contentType)
+        return $this->getDistrictAsyncWithHttpInfo($city, $district, $period, $property_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -278,8 +278,8 @@ class MarketsApi
      *
      * Retrieve a district
      *
-     * @param  string $market_id Market identifier. (required)
-     * @param  string $district_id District identifier. (required)
+     * @param  string $city Market identifier. (required)
+     * @param  string $district District identifier. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDistrict'] to see the possible values for this operation
@@ -287,10 +287,10 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDistrictAsyncWithHttpInfo($market_id, $district_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
+    public function getDistrictAsyncWithHttpInfo($city, $district, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
     {
         $returnType = '';
-        $request = $this->getDistrictRequest($market_id, $district_id, $period, $property_type, $contentType);
+        $request = $this->getDistrictRequest($city, $district, $period, $property_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -318,8 +318,8 @@ class MarketsApi
     /**
      * Create request for operation 'getDistrict'
      *
-     * @param  string $market_id Market identifier. (required)
-     * @param  string $district_id District identifier. (required)
+     * @param  string $city Market identifier. (required)
+     * @param  string $district District identifier. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getDistrict'] to see the possible values for this operation
@@ -327,20 +327,20 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDistrictRequest($market_id, $district_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
+    public function getDistrictRequest($city, $district, $period = null, $property_type = null, string $contentType = self::contentTypes['getDistrict'][0])
     {
 
-        // verify the required parameter 'market_id' is set
-        if ($market_id === null || (is_array($market_id) && count($market_id) === 0)) {
+        // verify the required parameter 'city' is set
+        if ($city === null || (is_array($city) && count($city) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $market_id when calling getDistrict'
+                'Missing the required parameter $city when calling getDistrict'
             );
         }
 
-        // verify the required parameter 'district_id' is set
-        if ($district_id === null || (is_array($district_id) && count($district_id) === 0)) {
+        // verify the required parameter 'district' is set
+        if ($district === null || (is_array($district) && count($district) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $district_id when calling getDistrict'
+                'Missing the required parameter $district when calling getDistrict'
             );
         }
 
@@ -375,18 +375,18 @@ class MarketsApi
 
 
         // path params
-        if ($market_id !== null) {
+        if ($city !== null) {
             $resourcePath = str_replace(
-                '{market_id}',
-                ObjectSerializer::toPathValue($market_id),
+                '{city}',
+                ObjectSerializer::toPathValue($city),
                 $resourcePath
             );
         }
         // path params
-        if ($district_id !== null) {
+        if ($district !== null) {
             $resourcePath = str_replace(
-                '{district_id}',
-                ObjectSerializer::toPathValue($district_id),
+                '{district}',
+                ObjectSerializer::toPathValue($district),
                 $resourcePath
             );
         }
@@ -454,7 +454,7 @@ class MarketsApi
      *
      * Retrieve a market
      *
-     * @param  string $market_id Market identifier, such as berlin-de. (required)
+     * @param  string $city Market identifier, such as berlin-de. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMarket'] to see the possible values for this operation
@@ -463,9 +463,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\MarketResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function getMarket($market_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
+    public function getMarket($city, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
     {
-        list($response) = $this->getMarketWithHttpInfo($market_id, $period, $property_type, $contentType);
+        list($response) = $this->getMarketWithHttpInfo($city, $period, $property_type, $contentType);
         return $response;
     }
 
@@ -474,7 +474,7 @@ class MarketsApi
      *
      * Retrieve a market
      *
-     * @param  string $market_id Market identifier, such as berlin-de. (required)
+     * @param  string $city Market identifier, such as berlin-de. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMarket'] to see the possible values for this operation
@@ -483,9 +483,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\MarketResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMarketWithHttpInfo($market_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
+    public function getMarketWithHttpInfo($city, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
     {
-        $request = $this->getMarketRequest($market_id, $period, $property_type, $contentType);
+        $request = $this->getMarketRequest($city, $period, $property_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -631,7 +631,7 @@ class MarketsApi
      *
      * Retrieve a market
      *
-     * @param  string $market_id Market identifier, such as berlin-de. (required)
+     * @param  string $city Market identifier, such as berlin-de. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMarket'] to see the possible values for this operation
@@ -639,9 +639,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMarketAsync($market_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
+    public function getMarketAsync($city, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
     {
-        return $this->getMarketAsyncWithHttpInfo($market_id, $period, $property_type, $contentType)
+        return $this->getMarketAsyncWithHttpInfo($city, $period, $property_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -654,7 +654,7 @@ class MarketsApi
      *
      * Retrieve a market
      *
-     * @param  string $market_id Market identifier, such as berlin-de. (required)
+     * @param  string $city Market identifier, such as berlin-de. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMarket'] to see the possible values for this operation
@@ -662,10 +662,10 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMarketAsyncWithHttpInfo($market_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
+    public function getMarketAsyncWithHttpInfo($city, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
     {
         $returnType = '\Skautik\Sdk\Model\MarketResponse';
-        $request = $this->getMarketRequest($market_id, $period, $property_type, $contentType);
+        $request = $this->getMarketRequest($city, $period, $property_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -706,7 +706,7 @@ class MarketsApi
     /**
      * Create request for operation 'getMarket'
      *
-     * @param  string $market_id Market identifier, such as berlin-de. (required)
+     * @param  string $city Market identifier, such as berlin-de. (required)
      * @param  string|null $period Month to report, as YYYY-MM. Defaults to the most recent computed. (optional)
      * @param  string|null $property_type Restrict the figures to one kind of property. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMarket'] to see the possible values for this operation
@@ -714,13 +714,13 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMarketRequest($market_id, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
+    public function getMarketRequest($city, $period = null, $property_type = null, string $contentType = self::contentTypes['getMarket'][0])
     {
 
-        // verify the required parameter 'market_id' is set
-        if ($market_id === null || (is_array($market_id) && count($market_id) === 0)) {
+        // verify the required parameter 'city' is set
+        if ($city === null || (is_array($city) && count($city) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $market_id when calling getMarket'
+                'Missing the required parameter $city when calling getMarket'
             );
         }
 
@@ -755,10 +755,10 @@ class MarketsApi
 
 
         // path params
-        if ($market_id !== null) {
+        if ($city !== null) {
             $resourcePath = str_replace(
-                '{market_id}',
-                ObjectSerializer::toPathValue($market_id),
+                '{city}',
+                ObjectSerializer::toPathValue($city),
                 $resourcePath
             );
         }
@@ -826,16 +826,16 @@ class MarketsApi
      *
      * List districts
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDistricts'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\DistrictList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listDistricts($market_id, string $contentType = self::contentTypes['listDistricts'][0])
+    public function listDistricts($city, string $contentType = self::contentTypes['listDistricts'][0])
     {
-        list($response) = $this->listDistrictsWithHttpInfo($market_id, $contentType);
+        list($response) = $this->listDistrictsWithHttpInfo($city, $contentType);
         return $response;
     }
 
@@ -844,16 +844,16 @@ class MarketsApi
      *
      * List districts
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDistricts'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\DistrictList|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDistrictsWithHttpInfo($market_id, string $contentType = self::contentTypes['listDistricts'][0])
+    public function listDistrictsWithHttpInfo($city, string $contentType = self::contentTypes['listDistricts'][0])
     {
-        $request = $this->listDistrictsRequest($market_id, $contentType);
+        $request = $this->listDistrictsRequest($city, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -999,15 +999,15 @@ class MarketsApi
      *
      * List districts
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDistricts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDistrictsAsync($market_id, string $contentType = self::contentTypes['listDistricts'][0])
+    public function listDistrictsAsync($city, string $contentType = self::contentTypes['listDistricts'][0])
     {
-        return $this->listDistrictsAsyncWithHttpInfo($market_id, $contentType)
+        return $this->listDistrictsAsyncWithHttpInfo($city, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1020,16 +1020,16 @@ class MarketsApi
      *
      * List districts
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDistricts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDistrictsAsyncWithHttpInfo($market_id, string $contentType = self::contentTypes['listDistricts'][0])
+    public function listDistrictsAsyncWithHttpInfo($city, string $contentType = self::contentTypes['listDistricts'][0])
     {
         $returnType = '\Skautik\Sdk\Model\DistrictList';
-        $request = $this->listDistrictsRequest($market_id, $contentType);
+        $request = $this->listDistrictsRequest($city, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1070,19 +1070,19 @@ class MarketsApi
     /**
      * Create request for operation 'listDistricts'
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listDistricts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDistrictsRequest($market_id, string $contentType = self::contentTypes['listDistricts'][0])
+    public function listDistrictsRequest($city, string $contentType = self::contentTypes['listDistricts'][0])
     {
 
-        // verify the required parameter 'market_id' is set
-        if ($market_id === null || (is_array($market_id) && count($market_id) === 0)) {
+        // verify the required parameter 'city' is set
+        if ($city === null || (is_array($city) && count($city) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $market_id when calling listDistricts'
+                'Missing the required parameter $city when calling listDistricts'
             );
         }
 
@@ -1097,10 +1097,10 @@ class MarketsApi
 
 
         // path params
-        if ($market_id !== null) {
+        if ($city !== null) {
             $resourcePath = str_replace(
-                '{market_id}',
-                ObjectSerializer::toPathValue($market_id),
+                '{city}',
+                ObjectSerializer::toPathValue($city),
                 $resourcePath
             );
         }
@@ -1490,7 +1490,7 @@ class MarketsApi
      *
      * Market statistics
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string|null $property_type Narrow to one property type. (optional)
      * @param  string|null $transaction_type sale or rent. (optional)
      * @param  string|null $interval Granularity of the returned series. (optional)
@@ -1501,9 +1501,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\SeriesResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function marketStatistics($market_id, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
+    public function marketStatistics($city, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
     {
-        list($response) = $this->marketStatisticsWithHttpInfo($market_id, $property_type, $transaction_type, $interval, $since, $contentType);
+        list($response) = $this->marketStatisticsWithHttpInfo($city, $property_type, $transaction_type, $interval, $since, $contentType);
         return $response;
     }
 
@@ -1512,7 +1512,7 @@ class MarketsApi
      *
      * Market statistics
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string|null $property_type Narrow to one property type. (optional)
      * @param  string|null $transaction_type sale or rent. (optional)
      * @param  string|null $interval Granularity of the returned series. (optional)
@@ -1523,9 +1523,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\SeriesResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function marketStatisticsWithHttpInfo($market_id, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
+    public function marketStatisticsWithHttpInfo($city, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
     {
-        $request = $this->marketStatisticsRequest($market_id, $property_type, $transaction_type, $interval, $since, $contentType);
+        $request = $this->marketStatisticsRequest($city, $property_type, $transaction_type, $interval, $since, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1671,7 +1671,7 @@ class MarketsApi
      *
      * Market statistics
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string|null $property_type Narrow to one property type. (optional)
      * @param  string|null $transaction_type sale or rent. (optional)
      * @param  string|null $interval Granularity of the returned series. (optional)
@@ -1681,9 +1681,9 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function marketStatisticsAsync($market_id, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
+    public function marketStatisticsAsync($city, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
     {
-        return $this->marketStatisticsAsyncWithHttpInfo($market_id, $property_type, $transaction_type, $interval, $since, $contentType)
+        return $this->marketStatisticsAsyncWithHttpInfo($city, $property_type, $transaction_type, $interval, $since, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1696,7 +1696,7 @@ class MarketsApi
      *
      * Market statistics
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string|null $property_type Narrow to one property type. (optional)
      * @param  string|null $transaction_type sale or rent. (optional)
      * @param  string|null $interval Granularity of the returned series. (optional)
@@ -1706,10 +1706,10 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function marketStatisticsAsyncWithHttpInfo($market_id, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
+    public function marketStatisticsAsyncWithHttpInfo($city, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
     {
         $returnType = '\Skautik\Sdk\Model\SeriesResponse';
-        $request = $this->marketStatisticsRequest($market_id, $property_type, $transaction_type, $interval, $since, $contentType);
+        $request = $this->marketStatisticsRequest($city, $property_type, $transaction_type, $interval, $since, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1750,7 +1750,7 @@ class MarketsApi
     /**
      * Create request for operation 'marketStatistics'
      *
-     * @param  string $market_id Market identifier. (required)
+     * @param  string $city Market identifier. (required)
      * @param  string|null $property_type Narrow to one property type. (optional)
      * @param  string|null $transaction_type sale or rent. (optional)
      * @param  string|null $interval Granularity of the returned series. (optional)
@@ -1760,13 +1760,13 @@ class MarketsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function marketStatisticsRequest($market_id, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
+    public function marketStatisticsRequest($city, $property_type = null, $transaction_type = null, $interval = null, $since = null, string $contentType = self::contentTypes['marketStatistics'][0])
     {
 
-        // verify the required parameter 'market_id' is set
-        if ($market_id === null || (is_array($market_id) && count($market_id) === 0)) {
+        // verify the required parameter 'city' is set
+        if ($city === null || (is_array($city) && count($city) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $market_id when calling marketStatistics'
+                'Missing the required parameter $city when calling marketStatistics'
             );
         }
 
@@ -1821,10 +1821,10 @@ class MarketsApi
 
 
         // path params
-        if ($market_id !== null) {
+        if ($city !== null) {
             $resourcePath = str_replace(
-                '{market_id}',
-                ObjectSerializer::toPathValue($market_id),
+                '{city}',
+                ObjectSerializer::toPathValue($city),
                 $resourcePath
             );
         }

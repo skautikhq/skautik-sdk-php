@@ -157,10 +157,10 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format  (required)
-     * @param  string|null $mode  (optional, default to 'incremental')
-     * @param  string|null $source_id  (optional)
-     * @param  bool|null $dry_run  (optional)
+     * @param  string $format Format of the file being sent. (required)
+     * @param  string|null $mode Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to 'incremental')
+     * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
+     * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
@@ -181,10 +181,10 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format  (required)
-     * @param  string|null $mode  (optional, default to 'incremental')
-     * @param  string|null $source_id  (optional)
-     * @param  bool|null $dry_run  (optional)
+     * @param  string $format Format of the file being sent. (required)
+     * @param  string|null $mode Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to 'incremental')
+     * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
+     * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
@@ -356,10 +356,10 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format  (required)
-     * @param  string|null $mode  (optional, default to 'incremental')
-     * @param  string|null $source_id  (optional)
-     * @param  bool|null $dry_run  (optional)
+     * @param  string $format Format of the file being sent. (required)
+     * @param  string|null $mode Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to 'incremental')
+     * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
+     * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
@@ -383,10 +383,10 @@ class ImportsApi
      *
      * Start an import
      *
-     * @param  string $format  (required)
-     * @param  string|null $mode  (optional, default to 'incremental')
-     * @param  string|null $source_id  (optional)
-     * @param  bool|null $dry_run  (optional)
+     * @param  string $format Format of the file being sent. (required)
+     * @param  string|null $mode Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to 'incremental')
+     * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
+     * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
@@ -439,10 +439,10 @@ class ImportsApi
     /**
      * Create request for operation 'createImport'
      *
-     * @param  string $format  (required)
-     * @param  string|null $mode  (optional, default to 'incremental')
-     * @param  string|null $source_id  (optional)
-     * @param  bool|null $dry_run  (optional)
+     * @param  string $format Format of the file being sent. (required)
+     * @param  string|null $mode Incremental updates what the file contains and leaves the rest alone. A full sync also withdraws anything absent from it, which is why it is not the default. (optional, default to 'incremental')
+     * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
+     * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
