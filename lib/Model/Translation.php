@@ -1,6 +1,6 @@
 <?php
 /**
- * ExportInput
+ * Translation
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * ExportInput Class Doc Comment
+ * Translation Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class Translation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ExportInput';
+    protected static $openAPIModelName = 'Translation';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'fields' => 'string[]',
-        'filters' => 'array<string,string>',
-        'format' => 'string'
+        'field' => 'string',
+        'language' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'fields' => null,
-        'filters' => null,
-        'format' => null
+        'field' => null,
+        'language' => null,
+        'value' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'fields' => false,
-        'filters' => false,
-        'format' => false
+        'field' => false,
+        'language' => false,
+        'value' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'fields' => 'fields',
-        'filters' => 'filters',
-        'format' => 'format'
+        'field' => 'field',
+        'language' => 'language',
+        'value' => 'value'
     ];
 
     /**
@@ -183,9 +183,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'fields' => 'setFields',
-        'filters' => 'setFilters',
-        'format' => 'setFormat'
+        'field' => 'setField',
+        'language' => 'setLanguage',
+        'value' => 'setValue'
     ];
 
     /**
@@ -194,9 +194,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'fields' => 'getFields',
-        'filters' => 'getFilters',
-        'format' => 'getFormat'
+        'field' => 'getField',
+        'language' => 'getLanguage',
+        'value' => 'getValue'
     ];
 
     /**
@@ -256,9 +256,9 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('field', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -288,8 +288,14 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
+        if ($this->container['field'] === null) {
+            $invalidProperties[] = "'field' can't be null";
+        }
+        if ($this->container['language'] === null) {
+            $invalidProperties[] = "'language' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,82 +313,82 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets fields
-     *
-     * @return string[]|null
-     */
-    public function getFields()
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[]|null $fields fields
-     *
-     * @return self
-     */
-    public function setFields($fields)
-    {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
-        }
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets filters
-     *
-     * @return array<string,string>|null
-     */
-    public function getFilters()
-    {
-        return $this->container['filters'];
-    }
-
-    /**
-     * Sets filters
-     *
-     * @param array<string,string>|null $filters filters
-     *
-     * @return self
-     */
-    public function setFilters($filters)
-    {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
-        }
-        $this->container['filters'] = $filters;
-
-        return $this;
-    }
-
-    /**
-     * Gets format
+     * Gets field
      *
      * @return string
      */
-    public function getFormat()
+    public function getField()
     {
-        return $this->container['format'];
+        return $this->container['field'];
     }
 
     /**
-     * Sets format
+     * Sets field
      *
-     * @param string $format format
+     * @param string $field field
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setField($field)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($field)) {
+            throw new \InvalidArgumentException('non-nullable field cannot be null');
         }
-        $this->container['format'] = $format;
+        $this->container['field'] = $field;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string $language language
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string $value value
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        }
+        $this->container['value'] = $value;
 
         return $this;
     }

@@ -1078,16 +1078,17 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function getProperty($property_id, $expand = null, string $contentType = self::contentTypes['getProperty'][0])
+    public function getProperty($property_id, $expand = null, $language = null, string $contentType = self::contentTypes['getProperty'][0])
     {
-        list($response) = $this->getPropertyWithHttpInfo($property_id, $expand, $contentType);
+        list($response) = $this->getPropertyWithHttpInfo($property_id, $expand, $language, $contentType);
         return $response;
     }
 
@@ -1097,16 +1098,17 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPropertyWithHttpInfo($property_id, $expand = null, string $contentType = self::contentTypes['getProperty'][0])
+    public function getPropertyWithHttpInfo($property_id, $expand = null, $language = null, string $contentType = self::contentTypes['getProperty'][0])
     {
-        $request = $this->getPropertyRequest($property_id, $expand, $contentType);
+        $request = $this->getPropertyRequest($property_id, $expand, $language, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1253,15 +1255,16 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPropertyAsync($property_id, $expand = null, string $contentType = self::contentTypes['getProperty'][0])
+    public function getPropertyAsync($property_id, $expand = null, $language = null, string $contentType = self::contentTypes['getProperty'][0])
     {
-        return $this->getPropertyAsyncWithHttpInfo($property_id, $expand, $contentType)
+        return $this->getPropertyAsyncWithHttpInfo($property_id, $expand, $language, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1275,16 +1278,17 @@ class PropertiesApi
      * Retrieve a property
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPropertyAsyncWithHttpInfo($property_id, $expand = null, string $contentType = self::contentTypes['getProperty'][0])
+    public function getPropertyAsyncWithHttpInfo($property_id, $expand = null, $language = null, string $contentType = self::contentTypes['getProperty'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyResponse';
-        $request = $this->getPropertyRequest($property_id, $expand, $contentType);
+        $request = $this->getPropertyRequest($property_id, $expand, $language, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1326,13 +1330,14 @@ class PropertiesApi
      * Create request for operation 'getProperty'
      *
      * @param  string $property_id Identifier returned by any collection endpoint. (required)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProperty'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPropertyRequest($property_id, $expand = null, string $contentType = self::contentTypes['getProperty'][0])
+    public function getPropertyRequest($property_id, $expand = null, $language = null, string $contentType = self::contentTypes['getProperty'][0])
     {
 
         // verify the required parameter 'property_id' is set
@@ -1341,6 +1346,7 @@ class PropertiesApi
                 'Missing the required parameter $property_id when calling getProperty'
             );
         }
+
 
 
 
@@ -1358,6 +1364,15 @@ class PropertiesApi
             'array', // openApiType
             'form', // style
             false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $language,
+            'language', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
             false // required
         ) ?? []);
 
@@ -1448,16 +1463,17 @@ class PropertiesApi
      * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
      * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function listProperties($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listProperties($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, $language = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        list($response) = $this->listPropertiesWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
+        list($response) = $this->listPropertiesWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $language, $contentType);
         return $response;
     }
 
@@ -1480,16 +1496,17 @@ class PropertiesApi
      * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
      * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \Skautik\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\PropertyPage|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPropertiesWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, $language = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
+        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $language, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1649,15 +1666,16 @@ class PropertiesApi
      * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
      * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPropertiesAsync($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesAsync($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, $language = null, string $contentType = self::contentTypes['listProperties'][0])
     {
-        return $this->listPropertiesAsyncWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType)
+        return $this->listPropertiesAsyncWithHttpInfo($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $language, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1684,16 +1702,17 @@ class PropertiesApi
      * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
      * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPropertiesAsyncWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesAsyncWithHttpInfo($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, $language = null, string $contentType = self::contentTypes['listProperties'][0])
     {
         $returnType = '\Skautik\Sdk\Model\PropertyPage';
-        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $contentType);
+        $request = $this->listPropertiesRequest($city, $district, $postal_code, $type, $transaction_type, $status, $external_id, $min_price, $max_price, $min_living_area, $min_bedrooms, $limit, $cursor, $sort, $expand, $language, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1748,14 +1767,16 @@ class PropertiesApi
      * @param  int|null $limit Records per page. (optional, default to 50)
      * @param  string|null $cursor Opaque pointer from the previous response. Omit for the first page. Cursors are stable across inserts, so paging never skips or repeats a record the way an offset does. (optional)
      * @param  string|null $sort Field to order by. Prefix with a minus for descending. (optional)
-     * @param  string[]|null $expand Related records to inline rather than fetch separately. (optional)
+     * @param  string[]|null $expand Related records to inline rather than fetch separately. Available: images, price_history, market, translations. (optional)
+     * @param  string|null $language Answer in this language where the property has it, as an ISO 639-1 code. A property that does not hold the language keeps its own text rather than being answered in another, and the response says which language it came back in. Feeds carrying several languages are what fills this. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProperties'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPropertiesRequest($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, string $contentType = self::contentTypes['listProperties'][0])
+    public function listPropertiesRequest($city = null, $district = null, $postal_code = null, $type = null, $transaction_type = null, $status = null, $external_id = null, $min_price = null, $max_price = null, $min_living_area = null, $min_bedrooms = null, $limit = 50, $cursor = null, $sort = null, $expand = null, $language = null, string $contentType = self::contentTypes['listProperties'][0])
     {
+
 
 
 
@@ -1913,6 +1934,15 @@ class PropertiesApi
             'array', // openApiType
             'form', // style
             false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $language,
+            'language', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
             false // required
         ) ?? []);
 

@@ -57,11 +57,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'balconies' => 'int',
         'bathrooms' => 'int',
         'bedrooms' => 'int',
         'floor' => 'int',
         'floors_in_building' => 'int',
         'half_bathrooms' => 'int',
+        'terraces' => 'int',
         'total_rooms' => 'int'
     ];
 
@@ -73,11 +75,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'balconies' => null,
         'bathrooms' => null,
         'bedrooms' => null,
         'floor' => null,
         'floors_in_building' => null,
         'half_bathrooms' => null,
+        'terraces' => null,
         'total_rooms' => null
     ];
 
@@ -87,11 +91,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'balconies' => false,
         'bathrooms' => false,
         'bedrooms' => false,
         'floor' => false,
         'floors_in_building' => false,
         'half_bathrooms' => false,
+        'terraces' => false,
         'total_rooms' => false
     ];
 
@@ -181,11 +187,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'balconies' => 'balconies',
         'bathrooms' => 'bathrooms',
         'bedrooms' => 'bedrooms',
         'floor' => 'floor',
         'floors_in_building' => 'floors_in_building',
         'half_bathrooms' => 'half_bathrooms',
+        'terraces' => 'terraces',
         'total_rooms' => 'total_rooms'
     ];
 
@@ -195,11 +203,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'balconies' => 'setBalconies',
         'bathrooms' => 'setBathrooms',
         'bedrooms' => 'setBedrooms',
         'floor' => 'setFloor',
         'floors_in_building' => 'setFloorsInBuilding',
         'half_bathrooms' => 'setHalfBathrooms',
+        'terraces' => 'setTerraces',
         'total_rooms' => 'setTotalRooms'
     ];
 
@@ -209,11 +219,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'balconies' => 'getBalconies',
         'bathrooms' => 'getBathrooms',
         'bedrooms' => 'getBedrooms',
         'floor' => 'getFloor',
         'floors_in_building' => 'getFloorsInBuilding',
         'half_bathrooms' => 'getHalfBathrooms',
+        'terraces' => 'getTerraces',
         'total_rooms' => 'getTotalRooms'
     ];
 
@@ -274,11 +286,13 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('balconies', $data ?? [], null);
         $this->setIfExists('bathrooms', $data ?? [], null);
         $this->setIfExists('bedrooms', $data ?? [], null);
         $this->setIfExists('floor', $data ?? [], null);
         $this->setIfExists('floors_in_building', $data ?? [], null);
         $this->setIfExists('half_bathrooms', $data ?? [], null);
+        $this->setIfExists('terraces', $data ?? [], null);
         $this->setIfExists('total_rooms', $data ?? [], null);
     }
 
@@ -323,6 +337,33 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets balconies
+     *
+     * @return int|null
+     */
+    public function getBalconies()
+    {
+        return $this->container['balconies'];
+    }
+
+    /**
+     * Sets balconies
+     *
+     * @param int|null $balconies balconies
+     *
+     * @return self
+     */
+    public function setBalconies($balconies)
+    {
+        if (is_null($balconies)) {
+            throw new \InvalidArgumentException('non-nullable balconies cannot be null');
+        }
+        $this->container['balconies'] = $balconies;
+
+        return $this;
+    }
 
     /**
      * Gets bathrooms
@@ -455,6 +496,33 @@ class Rooms implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable half_bathrooms cannot be null');
         }
         $this->container['half_bathrooms'] = $half_bathrooms;
+
+        return $this;
+    }
+
+    /**
+     * Gets terraces
+     *
+     * @return int|null
+     */
+    public function getTerraces()
+    {
+        return $this->container['terraces'];
+    }
+
+    /**
+     * Sets terraces
+     *
+     * @param int|null $terraces terraces
+     *
+     * @return self
+     */
+    public function setTerraces($terraces)
+    {
+        if (is_null($terraces)) {
+            throw new \InvalidArgumentException('non-nullable terraces cannot be null');
+        }
+        $this->container['terraces'] = $terraces;
 
         return $this;
     }

@@ -22,7 +22,7 @@ final class PropertiesResource
      *
      * Requires the `properties:read` scope.
      *
-     * @param array<string, mixed> $options Any of: city, district, postal_code, type, transaction_type, status, external_id, min_price, max_price, min_living_area, min_bedrooms, limit, cursor, sort, expand.
+     * @param array<string, mixed> $options Any of: city, district, postal_code, type, transaction_type, status, external_id, min_price, max_price, min_living_area, min_bedrooms, limit, cursor, sort, expand, language.
      */
     public function list(array $options = []): mixed
     {
@@ -94,7 +94,7 @@ final class PropertiesResource
      *
      * Requires the `properties:read` scope.
      *
-     * @param array<string, mixed> $options Any of: expand.
+     * @param array<string, mixed> $options Any of: expand, language.
      */
     public function get($property_id, array $options = []): mixed
     {

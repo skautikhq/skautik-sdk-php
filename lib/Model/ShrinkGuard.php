@@ -1,6 +1,6 @@
 <?php
 /**
- * ExportInput
+ * ShrinkGuard
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * ExportInput Class Doc Comment
+ * ShrinkGuard Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class ShrinkGuard implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ExportInput';
+    protected static $openAPIModelName = 'ShrinkGuard';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'fields' => 'string[]',
-        'filters' => 'array<string,string>',
-        'format' => 'string'
+        'baseline' => 'int',
+        'delivered' => 'int',
+        'ratio' => 'float',
+        'tripped' => 'bool',
+        'withdrawals_skipped' => 'int'
     ];
 
     /**
@@ -70,9 +72,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'fields' => null,
-        'filters' => null,
-        'format' => null
+        'baseline' => null,
+        'delivered' => null,
+        'ratio' => null,
+        'tripped' => null,
+        'withdrawals_skipped' => null
     ];
 
     /**
@@ -81,9 +85,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'fields' => false,
-        'filters' => false,
-        'format' => false
+        'baseline' => false,
+        'delivered' => false,
+        'ratio' => false,
+        'tripped' => false,
+        'withdrawals_skipped' => false
     ];
 
     /**
@@ -172,9 +178,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'fields' => 'fields',
-        'filters' => 'filters',
-        'format' => 'format'
+        'baseline' => 'baseline',
+        'delivered' => 'delivered',
+        'ratio' => 'ratio',
+        'tripped' => 'tripped',
+        'withdrawals_skipped' => 'withdrawals_skipped'
     ];
 
     /**
@@ -183,9 +191,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'fields' => 'setFields',
-        'filters' => 'setFilters',
-        'format' => 'setFormat'
+        'baseline' => 'setBaseline',
+        'delivered' => 'setDelivered',
+        'ratio' => 'setRatio',
+        'tripped' => 'setTripped',
+        'withdrawals_skipped' => 'setWithdrawalsSkipped'
     ];
 
     /**
@@ -194,9 +204,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'fields' => 'getFields',
-        'filters' => 'getFilters',
-        'format' => 'getFormat'
+        'baseline' => 'getBaseline',
+        'delivered' => 'getDelivered',
+        'ratio' => 'getRatio',
+        'tripped' => 'getTripped',
+        'withdrawals_skipped' => 'getWithdrawalsSkipped'
     ];
 
     /**
@@ -256,9 +268,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('baseline', $data ?? [], null);
+        $this->setIfExists('delivered', $data ?? [], null);
+        $this->setIfExists('ratio', $data ?? [], null);
+        $this->setIfExists('tripped', $data ?? [], null);
+        $this->setIfExists('withdrawals_skipped', $data ?? [], null);
     }
 
     /**
@@ -288,8 +302,20 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
+        if ($this->container['baseline'] === null) {
+            $invalidProperties[] = "'baseline' can't be null";
+        }
+        if ($this->container['delivered'] === null) {
+            $invalidProperties[] = "'delivered' can't be null";
+        }
+        if ($this->container['ratio'] === null) {
+            $invalidProperties[] = "'ratio' can't be null";
+        }
+        if ($this->container['tripped'] === null) {
+            $invalidProperties[] = "'tripped' can't be null";
+        }
+        if ($this->container['withdrawals_skipped'] === null) {
+            $invalidProperties[] = "'withdrawals_skipped' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,82 +333,136 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets fields
+     * Gets baseline
      *
-     * @return string[]|null
+     * @return int
      */
-    public function getFields()
+    public function getBaseline()
     {
-        return $this->container['fields'];
+        return $this->container['baseline'];
     }
 
     /**
-     * Sets fields
+     * Sets baseline
      *
-     * @param string[]|null $fields fields
+     * @param int $baseline baseline
      *
      * @return self
      */
-    public function setFields($fields)
+    public function setBaseline($baseline)
     {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
+        if (is_null($baseline)) {
+            throw new \InvalidArgumentException('non-nullable baseline cannot be null');
         }
-        $this->container['fields'] = $fields;
+        $this->container['baseline'] = $baseline;
 
         return $this;
     }
 
     /**
-     * Gets filters
+     * Gets delivered
      *
-     * @return array<string,string>|null
+     * @return int
      */
-    public function getFilters()
+    public function getDelivered()
     {
-        return $this->container['filters'];
+        return $this->container['delivered'];
     }
 
     /**
-     * Sets filters
+     * Sets delivered
      *
-     * @param array<string,string>|null $filters filters
+     * @param int $delivered delivered
      *
      * @return self
      */
-    public function setFilters($filters)
+    public function setDelivered($delivered)
     {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
+        if (is_null($delivered)) {
+            throw new \InvalidArgumentException('non-nullable delivered cannot be null');
         }
-        $this->container['filters'] = $filters;
+        $this->container['delivered'] = $delivered;
 
         return $this;
     }
 
     /**
-     * Gets format
+     * Gets ratio
      *
-     * @return string
+     * @return float
      */
-    public function getFormat()
+    public function getRatio()
     {
-        return $this->container['format'];
+        return $this->container['ratio'];
     }
 
     /**
-     * Sets format
+     * Sets ratio
      *
-     * @param string $format format
+     * @param float $ratio ratio
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setRatio($ratio)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($ratio)) {
+            throw new \InvalidArgumentException('non-nullable ratio cannot be null');
         }
-        $this->container['format'] = $format;
+        $this->container['ratio'] = $ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets tripped
+     *
+     * @return bool
+     */
+    public function getTripped()
+    {
+        return $this->container['tripped'];
+    }
+
+    /**
+     * Sets tripped
+     *
+     * @param bool $tripped tripped
+     *
+     * @return self
+     */
+    public function setTripped($tripped)
+    {
+        if (is_null($tripped)) {
+            throw new \InvalidArgumentException('non-nullable tripped cannot be null');
+        }
+        $this->container['tripped'] = $tripped;
+
+        return $this;
+    }
+
+    /**
+     * Gets withdrawals_skipped
+     *
+     * @return int
+     */
+    public function getWithdrawalsSkipped()
+    {
+        return $this->container['withdrawals_skipped'];
+    }
+
+    /**
+     * Sets withdrawals_skipped
+     *
+     * @param int $withdrawals_skipped withdrawals_skipped
+     *
+     * @return self
+     */
+    public function setWithdrawalsSkipped($withdrawals_skipped)
+    {
+        if (is_null($withdrawals_skipped)) {
+            throw new \InvalidArgumentException('non-nullable withdrawals_skipped cannot be null');
+        }
+        $this->container['withdrawals_skipped'] = $withdrawals_skipped;
 
         return $this;
     }

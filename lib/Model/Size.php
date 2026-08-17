@@ -57,8 +57,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'attic_sqm' => 'float',
+        'balcony_terrace_sqm' => 'float',
+        'cellar_sqm' => 'float',
+        'garden_sqm' => 'float',
         'living_area_sqm' => 'float',
+        'office_area_sqm' => 'float',
+        'other_area_sqm' => 'float',
         'plot_area_sqm' => 'float',
+        'retail_area_sqm' => 'float',
+        'storage_area_sqm' => 'float',
+        'total_area_sqm' => 'float',
         'usable_area_sqm' => 'float'
     ];
 
@@ -70,8 +79,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'attic_sqm' => null,
+        'balcony_terrace_sqm' => null,
+        'cellar_sqm' => null,
+        'garden_sqm' => null,
         'living_area_sqm' => null,
+        'office_area_sqm' => null,
+        'other_area_sqm' => null,
         'plot_area_sqm' => null,
+        'retail_area_sqm' => null,
+        'storage_area_sqm' => null,
+        'total_area_sqm' => null,
         'usable_area_sqm' => null
     ];
 
@@ -81,8 +99,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'attic_sqm' => false,
+        'balcony_terrace_sqm' => false,
+        'cellar_sqm' => false,
+        'garden_sqm' => false,
         'living_area_sqm' => false,
+        'office_area_sqm' => false,
+        'other_area_sqm' => false,
         'plot_area_sqm' => false,
+        'retail_area_sqm' => false,
+        'storage_area_sqm' => false,
+        'total_area_sqm' => false,
         'usable_area_sqm' => false
     ];
 
@@ -172,8 +199,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'attic_sqm' => 'attic_sqm',
+        'balcony_terrace_sqm' => 'balcony_terrace_sqm',
+        'cellar_sqm' => 'cellar_sqm',
+        'garden_sqm' => 'garden_sqm',
         'living_area_sqm' => 'living_area_sqm',
+        'office_area_sqm' => 'office_area_sqm',
+        'other_area_sqm' => 'other_area_sqm',
         'plot_area_sqm' => 'plot_area_sqm',
+        'retail_area_sqm' => 'retail_area_sqm',
+        'storage_area_sqm' => 'storage_area_sqm',
+        'total_area_sqm' => 'total_area_sqm',
         'usable_area_sqm' => 'usable_area_sqm'
     ];
 
@@ -183,8 +219,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'attic_sqm' => 'setAtticSqm',
+        'balcony_terrace_sqm' => 'setBalconyTerraceSqm',
+        'cellar_sqm' => 'setCellarSqm',
+        'garden_sqm' => 'setGardenSqm',
         'living_area_sqm' => 'setLivingAreaSqm',
+        'office_area_sqm' => 'setOfficeAreaSqm',
+        'other_area_sqm' => 'setOtherAreaSqm',
         'plot_area_sqm' => 'setPlotAreaSqm',
+        'retail_area_sqm' => 'setRetailAreaSqm',
+        'storage_area_sqm' => 'setStorageAreaSqm',
+        'total_area_sqm' => 'setTotalAreaSqm',
         'usable_area_sqm' => 'setUsableAreaSqm'
     ];
 
@@ -194,8 +239,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'attic_sqm' => 'getAtticSqm',
+        'balcony_terrace_sqm' => 'getBalconyTerraceSqm',
+        'cellar_sqm' => 'getCellarSqm',
+        'garden_sqm' => 'getGardenSqm',
         'living_area_sqm' => 'getLivingAreaSqm',
+        'office_area_sqm' => 'getOfficeAreaSqm',
+        'other_area_sqm' => 'getOtherAreaSqm',
         'plot_area_sqm' => 'getPlotAreaSqm',
+        'retail_area_sqm' => 'getRetailAreaSqm',
+        'storage_area_sqm' => 'getStorageAreaSqm',
+        'total_area_sqm' => 'getTotalAreaSqm',
         'usable_area_sqm' => 'getUsableAreaSqm'
     ];
 
@@ -256,8 +310,17 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('attic_sqm', $data ?? [], null);
+        $this->setIfExists('balcony_terrace_sqm', $data ?? [], null);
+        $this->setIfExists('cellar_sqm', $data ?? [], null);
+        $this->setIfExists('garden_sqm', $data ?? [], null);
         $this->setIfExists('living_area_sqm', $data ?? [], null);
+        $this->setIfExists('office_area_sqm', $data ?? [], null);
+        $this->setIfExists('other_area_sqm', $data ?? [], null);
         $this->setIfExists('plot_area_sqm', $data ?? [], null);
+        $this->setIfExists('retail_area_sqm', $data ?? [], null);
+        $this->setIfExists('storage_area_sqm', $data ?? [], null);
+        $this->setIfExists('total_area_sqm', $data ?? [], null);
         $this->setIfExists('usable_area_sqm', $data ?? [], null);
     }
 
@@ -304,6 +367,114 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets attic_sqm
+     *
+     * @return float|null
+     */
+    public function getAtticSqm()
+    {
+        return $this->container['attic_sqm'];
+    }
+
+    /**
+     * Sets attic_sqm
+     *
+     * @param float|null $attic_sqm attic_sqm
+     *
+     * @return self
+     */
+    public function setAtticSqm($attic_sqm)
+    {
+        if (is_null($attic_sqm)) {
+            throw new \InvalidArgumentException('non-nullable attic_sqm cannot be null');
+        }
+        $this->container['attic_sqm'] = $attic_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets balcony_terrace_sqm
+     *
+     * @return float|null
+     */
+    public function getBalconyTerraceSqm()
+    {
+        return $this->container['balcony_terrace_sqm'];
+    }
+
+    /**
+     * Sets balcony_terrace_sqm
+     *
+     * @param float|null $balcony_terrace_sqm balcony_terrace_sqm
+     *
+     * @return self
+     */
+    public function setBalconyTerraceSqm($balcony_terrace_sqm)
+    {
+        if (is_null($balcony_terrace_sqm)) {
+            throw new \InvalidArgumentException('non-nullable balcony_terrace_sqm cannot be null');
+        }
+        $this->container['balcony_terrace_sqm'] = $balcony_terrace_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets cellar_sqm
+     *
+     * @return float|null
+     */
+    public function getCellarSqm()
+    {
+        return $this->container['cellar_sqm'];
+    }
+
+    /**
+     * Sets cellar_sqm
+     *
+     * @param float|null $cellar_sqm cellar_sqm
+     *
+     * @return self
+     */
+    public function setCellarSqm($cellar_sqm)
+    {
+        if (is_null($cellar_sqm)) {
+            throw new \InvalidArgumentException('non-nullable cellar_sqm cannot be null');
+        }
+        $this->container['cellar_sqm'] = $cellar_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets garden_sqm
+     *
+     * @return float|null
+     */
+    public function getGardenSqm()
+    {
+        return $this->container['garden_sqm'];
+    }
+
+    /**
+     * Sets garden_sqm
+     *
+     * @param float|null $garden_sqm garden_sqm
+     *
+     * @return self
+     */
+    public function setGardenSqm($garden_sqm)
+    {
+        if (is_null($garden_sqm)) {
+            throw new \InvalidArgumentException('non-nullable garden_sqm cannot be null');
+        }
+        $this->container['garden_sqm'] = $garden_sqm;
+
+        return $this;
+    }
+
+    /**
      * Gets living_area_sqm
      *
      * @return float|null
@@ -331,6 +502,60 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets office_area_sqm
+     *
+     * @return float|null
+     */
+    public function getOfficeAreaSqm()
+    {
+        return $this->container['office_area_sqm'];
+    }
+
+    /**
+     * Sets office_area_sqm
+     *
+     * @param float|null $office_area_sqm office_area_sqm
+     *
+     * @return self
+     */
+    public function setOfficeAreaSqm($office_area_sqm)
+    {
+        if (is_null($office_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable office_area_sqm cannot be null');
+        }
+        $this->container['office_area_sqm'] = $office_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets other_area_sqm
+     *
+     * @return float|null
+     */
+    public function getOtherAreaSqm()
+    {
+        return $this->container['other_area_sqm'];
+    }
+
+    /**
+     * Sets other_area_sqm
+     *
+     * @param float|null $other_area_sqm other_area_sqm
+     *
+     * @return self
+     */
+    public function setOtherAreaSqm($other_area_sqm)
+    {
+        if (is_null($other_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable other_area_sqm cannot be null');
+        }
+        $this->container['other_area_sqm'] = $other_area_sqm;
+
+        return $this;
+    }
+
+    /**
      * Gets plot_area_sqm
      *
      * @return float|null
@@ -353,6 +578,87 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable plot_area_sqm cannot be null');
         }
         $this->container['plot_area_sqm'] = $plot_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets retail_area_sqm
+     *
+     * @return float|null
+     */
+    public function getRetailAreaSqm()
+    {
+        return $this->container['retail_area_sqm'];
+    }
+
+    /**
+     * Sets retail_area_sqm
+     *
+     * @param float|null $retail_area_sqm retail_area_sqm
+     *
+     * @return self
+     */
+    public function setRetailAreaSqm($retail_area_sqm)
+    {
+        if (is_null($retail_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable retail_area_sqm cannot be null');
+        }
+        $this->container['retail_area_sqm'] = $retail_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets storage_area_sqm
+     *
+     * @return float|null
+     */
+    public function getStorageAreaSqm()
+    {
+        return $this->container['storage_area_sqm'];
+    }
+
+    /**
+     * Sets storage_area_sqm
+     *
+     * @param float|null $storage_area_sqm storage_area_sqm
+     *
+     * @return self
+     */
+    public function setStorageAreaSqm($storage_area_sqm)
+    {
+        if (is_null($storage_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable storage_area_sqm cannot be null');
+        }
+        $this->container['storage_area_sqm'] = $storage_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_area_sqm
+     *
+     * @return float|null
+     */
+    public function getTotalAreaSqm()
+    {
+        return $this->container['total_area_sqm'];
+    }
+
+    /**
+     * Sets total_area_sqm
+     *
+     * @param float|null $total_area_sqm total_area_sqm
+     *
+     * @return self
+     */
+    public function setTotalAreaSqm($total_area_sqm)
+    {
+        if (is_null($total_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable total_area_sqm cannot be null');
+        }
+        $this->container['total_area_sqm'] = $total_area_sqm;
 
         return $this;
     }

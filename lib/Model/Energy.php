@@ -57,8 +57,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'certificate_type' => 'string',
+        'co2_emissions' => 'float',
         'consumption_kwh' => 'float',
-        'label' => 'string'
+        'demand_kwh' => 'float',
+        'includes_hot_water' => 'bool',
+        'issued_at' => 'string',
+        'label' => 'string',
+        'primary_carrier' => 'string',
+        'valid_until' => 'string'
     ];
 
     /**
@@ -69,8 +76,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'certificate_type' => null,
+        'co2_emissions' => null,
         'consumption_kwh' => null,
-        'label' => null
+        'demand_kwh' => null,
+        'includes_hot_water' => null,
+        'issued_at' => null,
+        'label' => null,
+        'primary_carrier' => null,
+        'valid_until' => null
     ];
 
     /**
@@ -79,8 +93,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'certificate_type' => false,
+        'co2_emissions' => false,
         'consumption_kwh' => false,
-        'label' => false
+        'demand_kwh' => false,
+        'includes_hot_water' => false,
+        'issued_at' => false,
+        'label' => false,
+        'primary_carrier' => false,
+        'valid_until' => false
     ];
 
     /**
@@ -169,8 +190,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'certificate_type' => 'certificate_type',
+        'co2_emissions' => 'co2_emissions',
         'consumption_kwh' => 'consumption_kwh',
-        'label' => 'label'
+        'demand_kwh' => 'demand_kwh',
+        'includes_hot_water' => 'includes_hot_water',
+        'issued_at' => 'issued_at',
+        'label' => 'label',
+        'primary_carrier' => 'primary_carrier',
+        'valid_until' => 'valid_until'
     ];
 
     /**
@@ -179,8 +207,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'certificate_type' => 'setCertificateType',
+        'co2_emissions' => 'setCo2Emissions',
         'consumption_kwh' => 'setConsumptionKwh',
-        'label' => 'setLabel'
+        'demand_kwh' => 'setDemandKwh',
+        'includes_hot_water' => 'setIncludesHotWater',
+        'issued_at' => 'setIssuedAt',
+        'label' => 'setLabel',
+        'primary_carrier' => 'setPrimaryCarrier',
+        'valid_until' => 'setValidUntil'
     ];
 
     /**
@@ -189,8 +224,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'certificate_type' => 'getCertificateType',
+        'co2_emissions' => 'getCo2Emissions',
         'consumption_kwh' => 'getConsumptionKwh',
-        'label' => 'getLabel'
+        'demand_kwh' => 'getDemandKwh',
+        'includes_hot_water' => 'getIncludesHotWater',
+        'issued_at' => 'getIssuedAt',
+        'label' => 'getLabel',
+        'primary_carrier' => 'getPrimaryCarrier',
+        'valid_until' => 'getValidUntil'
     ];
 
     /**
@@ -250,8 +292,15 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('certificate_type', $data ?? [], null);
+        $this->setIfExists('co2_emissions', $data ?? [], null);
         $this->setIfExists('consumption_kwh', $data ?? [], null);
+        $this->setIfExists('demand_kwh', $data ?? [], null);
+        $this->setIfExists('includes_hot_water', $data ?? [], null);
+        $this->setIfExists('issued_at', $data ?? [], null);
         $this->setIfExists('label', $data ?? [], null);
+        $this->setIfExists('primary_carrier', $data ?? [], null);
+        $this->setIfExists('valid_until', $data ?? [], null);
     }
 
     /**
@@ -297,6 +346,60 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets certificate_type
+     *
+     * @return string|null
+     */
+    public function getCertificateType()
+    {
+        return $this->container['certificate_type'];
+    }
+
+    /**
+     * Sets certificate_type
+     *
+     * @param string|null $certificate_type certificate_type
+     *
+     * @return self
+     */
+    public function setCertificateType($certificate_type)
+    {
+        if (is_null($certificate_type)) {
+            throw new \InvalidArgumentException('non-nullable certificate_type cannot be null');
+        }
+        $this->container['certificate_type'] = $certificate_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets co2_emissions
+     *
+     * @return float|null
+     */
+    public function getCo2Emissions()
+    {
+        return $this->container['co2_emissions'];
+    }
+
+    /**
+     * Sets co2_emissions
+     *
+     * @param float|null $co2_emissions co2_emissions
+     *
+     * @return self
+     */
+    public function setCo2Emissions($co2_emissions)
+    {
+        if (is_null($co2_emissions)) {
+            throw new \InvalidArgumentException('non-nullable co2_emissions cannot be null');
+        }
+        $this->container['co2_emissions'] = $co2_emissions;
+
+        return $this;
+    }
+
+    /**
      * Gets consumption_kwh
      *
      * @return float|null
@@ -324,6 +427,87 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets demand_kwh
+     *
+     * @return float|null
+     */
+    public function getDemandKwh()
+    {
+        return $this->container['demand_kwh'];
+    }
+
+    /**
+     * Sets demand_kwh
+     *
+     * @param float|null $demand_kwh demand_kwh
+     *
+     * @return self
+     */
+    public function setDemandKwh($demand_kwh)
+    {
+        if (is_null($demand_kwh)) {
+            throw new \InvalidArgumentException('non-nullable demand_kwh cannot be null');
+        }
+        $this->container['demand_kwh'] = $demand_kwh;
+
+        return $this;
+    }
+
+    /**
+     * Gets includes_hot_water
+     *
+     * @return bool|null
+     */
+    public function getIncludesHotWater()
+    {
+        return $this->container['includes_hot_water'];
+    }
+
+    /**
+     * Sets includes_hot_water
+     *
+     * @param bool|null $includes_hot_water includes_hot_water
+     *
+     * @return self
+     */
+    public function setIncludesHotWater($includes_hot_water)
+    {
+        if (is_null($includes_hot_water)) {
+            throw new \InvalidArgumentException('non-nullable includes_hot_water cannot be null');
+        }
+        $this->container['includes_hot_water'] = $includes_hot_water;
+
+        return $this;
+    }
+
+    /**
+     * Gets issued_at
+     *
+     * @return string|null
+     */
+    public function getIssuedAt()
+    {
+        return $this->container['issued_at'];
+    }
+
+    /**
+     * Sets issued_at
+     *
+     * @param string|null $issued_at issued_at
+     *
+     * @return self
+     */
+    public function setIssuedAt($issued_at)
+    {
+        if (is_null($issued_at)) {
+            throw new \InvalidArgumentException('non-nullable issued_at cannot be null');
+        }
+        $this->container['issued_at'] = $issued_at;
+
+        return $this;
+    }
+
+    /**
      * Gets label
      *
      * @return string|null
@@ -346,6 +530,60 @@ class Energy implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable label cannot be null');
         }
         $this->container['label'] = $label;
+
+        return $this;
+    }
+
+    /**
+     * Gets primary_carrier
+     *
+     * @return string|null
+     */
+    public function getPrimaryCarrier()
+    {
+        return $this->container['primary_carrier'];
+    }
+
+    /**
+     * Sets primary_carrier
+     *
+     * @param string|null $primary_carrier primary_carrier
+     *
+     * @return self
+     */
+    public function setPrimaryCarrier($primary_carrier)
+    {
+        if (is_null($primary_carrier)) {
+            throw new \InvalidArgumentException('non-nullable primary_carrier cannot be null');
+        }
+        $this->container['primary_carrier'] = $primary_carrier;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_until
+     *
+     * @return string|null
+     */
+    public function getValidUntil()
+    {
+        return $this->container['valid_until'];
+    }
+
+    /**
+     * Sets valid_until
+     *
+     * @param string|null $valid_until valid_until
+     *
+     * @return self
+     */
+    public function setValidUntil($valid_until)
+    {
+        if (is_null($valid_until)) {
+            throw new \InvalidArgumentException('non-nullable valid_until cannot be null');
+        }
+        $this->container['valid_until'] = $valid_until;
 
         return $this;
     }

@@ -61,19 +61,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => '\Skautik\Sdk\Model\Building',
         'created_at' => '\DateTime',
         'description' => 'string',
+        'descriptions' => '\Skautik\Sdk\Model\Descriptions',
         'energy' => '\Skautik\Sdk\Model\Energy',
         'external_id' => 'string',
+        'features' => '\Skautik\Sdk\Model\Features',
         'id' => 'string',
         'images' => '\Skautik\Sdk\Model\Image[]',
+        'language' => 'string',
         'last_verified_at' => '\DateTime',
         'listing' => '\Skautik\Sdk\Model\Listing',
         'location' => '\Skautik\Sdk\Model\Location',
         'market' => '\Skautik\Sdk\Model\MarketContext',
+        'parking' => '\Skautik\Sdk\Model\Parking',
         'price_history' => '\Skautik\Sdk\Model\PriceObservation[]',
         'rooms' => '\Skautik\Sdk\Model\Rooms',
         'size' => '\Skautik\Sdk\Model\Size',
         'source' => 'string',
+        'subtype' => 'string',
         'title' => 'string',
+        'translations' => '\Skautik\Sdk\Model\Translation[]',
         'type' => 'string',
         'updated_at' => '\DateTime'
     ];
@@ -90,19 +96,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => null,
         'created_at' => 'date-time',
         'description' => null,
+        'descriptions' => null,
         'energy' => null,
         'external_id' => null,
+        'features' => null,
         'id' => null,
         'images' => null,
+        'language' => null,
         'last_verified_at' => 'date-time',
         'listing' => null,
         'location' => null,
         'market' => null,
+        'parking' => null,
         'price_history' => null,
         'rooms' => null,
         'size' => null,
         'source' => null,
+        'subtype' => null,
         'title' => null,
+        'translations' => null,
         'type' => null,
         'updated_at' => 'date-time'
     ];
@@ -117,19 +129,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => false,
         'created_at' => false,
         'description' => false,
+        'descriptions' => false,
         'energy' => false,
         'external_id' => false,
+        'features' => false,
         'id' => false,
         'images' => false,
+        'language' => false,
         'last_verified_at' => false,
         'listing' => false,
         'location' => false,
         'market' => false,
+        'parking' => false,
         'price_history' => false,
         'rooms' => false,
         'size' => false,
         'source' => false,
+        'subtype' => false,
         'title' => false,
+        'translations' => false,
         'type' => false,
         'updated_at' => false
     ];
@@ -224,19 +242,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => 'building',
         'created_at' => 'created_at',
         'description' => 'description',
+        'descriptions' => 'descriptions',
         'energy' => 'energy',
         'external_id' => 'external_id',
+        'features' => 'features',
         'id' => 'id',
         'images' => 'images',
+        'language' => 'language',
         'last_verified_at' => 'last_verified_at',
         'listing' => 'listing',
         'location' => 'location',
         'market' => 'market',
+        'parking' => 'parking',
         'price_history' => 'price_history',
         'rooms' => 'rooms',
         'size' => 'size',
         'source' => 'source',
+        'subtype' => 'subtype',
         'title' => 'title',
+        'translations' => 'translations',
         'type' => 'type',
         'updated_at' => 'updated_at'
     ];
@@ -251,19 +275,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => 'setBuilding',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
+        'descriptions' => 'setDescriptions',
         'energy' => 'setEnergy',
         'external_id' => 'setExternalId',
+        'features' => 'setFeatures',
         'id' => 'setId',
         'images' => 'setImages',
+        'language' => 'setLanguage',
         'last_verified_at' => 'setLastVerifiedAt',
         'listing' => 'setListing',
         'location' => 'setLocation',
         'market' => 'setMarket',
+        'parking' => 'setParking',
         'price_history' => 'setPriceHistory',
         'rooms' => 'setRooms',
         'size' => 'setSize',
         'source' => 'setSource',
+        'subtype' => 'setSubtype',
         'title' => 'setTitle',
+        'translations' => 'setTranslations',
         'type' => 'setType',
         'updated_at' => 'setUpdatedAt'
     ];
@@ -278,19 +308,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         'building' => 'getBuilding',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
+        'descriptions' => 'getDescriptions',
         'energy' => 'getEnergy',
         'external_id' => 'getExternalId',
+        'features' => 'getFeatures',
         'id' => 'getId',
         'images' => 'getImages',
+        'language' => 'getLanguage',
         'last_verified_at' => 'getLastVerifiedAt',
         'listing' => 'getListing',
         'location' => 'getLocation',
         'market' => 'getMarket',
+        'parking' => 'getParking',
         'price_history' => 'getPriceHistory',
         'rooms' => 'getRooms',
         'size' => 'getSize',
         'source' => 'getSource',
+        'subtype' => 'getSubtype',
         'title' => 'getTitle',
+        'translations' => 'getTranslations',
         'type' => 'getType',
         'updated_at' => 'getUpdatedAt'
     ];
@@ -356,19 +392,25 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('building', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('descriptions', $data ?? [], null);
         $this->setIfExists('energy', $data ?? [], null);
         $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('features', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('images', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('last_verified_at', $data ?? [], null);
         $this->setIfExists('listing', $data ?? [], null);
         $this->setIfExists('location', $data ?? [], null);
         $this->setIfExists('market', $data ?? [], null);
+        $this->setIfExists('parking', $data ?? [], null);
         $this->setIfExists('price_history', $data ?? [], null);
         $this->setIfExists('rooms', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('source', $data ?? [], null);
+        $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('translations', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
@@ -554,6 +596,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets descriptions
+     *
+     * @return \Skautik\Sdk\Model\Descriptions|null
+     */
+    public function getDescriptions()
+    {
+        return $this->container['descriptions'];
+    }
+
+    /**
+     * Sets descriptions
+     *
+     * @param \Skautik\Sdk\Model\Descriptions|null $descriptions descriptions
+     *
+     * @return self
+     */
+    public function setDescriptions($descriptions)
+    {
+        if (is_null($descriptions)) {
+            throw new \InvalidArgumentException('non-nullable descriptions cannot be null');
+        }
+        $this->container['descriptions'] = $descriptions;
+
+        return $this;
+    }
+
+    /**
      * Gets energy
      *
      * @return \Skautik\Sdk\Model\Energy|null
@@ -608,6 +677,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets features
+     *
+     * @return \Skautik\Sdk\Model\Features|null
+     */
+    public function getFeatures()
+    {
+        return $this->container['features'];
+    }
+
+    /**
+     * Sets features
+     *
+     * @param \Skautik\Sdk\Model\Features|null $features features
+     *
+     * @return self
+     */
+    public function setFeatures($features)
+    {
+        if (is_null($features)) {
+            throw new \InvalidArgumentException('non-nullable features cannot be null');
+        }
+        $this->container['features'] = $features;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string
@@ -657,6 +753,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable images cannot be null');
         }
         $this->container['images'] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language language
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
 
         return $this;
     }
@@ -770,6 +893,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets parking
+     *
+     * @return \Skautik\Sdk\Model\Parking|null
+     */
+    public function getParking()
+    {
+        return $this->container['parking'];
+    }
+
+    /**
+     * Sets parking
+     *
+     * @param \Skautik\Sdk\Model\Parking|null $parking parking
+     *
+     * @return self
+     */
+    public function setParking($parking)
+    {
+        if (is_null($parking)) {
+            throw new \InvalidArgumentException('non-nullable parking cannot be null');
+        }
+        $this->container['parking'] = $parking;
+
+        return $this;
+    }
+
+    /**
      * Gets price_history
      *
      * @return \Skautik\Sdk\Model\PriceObservation[]|null
@@ -878,6 +1028,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets subtype
+     *
+     * @return string|null
+     */
+    public function getSubtype()
+    {
+        return $this->container['subtype'];
+    }
+
+    /**
+     * Sets subtype
+     *
+     * @param string|null $subtype subtype
+     *
+     * @return self
+     */
+    public function setSubtype($subtype)
+    {
+        if (is_null($subtype)) {
+            throw new \InvalidArgumentException('non-nullable subtype cannot be null');
+        }
+        $this->container['subtype'] = $subtype;
+
+        return $this;
+    }
+
+    /**
      * Gets title
      *
      * @return string
@@ -900,6 +1077,33 @@ class Property implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable title cannot be null');
         }
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets translations
+     *
+     * @return \Skautik\Sdk\Model\Translation[]|null
+     */
+    public function getTranslations()
+    {
+        return $this->container['translations'];
+    }
+
+    /**
+     * Sets translations
+     *
+     * @param \Skautik\Sdk\Model\Translation[]|null $translations translations
+     *
+     * @return self
+     */
+    public function setTranslations($translations)
+    {
+        if (is_null($translations)) {
+            throw new \InvalidArgumentException('non-nullable translations cannot be null');
+        }
+        $this->container['translations'] = $translations;
 
         return $this;
     }

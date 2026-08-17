@@ -305,17 +305,8 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['kind'] === null) {
             $invalidProperties[] = "'kind' can't be null";
         }
-        if ($this->container['prompt'] === null) {
-            $invalidProperties[] = "'prompt' can't be null";
-        }
-        if ($this->container['room_type'] === null) {
-            $invalidProperties[] = "'room_type' can't be null";
-        }
         if ($this->container['source_image_id'] === null) {
             $invalidProperties[] = "'source_image_id' can't be null";
-        }
-        if ($this->container['style'] === null) {
-            $invalidProperties[] = "'style' can't be null";
         }
         return $invalidProperties;
     }
@@ -362,7 +353,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets prompt
      *
-     * @return string
+     * @return string|null
      */
     public function getPrompt()
     {
@@ -372,7 +363,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets prompt
      *
-     * @param string $prompt prompt
+     * @param string|null $prompt prompt
      *
      * @return self
      */
@@ -389,7 +380,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets room_type
      *
-     * @return string
+     * @return string|null
      */
     public function getRoomType()
     {
@@ -399,7 +390,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets room_type
      *
-     * @param string $room_type room_type
+     * @param string|null $room_type room_type
      *
      * @return self
      */
@@ -443,7 +434,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets style
      *
-     * @return string
+     * @return string|null
      */
     public function getStyle()
     {
@@ -453,7 +444,7 @@ class GenerationInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets style
      *
-     * @param string $style style
+     * @param string|null $style style
      *
      * @return self
      */

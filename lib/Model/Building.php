@@ -58,8 +58,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPITypes = [
         'condition' => 'string',
+        'construction_phase' => 'string',
         'construction_type' => 'string',
         'heating_type' => 'string',
+        'leasehold' => 'bool',
+        'monument_protected' => 'bool',
         'year_built' => 'int',
         'year_renovated' => 'int'
     ];
@@ -73,8 +76,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPIFormats = [
         'condition' => null,
+        'construction_phase' => null,
         'construction_type' => null,
         'heating_type' => null,
+        'leasehold' => null,
+        'monument_protected' => null,
         'year_built' => null,
         'year_renovated' => null
     ];
@@ -86,8 +92,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $openAPINullables = [
         'condition' => false,
+        'construction_phase' => false,
         'construction_type' => false,
         'heating_type' => false,
+        'leasehold' => false,
+        'monument_protected' => false,
         'year_built' => false,
         'year_renovated' => false
     ];
@@ -179,8 +188,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'condition' => 'condition',
+        'construction_phase' => 'construction_phase',
         'construction_type' => 'construction_type',
         'heating_type' => 'heating_type',
+        'leasehold' => 'leasehold',
+        'monument_protected' => 'monument_protected',
         'year_built' => 'year_built',
         'year_renovated' => 'year_renovated'
     ];
@@ -192,8 +204,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'condition' => 'setCondition',
+        'construction_phase' => 'setConstructionPhase',
         'construction_type' => 'setConstructionType',
         'heating_type' => 'setHeatingType',
+        'leasehold' => 'setLeasehold',
+        'monument_protected' => 'setMonumentProtected',
         'year_built' => 'setYearBuilt',
         'year_renovated' => 'setYearRenovated'
     ];
@@ -205,8 +220,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'condition' => 'getCondition',
+        'construction_phase' => 'getConstructionPhase',
         'construction_type' => 'getConstructionType',
         'heating_type' => 'getHeatingType',
+        'leasehold' => 'getLeasehold',
+        'monument_protected' => 'getMonumentProtected',
         'year_built' => 'getYearBuilt',
         'year_renovated' => 'getYearRenovated'
     ];
@@ -269,8 +287,11 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('condition', $data ?? [], null);
+        $this->setIfExists('construction_phase', $data ?? [], null);
         $this->setIfExists('construction_type', $data ?? [], null);
         $this->setIfExists('heating_type', $data ?? [], null);
+        $this->setIfExists('leasehold', $data ?? [], null);
+        $this->setIfExists('monument_protected', $data ?? [], null);
         $this->setIfExists('year_built', $data ?? [], null);
         $this->setIfExists('year_renovated', $data ?? [], null);
     }
@@ -345,6 +366,33 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets construction_phase
+     *
+     * @return string|null
+     */
+    public function getConstructionPhase()
+    {
+        return $this->container['construction_phase'];
+    }
+
+    /**
+     * Sets construction_phase
+     *
+     * @param string|null $construction_phase construction_phase
+     *
+     * @return self
+     */
+    public function setConstructionPhase($construction_phase)
+    {
+        if (is_null($construction_phase)) {
+            throw new \InvalidArgumentException('non-nullable construction_phase cannot be null');
+        }
+        $this->container['construction_phase'] = $construction_phase;
+
+        return $this;
+    }
+
+    /**
      * Gets construction_type
      *
      * @return string|null
@@ -394,6 +442,60 @@ class Building implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable heating_type cannot be null');
         }
         $this->container['heating_type'] = $heating_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets leasehold
+     *
+     * @return bool|null
+     */
+    public function getLeasehold()
+    {
+        return $this->container['leasehold'];
+    }
+
+    /**
+     * Sets leasehold
+     *
+     * @param bool|null $leasehold leasehold
+     *
+     * @return self
+     */
+    public function setLeasehold($leasehold)
+    {
+        if (is_null($leasehold)) {
+            throw new \InvalidArgumentException('non-nullable leasehold cannot be null');
+        }
+        $this->container['leasehold'] = $leasehold;
+
+        return $this;
+    }
+
+    /**
+     * Gets monument_protected
+     *
+     * @return bool|null
+     */
+    public function getMonumentProtected()
+    {
+        return $this->container['monument_protected'];
+    }
+
+    /**
+     * Sets monument_protected
+     *
+     * @param bool|null $monument_protected monument_protected
+     *
+     * @return self
+     */
+    public function setMonumentProtected($monument_protected)
+    {
+        if (is_null($monument_protected)) {
+            throw new \InvalidArgumentException('non-nullable monument_protected cannot be null');
+        }
+        $this->container['monument_protected'] = $monument_protected;
 
         return $this;
     }

@@ -82,7 +82,7 @@ final class ImportsResource
      *
      * Requires the `imports:write` scope.
      *
-     * @param array<string, mixed> $options Any of: mode, source_id, dry_run, filename, idempotency_key, file.
+     * @param array<string, mixed> $options Any of: mode, source_id, dry_run, filename, confirm_shrink, idempotency_key, file.
      */
     public function create($format, array $options = []): mixed
     {

@@ -57,12 +57,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'commission_amount' => 'float',
+        'commission_note' => 'string',
+        'commission_payer' => 'string',
+        'commission_percent' => 'float',
         'currency' => 'string',
         'deposit' => 'float',
+        'heating_costs' => 'float',
         'price' => 'float',
+        'price_on_request' => 'bool',
         'price_period' => 'string',
         'service_charges' => 'float',
         'status' => 'string',
+        'total_rent' => 'float',
         'transaction_type' => 'string'
     ];
 
@@ -74,12 +81,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'commission_amount' => null,
+        'commission_note' => null,
+        'commission_payer' => null,
+        'commission_percent' => null,
         'currency' => null,
         'deposit' => null,
+        'heating_costs' => null,
         'price' => null,
+        'price_on_request' => null,
         'price_period' => null,
         'service_charges' => null,
         'status' => null,
+        'total_rent' => null,
         'transaction_type' => null
     ];
 
@@ -89,12 +103,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'commission_amount' => false,
+        'commission_note' => false,
+        'commission_payer' => false,
+        'commission_percent' => false,
         'currency' => false,
         'deposit' => false,
+        'heating_costs' => false,
         'price' => false,
+        'price_on_request' => false,
         'price_period' => false,
         'service_charges' => false,
         'status' => false,
+        'total_rent' => false,
         'transaction_type' => false
     ];
 
@@ -184,12 +205,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'commission_amount' => 'commission_amount',
+        'commission_note' => 'commission_note',
+        'commission_payer' => 'commission_payer',
+        'commission_percent' => 'commission_percent',
         'currency' => 'currency',
         'deposit' => 'deposit',
+        'heating_costs' => 'heating_costs',
         'price' => 'price',
+        'price_on_request' => 'price_on_request',
         'price_period' => 'price_period',
         'service_charges' => 'service_charges',
         'status' => 'status',
+        'total_rent' => 'total_rent',
         'transaction_type' => 'transaction_type'
     ];
 
@@ -199,12 +227,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'commission_amount' => 'setCommissionAmount',
+        'commission_note' => 'setCommissionNote',
+        'commission_payer' => 'setCommissionPayer',
+        'commission_percent' => 'setCommissionPercent',
         'currency' => 'setCurrency',
         'deposit' => 'setDeposit',
+        'heating_costs' => 'setHeatingCosts',
         'price' => 'setPrice',
+        'price_on_request' => 'setPriceOnRequest',
         'price_period' => 'setPricePeriod',
         'service_charges' => 'setServiceCharges',
         'status' => 'setStatus',
+        'total_rent' => 'setTotalRent',
         'transaction_type' => 'setTransactionType'
     ];
 
@@ -214,12 +249,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'commission_amount' => 'getCommissionAmount',
+        'commission_note' => 'getCommissionNote',
+        'commission_payer' => 'getCommissionPayer',
+        'commission_percent' => 'getCommissionPercent',
         'currency' => 'getCurrency',
         'deposit' => 'getDeposit',
+        'heating_costs' => 'getHeatingCosts',
         'price' => 'getPrice',
+        'price_on_request' => 'getPriceOnRequest',
         'price_period' => 'getPricePeriod',
         'service_charges' => 'getServiceCharges',
         'status' => 'getStatus',
+        'total_rent' => 'getTotalRent',
         'transaction_type' => 'getTransactionType'
     ];
 
@@ -280,12 +322,19 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('commission_amount', $data ?? [], null);
+        $this->setIfExists('commission_note', $data ?? [], null);
+        $this->setIfExists('commission_payer', $data ?? [], null);
+        $this->setIfExists('commission_percent', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('deposit', $data ?? [], null);
+        $this->setIfExists('heating_costs', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
+        $this->setIfExists('price_on_request', $data ?? [], null);
         $this->setIfExists('price_period', $data ?? [], null);
         $this->setIfExists('service_charges', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('total_rent', $data ?? [], null);
         $this->setIfExists('transaction_type', $data ?? [], null);
     }
 
@@ -330,6 +379,114 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets commission_amount
+     *
+     * @return float|null
+     */
+    public function getCommissionAmount()
+    {
+        return $this->container['commission_amount'];
+    }
+
+    /**
+     * Sets commission_amount
+     *
+     * @param float|null $commission_amount commission_amount
+     *
+     * @return self
+     */
+    public function setCommissionAmount($commission_amount)
+    {
+        if (is_null($commission_amount)) {
+            throw new \InvalidArgumentException('non-nullable commission_amount cannot be null');
+        }
+        $this->container['commission_amount'] = $commission_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets commission_note
+     *
+     * @return string|null
+     */
+    public function getCommissionNote()
+    {
+        return $this->container['commission_note'];
+    }
+
+    /**
+     * Sets commission_note
+     *
+     * @param string|null $commission_note commission_note
+     *
+     * @return self
+     */
+    public function setCommissionNote($commission_note)
+    {
+        if (is_null($commission_note)) {
+            throw new \InvalidArgumentException('non-nullable commission_note cannot be null');
+        }
+        $this->container['commission_note'] = $commission_note;
+
+        return $this;
+    }
+
+    /**
+     * Gets commission_payer
+     *
+     * @return string|null
+     */
+    public function getCommissionPayer()
+    {
+        return $this->container['commission_payer'];
+    }
+
+    /**
+     * Sets commission_payer
+     *
+     * @param string|null $commission_payer commission_payer
+     *
+     * @return self
+     */
+    public function setCommissionPayer($commission_payer)
+    {
+        if (is_null($commission_payer)) {
+            throw new \InvalidArgumentException('non-nullable commission_payer cannot be null');
+        }
+        $this->container['commission_payer'] = $commission_payer;
+
+        return $this;
+    }
+
+    /**
+     * Gets commission_percent
+     *
+     * @return float|null
+     */
+    public function getCommissionPercent()
+    {
+        return $this->container['commission_percent'];
+    }
+
+    /**
+     * Sets commission_percent
+     *
+     * @param float|null $commission_percent commission_percent
+     *
+     * @return self
+     */
+    public function setCommissionPercent($commission_percent)
+    {
+        if (is_null($commission_percent)) {
+            throw new \InvalidArgumentException('non-nullable commission_percent cannot be null');
+        }
+        $this->container['commission_percent'] = $commission_percent;
+
+        return $this;
+    }
 
     /**
      * Gets currency
@@ -386,6 +543,33 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets heating_costs
+     *
+     * @return float|null
+     */
+    public function getHeatingCosts()
+    {
+        return $this->container['heating_costs'];
+    }
+
+    /**
+     * Sets heating_costs
+     *
+     * @param float|null $heating_costs heating_costs
+     *
+     * @return self
+     */
+    public function setHeatingCosts($heating_costs)
+    {
+        if (is_null($heating_costs)) {
+            throw new \InvalidArgumentException('non-nullable heating_costs cannot be null');
+        }
+        $this->container['heating_costs'] = $heating_costs;
+
+        return $this;
+    }
+
+    /**
      * Gets price
      *
      * @return float|null
@@ -408,6 +592,33 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable price cannot be null');
         }
         $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_on_request
+     *
+     * @return bool|null
+     */
+    public function getPriceOnRequest()
+    {
+        return $this->container['price_on_request'];
+    }
+
+    /**
+     * Sets price_on_request
+     *
+     * @param bool|null $price_on_request price_on_request
+     *
+     * @return self
+     */
+    public function setPriceOnRequest($price_on_request)
+    {
+        if (is_null($price_on_request)) {
+            throw new \InvalidArgumentException('non-nullable price_on_request cannot be null');
+        }
+        $this->container['price_on_request'] = $price_on_request;
 
         return $this;
     }
@@ -489,6 +700,33 @@ class ListingInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_rent
+     *
+     * @return float|null
+     */
+    public function getTotalRent()
+    {
+        return $this->container['total_rent'];
+    }
+
+    /**
+     * Sets total_rent
+     *
+     * @param float|null $total_rent total_rent
+     *
+     * @return self
+     */
+    public function setTotalRent($total_rent)
+    {
+        if (is_null($total_rent)) {
+            throw new \InvalidArgumentException('non-nullable total_rent cannot be null');
+        }
+        $this->container['total_rent'] = $total_rent;
 
         return $this;
     }

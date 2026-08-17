@@ -57,6 +57,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $openAPITypes = [
+        'connector' => '\Skautik\Sdk\Model\ConnectorInput',
         'deletion_policy' => 'string',
         'delivery' => '\Skautik\Sdk\Model\DeliveryInput',
         'format' => 'string',
@@ -73,6 +74,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'connector' => null,
         'deletion_policy' => null,
         'delivery' => null,
         'format' => null,
@@ -87,6 +89,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'connector' => false,
         'deletion_policy' => false,
         'delivery' => false,
         'format' => false,
@@ -181,6 +184,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
+        'connector' => 'connector',
         'deletion_policy' => 'deletion_policy',
         'delivery' => 'delivery',
         'format' => 'format',
@@ -195,6 +199,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
+        'connector' => 'setConnector',
         'deletion_policy' => 'setDeletionPolicy',
         'delivery' => 'setDelivery',
         'format' => 'setFormat',
@@ -209,6 +214,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
+        'connector' => 'getConnector',
         'deletion_policy' => 'getDeletionPolicy',
         'delivery' => 'getDelivery',
         'format' => 'getFormat',
@@ -274,6 +280,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('connector', $data ?? [], null);
         $this->setIfExists('deletion_policy', $data ?? [], null);
         $this->setIfExists('delivery', $data ?? [], null);
         $this->setIfExists('format', $data ?? [], null);
@@ -309,23 +316,14 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['deletion_policy'] === null) {
-            $invalidProperties[] = "'deletion_policy' can't be null";
-        }
         if ($this->container['delivery'] === null) {
             $invalidProperties[] = "'delivery' can't be null";
         }
         if ($this->container['format'] === null) {
             $invalidProperties[] = "'format' can't be null";
         }
-        if ($this->container['mapping'] === null) {
-            $invalidProperties[] = "'mapping' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['schedule'] === null) {
-            $invalidProperties[] = "'schedule' can't be null";
         }
         return $invalidProperties;
     }
@@ -343,9 +341,36 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
+     * Gets connector
+     *
+     * @return \Skautik\Sdk\Model\ConnectorInput|null
+     */
+    public function getConnector()
+    {
+        return $this->container['connector'];
+    }
+
+    /**
+     * Sets connector
+     *
+     * @param \Skautik\Sdk\Model\ConnectorInput|null $connector connector
+     *
+     * @return self
+     */
+    public function setConnector($connector)
+    {
+        if (is_null($connector)) {
+            throw new \InvalidArgumentException('non-nullable connector cannot be null');
+        }
+        $this->container['connector'] = $connector;
+
+        return $this;
+    }
+
+    /**
      * Gets deletion_policy
      *
-     * @return string
+     * @return string|null
      */
     public function getDeletionPolicy()
     {
@@ -355,7 +380,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets deletion_policy
      *
-     * @param string $deletion_policy deletion_policy
+     * @param string|null $deletion_policy deletion_policy
      *
      * @return self
      */
@@ -426,7 +451,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets mapping
      *
-     * @return array<string,string>
+     * @return array<string,string>|null
      */
     public function getMapping()
     {
@@ -436,7 +461,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets mapping
      *
-     * @param array<string,string> $mapping mapping
+     * @param array<string,string>|null $mapping mapping
      *
      * @return self
      */
@@ -480,7 +505,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets schedule
      *
-     * @return string
+     * @return string|null
      */
     public function getSchedule()
     {
@@ -490,7 +515,7 @@ class ImportSourceInput implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets schedule
      *
-     * @param string $schedule schedule
+     * @param string|null $schedule schedule
      *
      * @return self
      */

@@ -64,28 +64,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => 'string',
         'address_province' => 'string',
         'address_street' => 'string',
+        'attic_sqm' => 'float',
+        'balcony_count' => 'int',
+        'balcony_terrace_sqm' => 'float',
         'bathrooms' => 'int',
         'bedrooms' => 'int',
+        'building_amenities' => 'string[]',
+        'cellar_sqm' => 'float',
         'condition' => 'string',
+        'construction_phase' => 'string',
         'construction_type' => 'string',
         'description' => 'string',
+        'description_fittings' => 'string',
+        'description_location' => 'string',
+        'description_other' => 'string',
+        'energy_certificate_issued_at' => 'string',
+        'energy_certificate_type' => 'string',
+        'energy_certificate_valid_until' => 'string',
+        'energy_co2_emissions' => 'float',
         'energy_consumption_kwh' => 'float',
+        'energy_demand_kwh' => 'float',
+        'energy_includes_hot_water' => 'bool',
         'energy_label' => 'string',
+        'energy_primary_carrier' => 'string',
+        'exterior_features' => 'string[]',
         'external_id' => 'string',
         'floor' => 'int',
+        'flooring' => 'string',
         'floors_in_building' => 'int',
+        'garden_sqm' => 'float',
         'half_bathrooms' => 'int',
+        'has_air_conditioning' => 'bool',
+        'has_alarm_system' => 'bool',
+        'has_balcony' => 'bool',
+        'has_cellar' => 'bool',
+        'has_fireplace' => 'bool',
+        'has_fitted_kitchen' => 'bool',
+        'has_garden' => 'bool',
+        'has_guest_toilet' => 'bool',
+        'has_lift' => 'bool',
+        'has_pool' => 'bool',
+        'has_sauna' => 'bool',
+        'has_solar_panels' => 'bool',
+        'has_terrace' => 'bool',
         'heating_type' => 'string',
+        'images' => '\Skautik\Sdk\Model\ImageInput[]',
+        'interior_features' => 'string[]',
+        'is_barrier_free' => 'bool',
+        'is_furnished' => 'bool',
+        'is_leasehold' => 'bool',
+        'is_monument_protected' => 'bool',
+        'kitchen_type' => 'string',
         'latitude' => 'float',
         'listing' => '\Skautik\Sdk\Model\ListingInput',
         'living_area_sqm' => 'float',
         'location_precision' => 'string',
         'longitude' => 'float',
+        'office_area_sqm' => 'float',
+        'other_area_sqm' => 'float',
+        'parking_included' => 'bool',
+        'parking_space_count' => 'int',
+        'parking_type' => 'string',
         'plot_area_sqm' => 'float',
+        'property_subtype' => 'string',
+        'publish_address' => 'bool',
+        'retail_area_sqm' => 'float',
+        'storage_area_sqm' => 'float',
+        'surroundings' => 'string[]',
+        'terrace_count' => 'int',
         'title' => 'string',
+        'total_area_sqm' => 'float',
         'total_rooms' => 'int',
+        'translations' => '\Skautik\Sdk\Model\Translation[]',
         'type' => 'string',
         'usable_area_sqm' => 'float',
+        'window_glazing' => 'string',
         'year_built' => 'int',
         'year_renovated' => 'int'
     ];
@@ -105,28 +158,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => null,
         'address_province' => null,
         'address_street' => null,
+        'attic_sqm' => null,
+        'balcony_count' => null,
+        'balcony_terrace_sqm' => null,
         'bathrooms' => null,
         'bedrooms' => null,
+        'building_amenities' => null,
+        'cellar_sqm' => null,
         'condition' => null,
+        'construction_phase' => null,
         'construction_type' => null,
         'description' => null,
+        'description_fittings' => null,
+        'description_location' => null,
+        'description_other' => null,
+        'energy_certificate_issued_at' => null,
+        'energy_certificate_type' => null,
+        'energy_certificate_valid_until' => null,
+        'energy_co2_emissions' => null,
         'energy_consumption_kwh' => null,
+        'energy_demand_kwh' => null,
+        'energy_includes_hot_water' => null,
         'energy_label' => null,
+        'energy_primary_carrier' => null,
+        'exterior_features' => null,
         'external_id' => null,
         'floor' => null,
+        'flooring' => null,
         'floors_in_building' => null,
+        'garden_sqm' => null,
         'half_bathrooms' => null,
+        'has_air_conditioning' => null,
+        'has_alarm_system' => null,
+        'has_balcony' => null,
+        'has_cellar' => null,
+        'has_fireplace' => null,
+        'has_fitted_kitchen' => null,
+        'has_garden' => null,
+        'has_guest_toilet' => null,
+        'has_lift' => null,
+        'has_pool' => null,
+        'has_sauna' => null,
+        'has_solar_panels' => null,
+        'has_terrace' => null,
         'heating_type' => null,
+        'images' => null,
+        'interior_features' => null,
+        'is_barrier_free' => null,
+        'is_furnished' => null,
+        'is_leasehold' => null,
+        'is_monument_protected' => null,
+        'kitchen_type' => null,
         'latitude' => null,
         'listing' => null,
         'living_area_sqm' => null,
         'location_precision' => null,
         'longitude' => null,
+        'office_area_sqm' => null,
+        'other_area_sqm' => null,
+        'parking_included' => null,
+        'parking_space_count' => null,
+        'parking_type' => null,
         'plot_area_sqm' => null,
+        'property_subtype' => null,
+        'publish_address' => null,
+        'retail_area_sqm' => null,
+        'storage_area_sqm' => null,
+        'surroundings' => null,
+        'terrace_count' => null,
         'title' => null,
+        'total_area_sqm' => null,
         'total_rooms' => null,
+        'translations' => null,
         'type' => null,
         'usable_area_sqm' => null,
+        'window_glazing' => null,
         'year_built' => null,
         'year_renovated' => null
     ];
@@ -144,28 +250,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => false,
         'address_province' => false,
         'address_street' => false,
+        'attic_sqm' => false,
+        'balcony_count' => false,
+        'balcony_terrace_sqm' => false,
         'bathrooms' => false,
         'bedrooms' => false,
+        'building_amenities' => false,
+        'cellar_sqm' => false,
         'condition' => false,
+        'construction_phase' => false,
         'construction_type' => false,
         'description' => false,
+        'description_fittings' => false,
+        'description_location' => false,
+        'description_other' => false,
+        'energy_certificate_issued_at' => false,
+        'energy_certificate_type' => false,
+        'energy_certificate_valid_until' => false,
+        'energy_co2_emissions' => false,
         'energy_consumption_kwh' => false,
+        'energy_demand_kwh' => false,
+        'energy_includes_hot_water' => false,
         'energy_label' => false,
+        'energy_primary_carrier' => false,
+        'exterior_features' => false,
         'external_id' => false,
         'floor' => false,
+        'flooring' => false,
         'floors_in_building' => false,
+        'garden_sqm' => false,
         'half_bathrooms' => false,
+        'has_air_conditioning' => false,
+        'has_alarm_system' => false,
+        'has_balcony' => false,
+        'has_cellar' => false,
+        'has_fireplace' => false,
+        'has_fitted_kitchen' => false,
+        'has_garden' => false,
+        'has_guest_toilet' => false,
+        'has_lift' => false,
+        'has_pool' => false,
+        'has_sauna' => false,
+        'has_solar_panels' => false,
+        'has_terrace' => false,
         'heating_type' => false,
+        'images' => false,
+        'interior_features' => false,
+        'is_barrier_free' => false,
+        'is_furnished' => false,
+        'is_leasehold' => false,
+        'is_monument_protected' => false,
+        'kitchen_type' => false,
         'latitude' => false,
         'listing' => false,
         'living_area_sqm' => false,
         'location_precision' => false,
         'longitude' => false,
+        'office_area_sqm' => false,
+        'other_area_sqm' => false,
+        'parking_included' => false,
+        'parking_space_count' => false,
+        'parking_type' => false,
         'plot_area_sqm' => false,
+        'property_subtype' => false,
+        'publish_address' => false,
+        'retail_area_sqm' => false,
+        'storage_area_sqm' => false,
+        'surroundings' => false,
+        'terrace_count' => false,
         'title' => false,
+        'total_area_sqm' => false,
         'total_rooms' => false,
+        'translations' => false,
         'type' => false,
         'usable_area_sqm' => false,
+        'window_glazing' => false,
         'year_built' => false,
         'year_renovated' => false
     ];
@@ -263,28 +422,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => 'address_postal_code',
         'address_province' => 'address_province',
         'address_street' => 'address_street',
+        'attic_sqm' => 'attic_sqm',
+        'balcony_count' => 'balcony_count',
+        'balcony_terrace_sqm' => 'balcony_terrace_sqm',
         'bathrooms' => 'bathrooms',
         'bedrooms' => 'bedrooms',
+        'building_amenities' => 'building_amenities',
+        'cellar_sqm' => 'cellar_sqm',
         'condition' => 'condition',
+        'construction_phase' => 'construction_phase',
         'construction_type' => 'construction_type',
         'description' => 'description',
+        'description_fittings' => 'description_fittings',
+        'description_location' => 'description_location',
+        'description_other' => 'description_other',
+        'energy_certificate_issued_at' => 'energy_certificate_issued_at',
+        'energy_certificate_type' => 'energy_certificate_type',
+        'energy_certificate_valid_until' => 'energy_certificate_valid_until',
+        'energy_co2_emissions' => 'energy_co2_emissions',
         'energy_consumption_kwh' => 'energy_consumption_kwh',
+        'energy_demand_kwh' => 'energy_demand_kwh',
+        'energy_includes_hot_water' => 'energy_includes_hot_water',
         'energy_label' => 'energy_label',
+        'energy_primary_carrier' => 'energy_primary_carrier',
+        'exterior_features' => 'exterior_features',
         'external_id' => 'external_id',
         'floor' => 'floor',
+        'flooring' => 'flooring',
         'floors_in_building' => 'floors_in_building',
+        'garden_sqm' => 'garden_sqm',
         'half_bathrooms' => 'half_bathrooms',
+        'has_air_conditioning' => 'has_air_conditioning',
+        'has_alarm_system' => 'has_alarm_system',
+        'has_balcony' => 'has_balcony',
+        'has_cellar' => 'has_cellar',
+        'has_fireplace' => 'has_fireplace',
+        'has_fitted_kitchen' => 'has_fitted_kitchen',
+        'has_garden' => 'has_garden',
+        'has_guest_toilet' => 'has_guest_toilet',
+        'has_lift' => 'has_lift',
+        'has_pool' => 'has_pool',
+        'has_sauna' => 'has_sauna',
+        'has_solar_panels' => 'has_solar_panels',
+        'has_terrace' => 'has_terrace',
         'heating_type' => 'heating_type',
+        'images' => 'images',
+        'interior_features' => 'interior_features',
+        'is_barrier_free' => 'is_barrier_free',
+        'is_furnished' => 'is_furnished',
+        'is_leasehold' => 'is_leasehold',
+        'is_monument_protected' => 'is_monument_protected',
+        'kitchen_type' => 'kitchen_type',
         'latitude' => 'latitude',
         'listing' => 'listing',
         'living_area_sqm' => 'living_area_sqm',
         'location_precision' => 'location_precision',
         'longitude' => 'longitude',
+        'office_area_sqm' => 'office_area_sqm',
+        'other_area_sqm' => 'other_area_sqm',
+        'parking_included' => 'parking_included',
+        'parking_space_count' => 'parking_space_count',
+        'parking_type' => 'parking_type',
         'plot_area_sqm' => 'plot_area_sqm',
+        'property_subtype' => 'property_subtype',
+        'publish_address' => 'publish_address',
+        'retail_area_sqm' => 'retail_area_sqm',
+        'storage_area_sqm' => 'storage_area_sqm',
+        'surroundings' => 'surroundings',
+        'terrace_count' => 'terrace_count',
         'title' => 'title',
+        'total_area_sqm' => 'total_area_sqm',
         'total_rooms' => 'total_rooms',
+        'translations' => 'translations',
         'type' => 'type',
         'usable_area_sqm' => 'usable_area_sqm',
+        'window_glazing' => 'window_glazing',
         'year_built' => 'year_built',
         'year_renovated' => 'year_renovated'
     ];
@@ -302,28 +514,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => 'setAddressPostalCode',
         'address_province' => 'setAddressProvince',
         'address_street' => 'setAddressStreet',
+        'attic_sqm' => 'setAtticSqm',
+        'balcony_count' => 'setBalconyCount',
+        'balcony_terrace_sqm' => 'setBalconyTerraceSqm',
         'bathrooms' => 'setBathrooms',
         'bedrooms' => 'setBedrooms',
+        'building_amenities' => 'setBuildingAmenities',
+        'cellar_sqm' => 'setCellarSqm',
         'condition' => 'setCondition',
+        'construction_phase' => 'setConstructionPhase',
         'construction_type' => 'setConstructionType',
         'description' => 'setDescription',
+        'description_fittings' => 'setDescriptionFittings',
+        'description_location' => 'setDescriptionLocation',
+        'description_other' => 'setDescriptionOther',
+        'energy_certificate_issued_at' => 'setEnergyCertificateIssuedAt',
+        'energy_certificate_type' => 'setEnergyCertificateType',
+        'energy_certificate_valid_until' => 'setEnergyCertificateValidUntil',
+        'energy_co2_emissions' => 'setEnergyCo2Emissions',
         'energy_consumption_kwh' => 'setEnergyConsumptionKwh',
+        'energy_demand_kwh' => 'setEnergyDemandKwh',
+        'energy_includes_hot_water' => 'setEnergyIncludesHotWater',
         'energy_label' => 'setEnergyLabel',
+        'energy_primary_carrier' => 'setEnergyPrimaryCarrier',
+        'exterior_features' => 'setExteriorFeatures',
         'external_id' => 'setExternalId',
         'floor' => 'setFloor',
+        'flooring' => 'setFlooring',
         'floors_in_building' => 'setFloorsInBuilding',
+        'garden_sqm' => 'setGardenSqm',
         'half_bathrooms' => 'setHalfBathrooms',
+        'has_air_conditioning' => 'setHasAirConditioning',
+        'has_alarm_system' => 'setHasAlarmSystem',
+        'has_balcony' => 'setHasBalcony',
+        'has_cellar' => 'setHasCellar',
+        'has_fireplace' => 'setHasFireplace',
+        'has_fitted_kitchen' => 'setHasFittedKitchen',
+        'has_garden' => 'setHasGarden',
+        'has_guest_toilet' => 'setHasGuestToilet',
+        'has_lift' => 'setHasLift',
+        'has_pool' => 'setHasPool',
+        'has_sauna' => 'setHasSauna',
+        'has_solar_panels' => 'setHasSolarPanels',
+        'has_terrace' => 'setHasTerrace',
         'heating_type' => 'setHeatingType',
+        'images' => 'setImages',
+        'interior_features' => 'setInteriorFeatures',
+        'is_barrier_free' => 'setIsBarrierFree',
+        'is_furnished' => 'setIsFurnished',
+        'is_leasehold' => 'setIsLeasehold',
+        'is_monument_protected' => 'setIsMonumentProtected',
+        'kitchen_type' => 'setKitchenType',
         'latitude' => 'setLatitude',
         'listing' => 'setListing',
         'living_area_sqm' => 'setLivingAreaSqm',
         'location_precision' => 'setLocationPrecision',
         'longitude' => 'setLongitude',
+        'office_area_sqm' => 'setOfficeAreaSqm',
+        'other_area_sqm' => 'setOtherAreaSqm',
+        'parking_included' => 'setParkingIncluded',
+        'parking_space_count' => 'setParkingSpaceCount',
+        'parking_type' => 'setParkingType',
         'plot_area_sqm' => 'setPlotAreaSqm',
+        'property_subtype' => 'setPropertySubtype',
+        'publish_address' => 'setPublishAddress',
+        'retail_area_sqm' => 'setRetailAreaSqm',
+        'storage_area_sqm' => 'setStorageAreaSqm',
+        'surroundings' => 'setSurroundings',
+        'terrace_count' => 'setTerraceCount',
         'title' => 'setTitle',
+        'total_area_sqm' => 'setTotalAreaSqm',
         'total_rooms' => 'setTotalRooms',
+        'translations' => 'setTranslations',
         'type' => 'setType',
         'usable_area_sqm' => 'setUsableAreaSqm',
+        'window_glazing' => 'setWindowGlazing',
         'year_built' => 'setYearBuilt',
         'year_renovated' => 'setYearRenovated'
     ];
@@ -341,28 +606,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         'address_postal_code' => 'getAddressPostalCode',
         'address_province' => 'getAddressProvince',
         'address_street' => 'getAddressStreet',
+        'attic_sqm' => 'getAtticSqm',
+        'balcony_count' => 'getBalconyCount',
+        'balcony_terrace_sqm' => 'getBalconyTerraceSqm',
         'bathrooms' => 'getBathrooms',
         'bedrooms' => 'getBedrooms',
+        'building_amenities' => 'getBuildingAmenities',
+        'cellar_sqm' => 'getCellarSqm',
         'condition' => 'getCondition',
+        'construction_phase' => 'getConstructionPhase',
         'construction_type' => 'getConstructionType',
         'description' => 'getDescription',
+        'description_fittings' => 'getDescriptionFittings',
+        'description_location' => 'getDescriptionLocation',
+        'description_other' => 'getDescriptionOther',
+        'energy_certificate_issued_at' => 'getEnergyCertificateIssuedAt',
+        'energy_certificate_type' => 'getEnergyCertificateType',
+        'energy_certificate_valid_until' => 'getEnergyCertificateValidUntil',
+        'energy_co2_emissions' => 'getEnergyCo2Emissions',
         'energy_consumption_kwh' => 'getEnergyConsumptionKwh',
+        'energy_demand_kwh' => 'getEnergyDemandKwh',
+        'energy_includes_hot_water' => 'getEnergyIncludesHotWater',
         'energy_label' => 'getEnergyLabel',
+        'energy_primary_carrier' => 'getEnergyPrimaryCarrier',
+        'exterior_features' => 'getExteriorFeatures',
         'external_id' => 'getExternalId',
         'floor' => 'getFloor',
+        'flooring' => 'getFlooring',
         'floors_in_building' => 'getFloorsInBuilding',
+        'garden_sqm' => 'getGardenSqm',
         'half_bathrooms' => 'getHalfBathrooms',
+        'has_air_conditioning' => 'getHasAirConditioning',
+        'has_alarm_system' => 'getHasAlarmSystem',
+        'has_balcony' => 'getHasBalcony',
+        'has_cellar' => 'getHasCellar',
+        'has_fireplace' => 'getHasFireplace',
+        'has_fitted_kitchen' => 'getHasFittedKitchen',
+        'has_garden' => 'getHasGarden',
+        'has_guest_toilet' => 'getHasGuestToilet',
+        'has_lift' => 'getHasLift',
+        'has_pool' => 'getHasPool',
+        'has_sauna' => 'getHasSauna',
+        'has_solar_panels' => 'getHasSolarPanels',
+        'has_terrace' => 'getHasTerrace',
         'heating_type' => 'getHeatingType',
+        'images' => 'getImages',
+        'interior_features' => 'getInteriorFeatures',
+        'is_barrier_free' => 'getIsBarrierFree',
+        'is_furnished' => 'getIsFurnished',
+        'is_leasehold' => 'getIsLeasehold',
+        'is_monument_protected' => 'getIsMonumentProtected',
+        'kitchen_type' => 'getKitchenType',
         'latitude' => 'getLatitude',
         'listing' => 'getListing',
         'living_area_sqm' => 'getLivingAreaSqm',
         'location_precision' => 'getLocationPrecision',
         'longitude' => 'getLongitude',
+        'office_area_sqm' => 'getOfficeAreaSqm',
+        'other_area_sqm' => 'getOtherAreaSqm',
+        'parking_included' => 'getParkingIncluded',
+        'parking_space_count' => 'getParkingSpaceCount',
+        'parking_type' => 'getParkingType',
         'plot_area_sqm' => 'getPlotAreaSqm',
+        'property_subtype' => 'getPropertySubtype',
+        'publish_address' => 'getPublishAddress',
+        'retail_area_sqm' => 'getRetailAreaSqm',
+        'storage_area_sqm' => 'getStorageAreaSqm',
+        'surroundings' => 'getSurroundings',
+        'terrace_count' => 'getTerraceCount',
         'title' => 'getTitle',
+        'total_area_sqm' => 'getTotalAreaSqm',
         'total_rooms' => 'getTotalRooms',
+        'translations' => 'getTranslations',
         'type' => 'getType',
         'usable_area_sqm' => 'getUsableAreaSqm',
+        'window_glazing' => 'getWindowGlazing',
         'year_built' => 'getYearBuilt',
         'year_renovated' => 'getYearRenovated'
     ];
@@ -431,28 +749,81 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('address_postal_code', $data ?? [], null);
         $this->setIfExists('address_province', $data ?? [], null);
         $this->setIfExists('address_street', $data ?? [], null);
+        $this->setIfExists('attic_sqm', $data ?? [], null);
+        $this->setIfExists('balcony_count', $data ?? [], null);
+        $this->setIfExists('balcony_terrace_sqm', $data ?? [], null);
         $this->setIfExists('bathrooms', $data ?? [], null);
         $this->setIfExists('bedrooms', $data ?? [], null);
+        $this->setIfExists('building_amenities', $data ?? [], null);
+        $this->setIfExists('cellar_sqm', $data ?? [], null);
         $this->setIfExists('condition', $data ?? [], null);
+        $this->setIfExists('construction_phase', $data ?? [], null);
         $this->setIfExists('construction_type', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('description_fittings', $data ?? [], null);
+        $this->setIfExists('description_location', $data ?? [], null);
+        $this->setIfExists('description_other', $data ?? [], null);
+        $this->setIfExists('energy_certificate_issued_at', $data ?? [], null);
+        $this->setIfExists('energy_certificate_type', $data ?? [], null);
+        $this->setIfExists('energy_certificate_valid_until', $data ?? [], null);
+        $this->setIfExists('energy_co2_emissions', $data ?? [], null);
         $this->setIfExists('energy_consumption_kwh', $data ?? [], null);
+        $this->setIfExists('energy_demand_kwh', $data ?? [], null);
+        $this->setIfExists('energy_includes_hot_water', $data ?? [], null);
         $this->setIfExists('energy_label', $data ?? [], null);
+        $this->setIfExists('energy_primary_carrier', $data ?? [], null);
+        $this->setIfExists('exterior_features', $data ?? [], null);
         $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('floor', $data ?? [], null);
+        $this->setIfExists('flooring', $data ?? [], null);
         $this->setIfExists('floors_in_building', $data ?? [], null);
+        $this->setIfExists('garden_sqm', $data ?? [], null);
         $this->setIfExists('half_bathrooms', $data ?? [], null);
+        $this->setIfExists('has_air_conditioning', $data ?? [], null);
+        $this->setIfExists('has_alarm_system', $data ?? [], null);
+        $this->setIfExists('has_balcony', $data ?? [], null);
+        $this->setIfExists('has_cellar', $data ?? [], null);
+        $this->setIfExists('has_fireplace', $data ?? [], null);
+        $this->setIfExists('has_fitted_kitchen', $data ?? [], null);
+        $this->setIfExists('has_garden', $data ?? [], null);
+        $this->setIfExists('has_guest_toilet', $data ?? [], null);
+        $this->setIfExists('has_lift', $data ?? [], null);
+        $this->setIfExists('has_pool', $data ?? [], null);
+        $this->setIfExists('has_sauna', $data ?? [], null);
+        $this->setIfExists('has_solar_panels', $data ?? [], null);
+        $this->setIfExists('has_terrace', $data ?? [], null);
         $this->setIfExists('heating_type', $data ?? [], null);
+        $this->setIfExists('images', $data ?? [], null);
+        $this->setIfExists('interior_features', $data ?? [], null);
+        $this->setIfExists('is_barrier_free', $data ?? [], null);
+        $this->setIfExists('is_furnished', $data ?? [], null);
+        $this->setIfExists('is_leasehold', $data ?? [], null);
+        $this->setIfExists('is_monument_protected', $data ?? [], null);
+        $this->setIfExists('kitchen_type', $data ?? [], null);
         $this->setIfExists('latitude', $data ?? [], null);
         $this->setIfExists('listing', $data ?? [], null);
         $this->setIfExists('living_area_sqm', $data ?? [], null);
         $this->setIfExists('location_precision', $data ?? [], null);
         $this->setIfExists('longitude', $data ?? [], null);
+        $this->setIfExists('office_area_sqm', $data ?? [], null);
+        $this->setIfExists('other_area_sqm', $data ?? [], null);
+        $this->setIfExists('parking_included', $data ?? [], null);
+        $this->setIfExists('parking_space_count', $data ?? [], null);
+        $this->setIfExists('parking_type', $data ?? [], null);
         $this->setIfExists('plot_area_sqm', $data ?? [], null);
+        $this->setIfExists('property_subtype', $data ?? [], null);
+        $this->setIfExists('publish_address', $data ?? [], null);
+        $this->setIfExists('retail_area_sqm', $data ?? [], null);
+        $this->setIfExists('storage_area_sqm', $data ?? [], null);
+        $this->setIfExists('surroundings', $data ?? [], null);
+        $this->setIfExists('terrace_count', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('total_area_sqm', $data ?? [], null);
         $this->setIfExists('total_rooms', $data ?? [], null);
+        $this->setIfExists('translations', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('usable_area_sqm', $data ?? [], null);
+        $this->setIfExists('window_glazing', $data ?? [], null);
         $this->setIfExists('year_built', $data ?? [], null);
         $this->setIfExists('year_renovated', $data ?? [], null);
     }
@@ -689,6 +1060,87 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets attic_sqm
+     *
+     * @return float|null
+     */
+    public function getAtticSqm()
+    {
+        return $this->container['attic_sqm'];
+    }
+
+    /**
+     * Sets attic_sqm
+     *
+     * @param float|null $attic_sqm attic_sqm
+     *
+     * @return self
+     */
+    public function setAtticSqm($attic_sqm)
+    {
+        if (is_null($attic_sqm)) {
+            throw new \InvalidArgumentException('non-nullable attic_sqm cannot be null');
+        }
+        $this->container['attic_sqm'] = $attic_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets balcony_count
+     *
+     * @return int|null
+     */
+    public function getBalconyCount()
+    {
+        return $this->container['balcony_count'];
+    }
+
+    /**
+     * Sets balcony_count
+     *
+     * @param int|null $balcony_count balcony_count
+     *
+     * @return self
+     */
+    public function setBalconyCount($balcony_count)
+    {
+        if (is_null($balcony_count)) {
+            throw new \InvalidArgumentException('non-nullable balcony_count cannot be null');
+        }
+        $this->container['balcony_count'] = $balcony_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets balcony_terrace_sqm
+     *
+     * @return float|null
+     */
+    public function getBalconyTerraceSqm()
+    {
+        return $this->container['balcony_terrace_sqm'];
+    }
+
+    /**
+     * Sets balcony_terrace_sqm
+     *
+     * @param float|null $balcony_terrace_sqm balcony_terrace_sqm
+     *
+     * @return self
+     */
+    public function setBalconyTerraceSqm($balcony_terrace_sqm)
+    {
+        if (is_null($balcony_terrace_sqm)) {
+            throw new \InvalidArgumentException('non-nullable balcony_terrace_sqm cannot be null');
+        }
+        $this->container['balcony_terrace_sqm'] = $balcony_terrace_sqm;
+
+        return $this;
+    }
+
+    /**
      * Gets bathrooms
      *
      * @return int|null
@@ -743,6 +1195,60 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets building_amenities
+     *
+     * @return string[]|null
+     */
+    public function getBuildingAmenities()
+    {
+        return $this->container['building_amenities'];
+    }
+
+    /**
+     * Sets building_amenities
+     *
+     * @param string[]|null $building_amenities building_amenities
+     *
+     * @return self
+     */
+    public function setBuildingAmenities($building_amenities)
+    {
+        if (is_null($building_amenities)) {
+            throw new \InvalidArgumentException('non-nullable building_amenities cannot be null');
+        }
+        $this->container['building_amenities'] = $building_amenities;
+
+        return $this;
+    }
+
+    /**
+     * Gets cellar_sqm
+     *
+     * @return float|null
+     */
+    public function getCellarSqm()
+    {
+        return $this->container['cellar_sqm'];
+    }
+
+    /**
+     * Sets cellar_sqm
+     *
+     * @param float|null $cellar_sqm cellar_sqm
+     *
+     * @return self
+     */
+    public function setCellarSqm($cellar_sqm)
+    {
+        if (is_null($cellar_sqm)) {
+            throw new \InvalidArgumentException('non-nullable cellar_sqm cannot be null');
+        }
+        $this->container['cellar_sqm'] = $cellar_sqm;
+
+        return $this;
+    }
+
+    /**
      * Gets condition
      *
      * @return string|null
@@ -765,6 +1271,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable condition cannot be null');
         }
         $this->container['condition'] = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Gets construction_phase
+     *
+     * @return string|null
+     */
+    public function getConstructionPhase()
+    {
+        return $this->container['construction_phase'];
+    }
+
+    /**
+     * Sets construction_phase
+     *
+     * @param string|null $construction_phase construction_phase
+     *
+     * @return self
+     */
+    public function setConstructionPhase($construction_phase)
+    {
+        if (is_null($construction_phase)) {
+            throw new \InvalidArgumentException('non-nullable construction_phase cannot be null');
+        }
+        $this->container['construction_phase'] = $construction_phase;
 
         return $this;
     }
@@ -824,6 +1357,195 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets description_fittings
+     *
+     * @return string|null
+     */
+    public function getDescriptionFittings()
+    {
+        return $this->container['description_fittings'];
+    }
+
+    /**
+     * Sets description_fittings
+     *
+     * @param string|null $description_fittings description_fittings
+     *
+     * @return self
+     */
+    public function setDescriptionFittings($description_fittings)
+    {
+        if (is_null($description_fittings)) {
+            throw new \InvalidArgumentException('non-nullable description_fittings cannot be null');
+        }
+        $this->container['description_fittings'] = $description_fittings;
+
+        return $this;
+    }
+
+    /**
+     * Gets description_location
+     *
+     * @return string|null
+     */
+    public function getDescriptionLocation()
+    {
+        return $this->container['description_location'];
+    }
+
+    /**
+     * Sets description_location
+     *
+     * @param string|null $description_location description_location
+     *
+     * @return self
+     */
+    public function setDescriptionLocation($description_location)
+    {
+        if (is_null($description_location)) {
+            throw new \InvalidArgumentException('non-nullable description_location cannot be null');
+        }
+        $this->container['description_location'] = $description_location;
+
+        return $this;
+    }
+
+    /**
+     * Gets description_other
+     *
+     * @return string|null
+     */
+    public function getDescriptionOther()
+    {
+        return $this->container['description_other'];
+    }
+
+    /**
+     * Sets description_other
+     *
+     * @param string|null $description_other description_other
+     *
+     * @return self
+     */
+    public function setDescriptionOther($description_other)
+    {
+        if (is_null($description_other)) {
+            throw new \InvalidArgumentException('non-nullable description_other cannot be null');
+        }
+        $this->container['description_other'] = $description_other;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_certificate_issued_at
+     *
+     * @return string|null
+     */
+    public function getEnergyCertificateIssuedAt()
+    {
+        return $this->container['energy_certificate_issued_at'];
+    }
+
+    /**
+     * Sets energy_certificate_issued_at
+     *
+     * @param string|null $energy_certificate_issued_at energy_certificate_issued_at
+     *
+     * @return self
+     */
+    public function setEnergyCertificateIssuedAt($energy_certificate_issued_at)
+    {
+        if (is_null($energy_certificate_issued_at)) {
+            throw new \InvalidArgumentException('non-nullable energy_certificate_issued_at cannot be null');
+        }
+        $this->container['energy_certificate_issued_at'] = $energy_certificate_issued_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_certificate_type
+     *
+     * @return string|null
+     */
+    public function getEnergyCertificateType()
+    {
+        return $this->container['energy_certificate_type'];
+    }
+
+    /**
+     * Sets energy_certificate_type
+     *
+     * @param string|null $energy_certificate_type energy_certificate_type
+     *
+     * @return self
+     */
+    public function setEnergyCertificateType($energy_certificate_type)
+    {
+        if (is_null($energy_certificate_type)) {
+            throw new \InvalidArgumentException('non-nullable energy_certificate_type cannot be null');
+        }
+        $this->container['energy_certificate_type'] = $energy_certificate_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_certificate_valid_until
+     *
+     * @return string|null
+     */
+    public function getEnergyCertificateValidUntil()
+    {
+        return $this->container['energy_certificate_valid_until'];
+    }
+
+    /**
+     * Sets energy_certificate_valid_until
+     *
+     * @param string|null $energy_certificate_valid_until energy_certificate_valid_until
+     *
+     * @return self
+     */
+    public function setEnergyCertificateValidUntil($energy_certificate_valid_until)
+    {
+        if (is_null($energy_certificate_valid_until)) {
+            throw new \InvalidArgumentException('non-nullable energy_certificate_valid_until cannot be null');
+        }
+        $this->container['energy_certificate_valid_until'] = $energy_certificate_valid_until;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_co2_emissions
+     *
+     * @return float|null
+     */
+    public function getEnergyCo2Emissions()
+    {
+        return $this->container['energy_co2_emissions'];
+    }
+
+    /**
+     * Sets energy_co2_emissions
+     *
+     * @param float|null $energy_co2_emissions energy_co2_emissions
+     *
+     * @return self
+     */
+    public function setEnergyCo2Emissions($energy_co2_emissions)
+    {
+        if (is_null($energy_co2_emissions)) {
+            throw new \InvalidArgumentException('non-nullable energy_co2_emissions cannot be null');
+        }
+        $this->container['energy_co2_emissions'] = $energy_co2_emissions;
+
+        return $this;
+    }
+
+    /**
      * Gets energy_consumption_kwh
      *
      * @return float|null
@@ -851,6 +1573,60 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets energy_demand_kwh
+     *
+     * @return float|null
+     */
+    public function getEnergyDemandKwh()
+    {
+        return $this->container['energy_demand_kwh'];
+    }
+
+    /**
+     * Sets energy_demand_kwh
+     *
+     * @param float|null $energy_demand_kwh energy_demand_kwh
+     *
+     * @return self
+     */
+    public function setEnergyDemandKwh($energy_demand_kwh)
+    {
+        if (is_null($energy_demand_kwh)) {
+            throw new \InvalidArgumentException('non-nullable energy_demand_kwh cannot be null');
+        }
+        $this->container['energy_demand_kwh'] = $energy_demand_kwh;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_includes_hot_water
+     *
+     * @return bool|null
+     */
+    public function getEnergyIncludesHotWater()
+    {
+        return $this->container['energy_includes_hot_water'];
+    }
+
+    /**
+     * Sets energy_includes_hot_water
+     *
+     * @param bool|null $energy_includes_hot_water energy_includes_hot_water
+     *
+     * @return self
+     */
+    public function setEnergyIncludesHotWater($energy_includes_hot_water)
+    {
+        if (is_null($energy_includes_hot_water)) {
+            throw new \InvalidArgumentException('non-nullable energy_includes_hot_water cannot be null');
+        }
+        $this->container['energy_includes_hot_water'] = $energy_includes_hot_water;
+
+        return $this;
+    }
+
+    /**
      * Gets energy_label
      *
      * @return string|null
@@ -873,6 +1649,60 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable energy_label cannot be null');
         }
         $this->container['energy_label'] = $energy_label;
+
+        return $this;
+    }
+
+    /**
+     * Gets energy_primary_carrier
+     *
+     * @return string|null
+     */
+    public function getEnergyPrimaryCarrier()
+    {
+        return $this->container['energy_primary_carrier'];
+    }
+
+    /**
+     * Sets energy_primary_carrier
+     *
+     * @param string|null $energy_primary_carrier energy_primary_carrier
+     *
+     * @return self
+     */
+    public function setEnergyPrimaryCarrier($energy_primary_carrier)
+    {
+        if (is_null($energy_primary_carrier)) {
+            throw new \InvalidArgumentException('non-nullable energy_primary_carrier cannot be null');
+        }
+        $this->container['energy_primary_carrier'] = $energy_primary_carrier;
+
+        return $this;
+    }
+
+    /**
+     * Gets exterior_features
+     *
+     * @return string[]|null
+     */
+    public function getExteriorFeatures()
+    {
+        return $this->container['exterior_features'];
+    }
+
+    /**
+     * Sets exterior_features
+     *
+     * @param string[]|null $exterior_features exterior_features
+     *
+     * @return self
+     */
+    public function setExteriorFeatures($exterior_features)
+    {
+        if (is_null($exterior_features)) {
+            throw new \InvalidArgumentException('non-nullable exterior_features cannot be null');
+        }
+        $this->container['exterior_features'] = $exterior_features;
 
         return $this;
     }
@@ -932,6 +1762,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets flooring
+     *
+     * @return string|null
+     */
+    public function getFlooring()
+    {
+        return $this->container['flooring'];
+    }
+
+    /**
+     * Sets flooring
+     *
+     * @param string|null $flooring flooring
+     *
+     * @return self
+     */
+    public function setFlooring($flooring)
+    {
+        if (is_null($flooring)) {
+            throw new \InvalidArgumentException('non-nullable flooring cannot be null');
+        }
+        $this->container['flooring'] = $flooring;
+
+        return $this;
+    }
+
+    /**
      * Gets floors_in_building
      *
      * @return int|null
@@ -954,6 +1811,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable floors_in_building cannot be null');
         }
         $this->container['floors_in_building'] = $floors_in_building;
+
+        return $this;
+    }
+
+    /**
+     * Gets garden_sqm
+     *
+     * @return float|null
+     */
+    public function getGardenSqm()
+    {
+        return $this->container['garden_sqm'];
+    }
+
+    /**
+     * Sets garden_sqm
+     *
+     * @param float|null $garden_sqm garden_sqm
+     *
+     * @return self
+     */
+    public function setGardenSqm($garden_sqm)
+    {
+        if (is_null($garden_sqm)) {
+            throw new \InvalidArgumentException('non-nullable garden_sqm cannot be null');
+        }
+        $this->container['garden_sqm'] = $garden_sqm;
 
         return $this;
     }
@@ -986,6 +1870,357 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets has_air_conditioning
+     *
+     * @return bool|null
+     */
+    public function getHasAirConditioning()
+    {
+        return $this->container['has_air_conditioning'];
+    }
+
+    /**
+     * Sets has_air_conditioning
+     *
+     * @param bool|null $has_air_conditioning has_air_conditioning
+     *
+     * @return self
+     */
+    public function setHasAirConditioning($has_air_conditioning)
+    {
+        if (is_null($has_air_conditioning)) {
+            throw new \InvalidArgumentException('non-nullable has_air_conditioning cannot be null');
+        }
+        $this->container['has_air_conditioning'] = $has_air_conditioning;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_alarm_system
+     *
+     * @return bool|null
+     */
+    public function getHasAlarmSystem()
+    {
+        return $this->container['has_alarm_system'];
+    }
+
+    /**
+     * Sets has_alarm_system
+     *
+     * @param bool|null $has_alarm_system has_alarm_system
+     *
+     * @return self
+     */
+    public function setHasAlarmSystem($has_alarm_system)
+    {
+        if (is_null($has_alarm_system)) {
+            throw new \InvalidArgumentException('non-nullable has_alarm_system cannot be null');
+        }
+        $this->container['has_alarm_system'] = $has_alarm_system;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_balcony
+     *
+     * @return bool|null
+     */
+    public function getHasBalcony()
+    {
+        return $this->container['has_balcony'];
+    }
+
+    /**
+     * Sets has_balcony
+     *
+     * @param bool|null $has_balcony has_balcony
+     *
+     * @return self
+     */
+    public function setHasBalcony($has_balcony)
+    {
+        if (is_null($has_balcony)) {
+            throw new \InvalidArgumentException('non-nullable has_balcony cannot be null');
+        }
+        $this->container['has_balcony'] = $has_balcony;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_cellar
+     *
+     * @return bool|null
+     */
+    public function getHasCellar()
+    {
+        return $this->container['has_cellar'];
+    }
+
+    /**
+     * Sets has_cellar
+     *
+     * @param bool|null $has_cellar has_cellar
+     *
+     * @return self
+     */
+    public function setHasCellar($has_cellar)
+    {
+        if (is_null($has_cellar)) {
+            throw new \InvalidArgumentException('non-nullable has_cellar cannot be null');
+        }
+        $this->container['has_cellar'] = $has_cellar;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_fireplace
+     *
+     * @return bool|null
+     */
+    public function getHasFireplace()
+    {
+        return $this->container['has_fireplace'];
+    }
+
+    /**
+     * Sets has_fireplace
+     *
+     * @param bool|null $has_fireplace has_fireplace
+     *
+     * @return self
+     */
+    public function setHasFireplace($has_fireplace)
+    {
+        if (is_null($has_fireplace)) {
+            throw new \InvalidArgumentException('non-nullable has_fireplace cannot be null');
+        }
+        $this->container['has_fireplace'] = $has_fireplace;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_fitted_kitchen
+     *
+     * @return bool|null
+     */
+    public function getHasFittedKitchen()
+    {
+        return $this->container['has_fitted_kitchen'];
+    }
+
+    /**
+     * Sets has_fitted_kitchen
+     *
+     * @param bool|null $has_fitted_kitchen has_fitted_kitchen
+     *
+     * @return self
+     */
+    public function setHasFittedKitchen($has_fitted_kitchen)
+    {
+        if (is_null($has_fitted_kitchen)) {
+            throw new \InvalidArgumentException('non-nullable has_fitted_kitchen cannot be null');
+        }
+        $this->container['has_fitted_kitchen'] = $has_fitted_kitchen;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_garden
+     *
+     * @return bool|null
+     */
+    public function getHasGarden()
+    {
+        return $this->container['has_garden'];
+    }
+
+    /**
+     * Sets has_garden
+     *
+     * @param bool|null $has_garden has_garden
+     *
+     * @return self
+     */
+    public function setHasGarden($has_garden)
+    {
+        if (is_null($has_garden)) {
+            throw new \InvalidArgumentException('non-nullable has_garden cannot be null');
+        }
+        $this->container['has_garden'] = $has_garden;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_guest_toilet
+     *
+     * @return bool|null
+     */
+    public function getHasGuestToilet()
+    {
+        return $this->container['has_guest_toilet'];
+    }
+
+    /**
+     * Sets has_guest_toilet
+     *
+     * @param bool|null $has_guest_toilet has_guest_toilet
+     *
+     * @return self
+     */
+    public function setHasGuestToilet($has_guest_toilet)
+    {
+        if (is_null($has_guest_toilet)) {
+            throw new \InvalidArgumentException('non-nullable has_guest_toilet cannot be null');
+        }
+        $this->container['has_guest_toilet'] = $has_guest_toilet;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_lift
+     *
+     * @return bool|null
+     */
+    public function getHasLift()
+    {
+        return $this->container['has_lift'];
+    }
+
+    /**
+     * Sets has_lift
+     *
+     * @param bool|null $has_lift has_lift
+     *
+     * @return self
+     */
+    public function setHasLift($has_lift)
+    {
+        if (is_null($has_lift)) {
+            throw new \InvalidArgumentException('non-nullable has_lift cannot be null');
+        }
+        $this->container['has_lift'] = $has_lift;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_pool
+     *
+     * @return bool|null
+     */
+    public function getHasPool()
+    {
+        return $this->container['has_pool'];
+    }
+
+    /**
+     * Sets has_pool
+     *
+     * @param bool|null $has_pool has_pool
+     *
+     * @return self
+     */
+    public function setHasPool($has_pool)
+    {
+        if (is_null($has_pool)) {
+            throw new \InvalidArgumentException('non-nullable has_pool cannot be null');
+        }
+        $this->container['has_pool'] = $has_pool;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_sauna
+     *
+     * @return bool|null
+     */
+    public function getHasSauna()
+    {
+        return $this->container['has_sauna'];
+    }
+
+    /**
+     * Sets has_sauna
+     *
+     * @param bool|null $has_sauna has_sauna
+     *
+     * @return self
+     */
+    public function setHasSauna($has_sauna)
+    {
+        if (is_null($has_sauna)) {
+            throw new \InvalidArgumentException('non-nullable has_sauna cannot be null');
+        }
+        $this->container['has_sauna'] = $has_sauna;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_solar_panels
+     *
+     * @return bool|null
+     */
+    public function getHasSolarPanels()
+    {
+        return $this->container['has_solar_panels'];
+    }
+
+    /**
+     * Sets has_solar_panels
+     *
+     * @param bool|null $has_solar_panels has_solar_panels
+     *
+     * @return self
+     */
+    public function setHasSolarPanels($has_solar_panels)
+    {
+        if (is_null($has_solar_panels)) {
+            throw new \InvalidArgumentException('non-nullable has_solar_panels cannot be null');
+        }
+        $this->container['has_solar_panels'] = $has_solar_panels;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_terrace
+     *
+     * @return bool|null
+     */
+    public function getHasTerrace()
+    {
+        return $this->container['has_terrace'];
+    }
+
+    /**
+     * Sets has_terrace
+     *
+     * @param bool|null $has_terrace has_terrace
+     *
+     * @return self
+     */
+    public function setHasTerrace($has_terrace)
+    {
+        if (is_null($has_terrace)) {
+            throw new \InvalidArgumentException('non-nullable has_terrace cannot be null');
+        }
+        $this->container['has_terrace'] = $has_terrace;
+
+        return $this;
+    }
+
+    /**
      * Gets heating_type
      *
      * @return string|null
@@ -1008,6 +2243,195 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable heating_type cannot be null');
         }
         $this->container['heating_type'] = $heating_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets images
+     *
+     * @return \Skautik\Sdk\Model\ImageInput[]|null
+     */
+    public function getImages()
+    {
+        return $this->container['images'];
+    }
+
+    /**
+     * Sets images
+     *
+     * @param \Skautik\Sdk\Model\ImageInput[]|null $images images
+     *
+     * @return self
+     */
+    public function setImages($images)
+    {
+        if (is_null($images)) {
+            throw new \InvalidArgumentException('non-nullable images cannot be null');
+        }
+        $this->container['images'] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Gets interior_features
+     *
+     * @return string[]|null
+     */
+    public function getInteriorFeatures()
+    {
+        return $this->container['interior_features'];
+    }
+
+    /**
+     * Sets interior_features
+     *
+     * @param string[]|null $interior_features interior_features
+     *
+     * @return self
+     */
+    public function setInteriorFeatures($interior_features)
+    {
+        if (is_null($interior_features)) {
+            throw new \InvalidArgumentException('non-nullable interior_features cannot be null');
+        }
+        $this->container['interior_features'] = $interior_features;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_barrier_free
+     *
+     * @return bool|null
+     */
+    public function getIsBarrierFree()
+    {
+        return $this->container['is_barrier_free'];
+    }
+
+    /**
+     * Sets is_barrier_free
+     *
+     * @param bool|null $is_barrier_free is_barrier_free
+     *
+     * @return self
+     */
+    public function setIsBarrierFree($is_barrier_free)
+    {
+        if (is_null($is_barrier_free)) {
+            throw new \InvalidArgumentException('non-nullable is_barrier_free cannot be null');
+        }
+        $this->container['is_barrier_free'] = $is_barrier_free;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_furnished
+     *
+     * @return bool|null
+     */
+    public function getIsFurnished()
+    {
+        return $this->container['is_furnished'];
+    }
+
+    /**
+     * Sets is_furnished
+     *
+     * @param bool|null $is_furnished is_furnished
+     *
+     * @return self
+     */
+    public function setIsFurnished($is_furnished)
+    {
+        if (is_null($is_furnished)) {
+            throw new \InvalidArgumentException('non-nullable is_furnished cannot be null');
+        }
+        $this->container['is_furnished'] = $is_furnished;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_leasehold
+     *
+     * @return bool|null
+     */
+    public function getIsLeasehold()
+    {
+        return $this->container['is_leasehold'];
+    }
+
+    /**
+     * Sets is_leasehold
+     *
+     * @param bool|null $is_leasehold is_leasehold
+     *
+     * @return self
+     */
+    public function setIsLeasehold($is_leasehold)
+    {
+        if (is_null($is_leasehold)) {
+            throw new \InvalidArgumentException('non-nullable is_leasehold cannot be null');
+        }
+        $this->container['is_leasehold'] = $is_leasehold;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_monument_protected
+     *
+     * @return bool|null
+     */
+    public function getIsMonumentProtected()
+    {
+        return $this->container['is_monument_protected'];
+    }
+
+    /**
+     * Sets is_monument_protected
+     *
+     * @param bool|null $is_monument_protected is_monument_protected
+     *
+     * @return self
+     */
+    public function setIsMonumentProtected($is_monument_protected)
+    {
+        if (is_null($is_monument_protected)) {
+            throw new \InvalidArgumentException('non-nullable is_monument_protected cannot be null');
+        }
+        $this->container['is_monument_protected'] = $is_monument_protected;
+
+        return $this;
+    }
+
+    /**
+     * Gets kitchen_type
+     *
+     * @return string|null
+     */
+    public function getKitchenType()
+    {
+        return $this->container['kitchen_type'];
+    }
+
+    /**
+     * Sets kitchen_type
+     *
+     * @param string|null $kitchen_type kitchen_type
+     *
+     * @return self
+     */
+    public function setKitchenType($kitchen_type)
+    {
+        if (is_null($kitchen_type)) {
+            throw new \InvalidArgumentException('non-nullable kitchen_type cannot be null');
+        }
+        $this->container['kitchen_type'] = $kitchen_type;
 
         return $this;
     }
@@ -1148,6 +2572,141 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets office_area_sqm
+     *
+     * @return float|null
+     */
+    public function getOfficeAreaSqm()
+    {
+        return $this->container['office_area_sqm'];
+    }
+
+    /**
+     * Sets office_area_sqm
+     *
+     * @param float|null $office_area_sqm office_area_sqm
+     *
+     * @return self
+     */
+    public function setOfficeAreaSqm($office_area_sqm)
+    {
+        if (is_null($office_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable office_area_sqm cannot be null');
+        }
+        $this->container['office_area_sqm'] = $office_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets other_area_sqm
+     *
+     * @return float|null
+     */
+    public function getOtherAreaSqm()
+    {
+        return $this->container['other_area_sqm'];
+    }
+
+    /**
+     * Sets other_area_sqm
+     *
+     * @param float|null $other_area_sqm other_area_sqm
+     *
+     * @return self
+     */
+    public function setOtherAreaSqm($other_area_sqm)
+    {
+        if (is_null($other_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable other_area_sqm cannot be null');
+        }
+        $this->container['other_area_sqm'] = $other_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets parking_included
+     *
+     * @return bool|null
+     */
+    public function getParkingIncluded()
+    {
+        return $this->container['parking_included'];
+    }
+
+    /**
+     * Sets parking_included
+     *
+     * @param bool|null $parking_included parking_included
+     *
+     * @return self
+     */
+    public function setParkingIncluded($parking_included)
+    {
+        if (is_null($parking_included)) {
+            throw new \InvalidArgumentException('non-nullable parking_included cannot be null');
+        }
+        $this->container['parking_included'] = $parking_included;
+
+        return $this;
+    }
+
+    /**
+     * Gets parking_space_count
+     *
+     * @return int|null
+     */
+    public function getParkingSpaceCount()
+    {
+        return $this->container['parking_space_count'];
+    }
+
+    /**
+     * Sets parking_space_count
+     *
+     * @param int|null $parking_space_count parking_space_count
+     *
+     * @return self
+     */
+    public function setParkingSpaceCount($parking_space_count)
+    {
+        if (is_null($parking_space_count)) {
+            throw new \InvalidArgumentException('non-nullable parking_space_count cannot be null');
+        }
+        $this->container['parking_space_count'] = $parking_space_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets parking_type
+     *
+     * @return string|null
+     */
+    public function getParkingType()
+    {
+        return $this->container['parking_type'];
+    }
+
+    /**
+     * Sets parking_type
+     *
+     * @param string|null $parking_type parking_type
+     *
+     * @return self
+     */
+    public function setParkingType($parking_type)
+    {
+        if (is_null($parking_type)) {
+            throw new \InvalidArgumentException('non-nullable parking_type cannot be null');
+        }
+        $this->container['parking_type'] = $parking_type;
+
+        return $this;
+    }
+
+    /**
      * Gets plot_area_sqm
      *
      * @return float|null
@@ -1170,6 +2729,168 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable plot_area_sqm cannot be null');
         }
         $this->container['plot_area_sqm'] = $plot_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets property_subtype
+     *
+     * @return string|null
+     */
+    public function getPropertySubtype()
+    {
+        return $this->container['property_subtype'];
+    }
+
+    /**
+     * Sets property_subtype
+     *
+     * @param string|null $property_subtype property_subtype
+     *
+     * @return self
+     */
+    public function setPropertySubtype($property_subtype)
+    {
+        if (is_null($property_subtype)) {
+            throw new \InvalidArgumentException('non-nullable property_subtype cannot be null');
+        }
+        $this->container['property_subtype'] = $property_subtype;
+
+        return $this;
+    }
+
+    /**
+     * Gets publish_address
+     *
+     * @return bool|null
+     */
+    public function getPublishAddress()
+    {
+        return $this->container['publish_address'];
+    }
+
+    /**
+     * Sets publish_address
+     *
+     * @param bool|null $publish_address publish_address
+     *
+     * @return self
+     */
+    public function setPublishAddress($publish_address)
+    {
+        if (is_null($publish_address)) {
+            throw new \InvalidArgumentException('non-nullable publish_address cannot be null');
+        }
+        $this->container['publish_address'] = $publish_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets retail_area_sqm
+     *
+     * @return float|null
+     */
+    public function getRetailAreaSqm()
+    {
+        return $this->container['retail_area_sqm'];
+    }
+
+    /**
+     * Sets retail_area_sqm
+     *
+     * @param float|null $retail_area_sqm retail_area_sqm
+     *
+     * @return self
+     */
+    public function setRetailAreaSqm($retail_area_sqm)
+    {
+        if (is_null($retail_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable retail_area_sqm cannot be null');
+        }
+        $this->container['retail_area_sqm'] = $retail_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets storage_area_sqm
+     *
+     * @return float|null
+     */
+    public function getStorageAreaSqm()
+    {
+        return $this->container['storage_area_sqm'];
+    }
+
+    /**
+     * Sets storage_area_sqm
+     *
+     * @param float|null $storage_area_sqm storage_area_sqm
+     *
+     * @return self
+     */
+    public function setStorageAreaSqm($storage_area_sqm)
+    {
+        if (is_null($storage_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable storage_area_sqm cannot be null');
+        }
+        $this->container['storage_area_sqm'] = $storage_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets surroundings
+     *
+     * @return string[]|null
+     */
+    public function getSurroundings()
+    {
+        return $this->container['surroundings'];
+    }
+
+    /**
+     * Sets surroundings
+     *
+     * @param string[]|null $surroundings surroundings
+     *
+     * @return self
+     */
+    public function setSurroundings($surroundings)
+    {
+        if (is_null($surroundings)) {
+            throw new \InvalidArgumentException('non-nullable surroundings cannot be null');
+        }
+        $this->container['surroundings'] = $surroundings;
+
+        return $this;
+    }
+
+    /**
+     * Gets terrace_count
+     *
+     * @return int|null
+     */
+    public function getTerraceCount()
+    {
+        return $this->container['terrace_count'];
+    }
+
+    /**
+     * Sets terrace_count
+     *
+     * @param int|null $terrace_count terrace_count
+     *
+     * @return self
+     */
+    public function setTerraceCount($terrace_count)
+    {
+        if (is_null($terrace_count)) {
+            throw new \InvalidArgumentException('non-nullable terrace_count cannot be null');
+        }
+        $this->container['terrace_count'] = $terrace_count;
 
         return $this;
     }
@@ -1202,6 +2923,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets total_area_sqm
+     *
+     * @return float|null
+     */
+    public function getTotalAreaSqm()
+    {
+        return $this->container['total_area_sqm'];
+    }
+
+    /**
+     * Sets total_area_sqm
+     *
+     * @param float|null $total_area_sqm total_area_sqm
+     *
+     * @return self
+     */
+    public function setTotalAreaSqm($total_area_sqm)
+    {
+        if (is_null($total_area_sqm)) {
+            throw new \InvalidArgumentException('non-nullable total_area_sqm cannot be null');
+        }
+        $this->container['total_area_sqm'] = $total_area_sqm;
+
+        return $this;
+    }
+
+    /**
      * Gets total_rooms
      *
      * @return int|null
@@ -1224,6 +2972,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable total_rooms cannot be null');
         }
         $this->container['total_rooms'] = $total_rooms;
+
+        return $this;
+    }
+
+    /**
+     * Gets translations
+     *
+     * @return \Skautik\Sdk\Model\Translation[]|null
+     */
+    public function getTranslations()
+    {
+        return $this->container['translations'];
+    }
+
+    /**
+     * Sets translations
+     *
+     * @param \Skautik\Sdk\Model\Translation[]|null $translations translations
+     *
+     * @return self
+     */
+    public function setTranslations($translations)
+    {
+        if (is_null($translations)) {
+            throw new \InvalidArgumentException('non-nullable translations cannot be null');
+        }
+        $this->container['translations'] = $translations;
 
         return $this;
     }
@@ -1278,6 +3053,33 @@ class PropertyInput implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable usable_area_sqm cannot be null');
         }
         $this->container['usable_area_sqm'] = $usable_area_sqm;
+
+        return $this;
+    }
+
+    /**
+     * Gets window_glazing
+     *
+     * @return string|null
+     */
+    public function getWindowGlazing()
+    {
+        return $this->container['window_glazing'];
+    }
+
+    /**
+     * Sets window_glazing
+     *
+     * @param string|null $window_glazing window_glazing
+     *
+     * @return self
+     */
+    public function setWindowGlazing($window_glazing)
+    {
+        if (is_null($window_glazing)) {
+            throw new \InvalidArgumentException('non-nullable window_glazing cannot be null');
+        }
+        $this->container['window_glazing'] = $window_glazing;
 
         return $this;
     }

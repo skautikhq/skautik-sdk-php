@@ -22,9 +22,11 @@ lib/Model/Bounds.php
 lib/Model/Building.php
 lib/Model/City.php
 lib/Model/CityList.php
+lib/Model/ConnectorInput.php
 lib/Model/Delivery.php
 lib/Model/DeliveryInput.php
 lib/Model/DeliveryList.php
+lib/Model/Descriptions.php
 lib/Model/District.php
 lib/Model/DistrictList.php
 lib/Model/Energy.php
@@ -33,11 +35,13 @@ lib/Model/Export.php
 lib/Model/ExportInput.php
 lib/Model/ExportList.php
 lib/Model/ExportResponse.php
+lib/Model/Features.php
 lib/Model/Generation.php
 lib/Model/GenerationInput.php
 lib/Model/GenerationList.php
 lib/Model/GenerationResponse.php
 lib/Model/Image.php
+lib/Model/ImageInput.php
 lib/Model/ImageList.php
 lib/Model/ImageResponse.php
 lib/Model/Import.php
@@ -63,6 +67,7 @@ lib/Model/MarketMetric.php
 lib/Model/MarketResponse.php
 lib/Model/ModelInterface.php
 lib/Model/PageMeta.php
+lib/Model/Parking.php
 lib/Model/PriceObservation.php
 lib/Model/PriceObservationList.php
 lib/Model/Problem.php
@@ -78,9 +83,11 @@ lib/Model/SearchRequest.php
 lib/Model/Series.php
 lib/Model/SeriesPoint.php
 lib/Model/SeriesResponse.php
+lib/Model/ShrinkGuard.php
 lib/Model/Size.php
 lib/Model/SourceDelivery.php
 lib/Model/SourceUpdate.php
+lib/Model/Translation.php
 lib/Model/Webhook.php
 lib/Model/WebhookInput.php
 lib/Model/WebhookList.php

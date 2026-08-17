@@ -1,6 +1,6 @@
 <?php
 /**
- * ExportInput
+ * ConnectorInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * ExportInput Class Doc Comment
+ * ConnectorInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConnectorInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ExportInput';
+    protected static $openAPIModelName = 'ConnectorInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'fields' => 'string[]',
-        'filters' => 'array<string,string>',
-        'format' => 'string'
+        'secret' => 'string',
+        'settings' => 'array<string,string>',
+        'token_url' => 'string',
+        'url' => 'string',
+        'username' => 'string'
     ];
 
     /**
@@ -70,9 +72,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'fields' => null,
-        'filters' => null,
-        'format' => null
+        'secret' => null,
+        'settings' => null,
+        'token_url' => null,
+        'url' => null,
+        'username' => null
     ];
 
     /**
@@ -81,9 +85,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'fields' => false,
-        'filters' => false,
-        'format' => false
+        'secret' => false,
+        'settings' => false,
+        'token_url' => false,
+        'url' => false,
+        'username' => false
     ];
 
     /**
@@ -172,9 +178,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'fields' => 'fields',
-        'filters' => 'filters',
-        'format' => 'format'
+        'secret' => 'secret',
+        'settings' => 'settings',
+        'token_url' => 'token_url',
+        'url' => 'url',
+        'username' => 'username'
     ];
 
     /**
@@ -183,9 +191,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'fields' => 'setFields',
-        'filters' => 'setFilters',
-        'format' => 'setFormat'
+        'secret' => 'setSecret',
+        'settings' => 'setSettings',
+        'token_url' => 'setTokenUrl',
+        'url' => 'setUrl',
+        'username' => 'setUsername'
     ];
 
     /**
@@ -194,9 +204,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'fields' => 'getFields',
-        'filters' => 'getFilters',
-        'format' => 'getFormat'
+        'secret' => 'getSecret',
+        'settings' => 'getSettings',
+        'token_url' => 'getTokenUrl',
+        'url' => 'getUrl',
+        'username' => 'getUsername'
     ];
 
     /**
@@ -256,9 +268,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('secret', $data ?? [], null);
+        $this->setIfExists('settings', $data ?? [], null);
+        $this->setIfExists('token_url', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('username', $data ?? [], null);
     }
 
     /**
@@ -288,8 +302,11 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
+        if ($this->container['secret'] === null) {
+            $invalidProperties[] = "'secret' can't be null";
+        }
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,82 +324,136 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets fields
-     *
-     * @return string[]|null
-     */
-    public function getFields()
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[]|null $fields fields
-     *
-     * @return self
-     */
-    public function setFields($fields)
-    {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
-        }
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets filters
-     *
-     * @return array<string,string>|null
-     */
-    public function getFilters()
-    {
-        return $this->container['filters'];
-    }
-
-    /**
-     * Sets filters
-     *
-     * @param array<string,string>|null $filters filters
-     *
-     * @return self
-     */
-    public function setFilters($filters)
-    {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
-        }
-        $this->container['filters'] = $filters;
-
-        return $this;
-    }
-
-    /**
-     * Gets format
+     * Gets secret
      *
      * @return string
      */
-    public function getFormat()
+    public function getSecret()
     {
-        return $this->container['format'];
+        return $this->container['secret'];
     }
 
     /**
-     * Sets format
+     * Sets secret
      *
-     * @param string $format format
+     * @param string $secret secret
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setSecret($secret)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($secret)) {
+            throw new \InvalidArgumentException('non-nullable secret cannot be null');
         }
-        $this->container['format'] = $format;
+        $this->container['secret'] = $secret;
+
+        return $this;
+    }
+
+    /**
+     * Gets settings
+     *
+     * @return array<string,string>|null
+     */
+    public function getSettings()
+    {
+        return $this->container['settings'];
+    }
+
+    /**
+     * Sets settings
+     *
+     * @param array<string,string>|null $settings settings
+     *
+     * @return self
+     */
+    public function setSettings($settings)
+    {
+        if (is_null($settings)) {
+            throw new \InvalidArgumentException('non-nullable settings cannot be null');
+        }
+        $this->container['settings'] = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets token_url
+     *
+     * @return string|null
+     */
+    public function getTokenUrl()
+    {
+        return $this->container['token_url'];
+    }
+
+    /**
+     * Sets token_url
+     *
+     * @param string|null $token_url token_url
+     *
+     * @return self
+     */
+    public function setTokenUrl($token_url)
+    {
+        if (is_null($token_url)) {
+            throw new \InvalidArgumentException('non-nullable token_url cannot be null');
+        }
+        $this->container['token_url'] = $token_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string $url url
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets username
+     *
+     * @return string|null
+     */
+    public function getUsername()
+    {
+        return $this->container['username'];
+    }
+
+    /**
+     * Sets username
+     *
+     * @param string|null $username username
+     *
+     * @return self
+     */
+    public function setUsername($username)
+    {
+        if (is_null($username)) {
+            throw new \InvalidArgumentException('non-nullable username cannot be null');
+        }
+        $this->container['username'] = $username;
 
         return $this;
     }

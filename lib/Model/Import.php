@@ -66,7 +66,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => '\DateTime',
         'format' => 'string',
         'id' => 'string',
+        'images_queued' => 'int',
         'mode' => 'string',
+        'shrink_guard' => '\Skautik\Sdk\Model\ShrinkGuard',
         'source_id' => 'string',
         'started_at' => '\DateTime',
         'status' => 'string'
@@ -89,7 +91,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => 'date-time',
         'format' => null,
         'id' => null,
+        'images_queued' => null,
         'mode' => null,
+        'shrink_guard' => null,
         'source_id' => null,
         'started_at' => 'date-time',
         'status' => null
@@ -110,7 +114,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => false,
         'format' => false,
         'id' => false,
+        'images_queued' => false,
         'mode' => false,
+        'shrink_guard' => false,
         'source_id' => false,
         'started_at' => false,
         'status' => false
@@ -211,7 +217,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => 'finished_at',
         'format' => 'format',
         'id' => 'id',
+        'images_queued' => 'images_queued',
         'mode' => 'mode',
+        'shrink_guard' => 'shrink_guard',
         'source_id' => 'source_id',
         'started_at' => 'started_at',
         'status' => 'status'
@@ -232,7 +240,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => 'setFinishedAt',
         'format' => 'setFormat',
         'id' => 'setId',
+        'images_queued' => 'setImagesQueued',
         'mode' => 'setMode',
+        'shrink_guard' => 'setShrinkGuard',
         'source_id' => 'setSourceId',
         'started_at' => 'setStartedAt',
         'status' => 'setStatus'
@@ -253,7 +263,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         'finished_at' => 'getFinishedAt',
         'format' => 'getFormat',
         'id' => 'getId',
+        'images_queued' => 'getImagesQueued',
         'mode' => 'getMode',
+        'shrink_guard' => 'getShrinkGuard',
         'source_id' => 'getSourceId',
         'started_at' => 'getStartedAt',
         'status' => 'getStatus'
@@ -325,7 +337,9 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('finished_at', $data ?? [], null);
         $this->setIfExists('format', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('images_queued', $data ?? [], null);
         $this->setIfExists('mode', $data ?? [], null);
+        $this->setIfExists('shrink_guard', $data ?? [], null);
         $this->setIfExists('source_id', $data ?? [], null);
         $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -638,6 +652,33 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets images_queued
+     *
+     * @return int|null
+     */
+    public function getImagesQueued()
+    {
+        return $this->container['images_queued'];
+    }
+
+    /**
+     * Sets images_queued
+     *
+     * @param int|null $images_queued images_queued
+     *
+     * @return self
+     */
+    public function setImagesQueued($images_queued)
+    {
+        if (is_null($images_queued)) {
+            throw new \InvalidArgumentException('non-nullable images_queued cannot be null');
+        }
+        $this->container['images_queued'] = $images_queued;
+
+        return $this;
+    }
+
+    /**
      * Gets mode
      *
      * @return string
@@ -660,6 +701,33 @@ class Import implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable mode cannot be null');
         }
         $this->container['mode'] = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets shrink_guard
+     *
+     * @return \Skautik\Sdk\Model\ShrinkGuard|null
+     */
+    public function getShrinkGuard()
+    {
+        return $this->container['shrink_guard'];
+    }
+
+    /**
+     * Sets shrink_guard
+     *
+     * @param \Skautik\Sdk\Model\ShrinkGuard|null $shrink_guard shrink_guard
+     *
+     * @return self
+     */
+    public function setShrinkGuard($shrink_guard)
+    {
+        if (is_null($shrink_guard)) {
+            throw new \InvalidArgumentException('non-nullable shrink_guard cannot be null');
+        }
+        $this->container['shrink_guard'] = $shrink_guard;
 
         return $this;
     }

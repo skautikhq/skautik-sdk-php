@@ -1,6 +1,6 @@
 <?php
 /**
- * ExportInput
+ * ImageInput
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Skautik\Sdk\ObjectSerializer;
 
 /**
- * ExportInput Class Doc Comment
+ * ImageInput Class Doc Comment
  *
  * @category Class
  * @package  Skautik\Sdk
@@ -40,7 +40,7 @@ use \Skautik\Sdk\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'ExportInput';
+    protected static $openAPIModelName = 'ImageInput';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'fields' => 'string[]',
-        'filters' => 'array<string,string>',
-        'format' => 'string'
+        'caption' => 'string',
+        'kind' => 'string',
+        'position' => 'int',
+        'url' => 'string'
     ];
 
     /**
@@ -70,9 +71,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'fields' => null,
-        'filters' => null,
-        'format' => null
+        'caption' => null,
+        'kind' => null,
+        'position' => null,
+        'url' => null
     ];
 
     /**
@@ -81,9 +83,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'fields' => false,
-        'filters' => false,
-        'format' => false
+        'caption' => false,
+        'kind' => false,
+        'position' => false,
+        'url' => false
     ];
 
     /**
@@ -172,9 +175,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'fields' => 'fields',
-        'filters' => 'filters',
-        'format' => 'format'
+        'caption' => 'caption',
+        'kind' => 'kind',
+        'position' => 'position',
+        'url' => 'url'
     ];
 
     /**
@@ -183,9 +187,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'fields' => 'setFields',
-        'filters' => 'setFilters',
-        'format' => 'setFormat'
+        'caption' => 'setCaption',
+        'kind' => 'setKind',
+        'position' => 'setPosition',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -194,9 +199,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'fields' => 'getFields',
-        'filters' => 'getFilters',
-        'format' => 'getFormat'
+        'caption' => 'getCaption',
+        'kind' => 'getKind',
+        'position' => 'getPosition',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -256,9 +262,10 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('filters', $data ?? [], null);
-        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('caption', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
+        $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
     }
 
     /**
@@ -288,8 +295,8 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['format'] === null) {
-            $invalidProperties[] = "'format' can't be null";
+        if ($this->container['url'] === null) {
+            $invalidProperties[] = "'url' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,82 +314,109 @@ class ExportInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets fields
+     * Gets caption
      *
-     * @return string[]|null
+     * @return string|null
      */
-    public function getFields()
+    public function getCaption()
     {
-        return $this->container['fields'];
+        return $this->container['caption'];
     }
 
     /**
-     * Sets fields
+     * Sets caption
      *
-     * @param string[]|null $fields fields
+     * @param string|null $caption caption
      *
      * @return self
      */
-    public function setFields($fields)
+    public function setCaption($caption)
     {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
+        if (is_null($caption)) {
+            throw new \InvalidArgumentException('non-nullable caption cannot be null');
         }
-        $this->container['fields'] = $fields;
+        $this->container['caption'] = $caption;
 
         return $this;
     }
 
     /**
-     * Gets filters
+     * Gets kind
      *
-     * @return array<string,string>|null
+     * @return string|null
      */
-    public function getFilters()
+    public function getKind()
     {
-        return $this->container['filters'];
+        return $this->container['kind'];
     }
 
     /**
-     * Sets filters
+     * Sets kind
      *
-     * @param array<string,string>|null $filters filters
+     * @param string|null $kind kind
      *
      * @return self
      */
-    public function setFilters($filters)
+    public function setKind($kind)
     {
-        if (is_null($filters)) {
-            throw new \InvalidArgumentException('non-nullable filters cannot be null');
+        if (is_null($kind)) {
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
         }
-        $this->container['filters'] = $filters;
+        $this->container['kind'] = $kind;
 
         return $this;
     }
 
     /**
-     * Gets format
+     * Gets position
+     *
+     * @return int|null
+     */
+    public function getPosition()
+    {
+        return $this->container['position'];
+    }
+
+    /**
+     * Sets position
+     *
+     * @param int|null $position position
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        if (is_null($position)) {
+            throw new \InvalidArgumentException('non-nullable position cannot be null');
+        }
+        $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
      *
      * @return string
      */
-    public function getFormat()
+    public function getUrl()
     {
-        return $this->container['format'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets format
+     * Sets url
      *
-     * @param string $format format
+     * @param string $url url
      *
      * @return self
      */
-    public function setFormat($format)
+    public function setUrl($url)
     {
-        if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
-        $this->container['format'] = $format;
+        $this->container['url'] = $url;
 
         return $this;
     }

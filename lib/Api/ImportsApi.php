@@ -162,6 +162,7 @@ class ImportsApi
      * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
      * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
+     * @param  bool|null $confirm_shrink Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
@@ -170,9 +171,9 @@ class ImportsApi
      * @throws \InvalidArgumentException
      * @return \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem
      */
-    public function createImport($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImport($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $confirm_shrink = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        list($response) = $this->createImportWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
+        list($response) = $this->createImportWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $confirm_shrink, $idempotency_key, $file, $contentType);
         return $response;
     }
 
@@ -186,6 +187,7 @@ class ImportsApi
      * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
      * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
+     * @param  bool|null $confirm_shrink Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
@@ -194,9 +196,9 @@ class ImportsApi
      * @throws \InvalidArgumentException
      * @return array of \Skautik\Sdk\Model\ImportResponse|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem|\Skautik\Sdk\Model\Problem, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createImportWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $confirm_shrink = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
+        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $confirm_shrink, $idempotency_key, $file, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -361,6 +363,7 @@ class ImportsApi
      * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
      * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
+     * @param  bool|null $confirm_shrink Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
@@ -368,9 +371,9 @@ class ImportsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportAsync($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportAsync($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $confirm_shrink = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
-        return $this->createImportAsyncWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType)
+        return $this->createImportAsyncWithHttpInfo($format, $mode, $source_id, $dry_run, $filename, $confirm_shrink, $idempotency_key, $file, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -388,6 +391,7 @@ class ImportsApi
      * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
      * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
+     * @param  bool|null $confirm_shrink Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
@@ -395,10 +399,10 @@ class ImportsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createImportAsyncWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportAsyncWithHttpInfo($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $confirm_shrink = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
         $returnType = '\Skautik\Sdk\Model\ImportResponse';
-        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $idempotency_key, $file, $contentType);
+        $request = $this->createImportRequest($format, $mode, $source_id, $dry_run, $filename, $confirm_shrink, $idempotency_key, $file, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -444,6 +448,7 @@ class ImportsApi
      * @param  string|null $source_id Import source this transfer belongs to, when it comes from a standing connector rather than a one-off upload. (optional)
      * @param  bool|null $dry_run Parse and report what would change without writing anything. Worth doing once with a new mapping. (optional)
      * @param  string|null $filename Original filename, recorded on the run so a failure can be traced back to the file that caused it. (optional)
+     * @param  bool|null $confirm_shrink Allow a full sync that would withdraw a large share of the source&#39;s portfolio. Without it, a delivery carrying far fewer records than the source currently holds has its withdrawals held back and the run is reported as partial, on the assumption that the export was truncated. Set this when the reduction is real. (optional)
      * @param  string|null $idempotency_key Prevents a retried upload from being processed twice. (optional)
      * @param  \SplFileObject|null $file The payload. Mutually exclusive with url. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createImport'] to see the possible values for this operation
@@ -451,7 +456,7 @@ class ImportsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createImportRequest($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
+    public function createImportRequest($format, $mode = 'incremental', $source_id = null, $dry_run = null, $filename = null, $confirm_shrink = null, $idempotency_key = null, $file = null, string $contentType = self::contentTypes['createImport'][0])
     {
 
         // verify the required parameter 'format' is set
@@ -460,6 +465,7 @@ class ImportsApi
                 'Missing the required parameter $format when calling createImport'
             );
         }
+
 
 
 
@@ -516,6 +522,15 @@ class ImportsApi
             $filename,
             'filename', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $confirm_shrink,
+            'confirm_shrink', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
